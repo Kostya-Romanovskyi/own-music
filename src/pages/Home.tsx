@@ -8,10 +8,10 @@ const Home: FC = () => {
 	console.log(contextValue)
 
 	return (
-		<>
+		<div className='container'>
 			<CreateTodo setData={contextValue.setDataTodo} />
 			<TodoList data={contextValue.dataTodo} />
-		</>
+		</div>
 	)
 }
 

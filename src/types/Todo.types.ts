@@ -29,3 +29,12 @@ export type TypeContextValue = {
 export type TypeContextProps = {
 	children: React.ReactNode
 }
+
+export type ShowButtonsProps = {
+	isShow: boolean
+}
+
+export type TypeTodoMainButton = {
+	btnContent: string
+	onClick?: () => void
+}
