@@ -34,6 +34,10 @@ export type ShowButtonsProps = {
 	isShow: boolean
 }
 
+export type TypeHiddenProp = {
+	isHidden: boolean
+}
+
 export type TypeTodoMainButton = {
 	btnContent: string
 	onClick?: () => void

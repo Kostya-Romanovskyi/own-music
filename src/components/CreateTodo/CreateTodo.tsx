@@ -2,6 +2,8 @@ import { FC, SetStateAction, useState } from 'react'
 import { nanoid } from 'nanoid'
 import { TypeTodoItem, TypeCreateTodo } from '../../types/Todo.types'
 
+import { CreateTodoWrapper } from './CreateTodo.styled'
+
 const CreateTodo: FC<TypeCreateTodo> = ({ setData }) => {
 	const [newValue, setNewValue] = useState('')
 
@@ -18,12 +20,12 @@ const CreateTodo: FC<TypeCreateTodo> = ({ setData }) => {
 	}
 
 	return (
-		<>
+		<CreateTodoWrapper>
 			<input type='text' onChange={handleChange} />
 			<button type='button' onClick={handleSubmit}>
 				Add note
 			</button>
-		</>
+		</CreateTodoWrapper>
 	)
 }
 export default CreateTodo

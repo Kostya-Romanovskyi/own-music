@@ -21,6 +21,10 @@ export const Item = styled.li`
 	}
 `
 
+export const Text = styled.p`
+	overflow-y: scroll;
+`
+
 export const MoreButton = styled.button`
 	border: none;
 
