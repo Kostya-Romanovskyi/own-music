@@ -58,6 +58,7 @@ button:focus-visible {
 		background-color: #f9f9f9;
 	}
 } */
+@import 'node_modules/modern-normalize/modern-normalize.css';
 
 body {
 	font-family: 'Poppins', sans-serif;

@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from 'react'
 import { TypeTodoItem } from '../../types/Todo.types'
-import { Item, Text, MoreButton, ShowButtons } from './TodoItem.styled'
+import { Item, Text, AdditionalInfoComplexity, AdditionalInfoDate, MoreButton, ShowButtons } from './TodoItem.styled'
 import { TodoContextData } from '../../context/TodoContext'
 
 import TodoMainButton from '../TodoMainButton/TodoMainButton'
@@ -24,6 +24,9 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text }) => {
 		<>
 			<Item>
 				<Text>{text}</Text>
+
+				<AdditionalInfoComplexity>easy</AdditionalInfoComplexity>
+				<AdditionalInfoDate>date time</AdditionalInfoDate>
 
 				<MoreButton type='button' onClick={handleSnowButtons}>
 					<BsThreeDots className='global-icons' />

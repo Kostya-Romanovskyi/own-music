@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { ShowButtonsProps } from '../../types/Todo.types'
+import GlobalColors from '../../UI/GlobalColors'
 
 export const Item = styled.li`
 	position: relative;
@@ -23,6 +24,21 @@ export const Item = styled.li`
 
 export const Text = styled.p`
 	overflow-y: scroll;
+`
+
+export const AdditionalInfoComplexity = styled.p`
+	position: absolute;
+	top: -10px;
+	right: 17%;
+
+	font-size: 10px;
+`
+export const AdditionalInfoDate = styled.p`
+	position: absolute;
+	bottom: -10px;
+	right: 4%;
+
+	font-size: 10px;
 `
 
 export const MoreButton = styled.button`
@@ -50,10 +66,10 @@ export const ShowButtons = styled.div<ShowButtonsProps>`
 	width: 100px;
 	height: 50px;
 
-	border: 1px solid #000000;
+	border: 1px solid ${GlobalColors.black};
 	border-radius: 5px;
 
-	background-color: #ffffff;
+	background-color: ${GlobalColors.white};
 
 	z-index: 10;
 `

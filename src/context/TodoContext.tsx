@@ -8,10 +8,16 @@ export const TodoContextData = createContext<Record<string, any>>(initialContext
 
 const TodoContext: FC<TypeContextProps> = ({ children }) => {
 	const [dataTodo, setDataTodo] = useState(data)
+	const [darkTheme, setDarkTheme] = useState(false)
+	const [searchList, setSearchList] = useState(data)
 
 	const contextValue = {
 		dataTodo,
 		setDataTodo,
+		darkTheme,
+		setDarkTheme,
+		searchList,
+		setSearchList,
 	}
 
 	return <TodoContextData.Provider value={contextValue}>{children}</TodoContextData.Provider>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { TypeHiddenProp } from '../../types/Todo.types'
+import GlobalColors from '../../UI/GlobalColors'
 
 export const ToggleBar = styled.div<TypeHiddenProp>`
 	position: absolute;
@@ -9,7 +10,7 @@ export const ToggleBar = styled.div<TypeHiddenProp>`
 	height: 100vh;
 	width: 50%;
 
-	background-color: #ffffff;
+	background-color: ${GlobalColors.white};
 
 	display: flex;
 
@@ -49,6 +50,6 @@ export const SideBarList = styled.ul`
 
 	max-width: 156px;
 
-	border: 1px solid #000000;
+	border: 1px solid ${GlobalColors.black};
 	border-radius: 10px;
 `
