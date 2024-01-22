@@ -11,11 +11,11 @@ export const data: TypeItemsList = [
 	{ id: '4', text: 'Its fourth notafication', done: false },
 ]
 
-type typeData = {
-	id: string
-	text: string
-	complexity: 'easy' | 'medium' | 'hard'
-	status: 'completed' | 'inProgress'
-	addingDate: string
-	// addingDate: Date
-}
+// type typeData = {
+// 	id: string
+// 	text: string
+// 	complexity: 'easy' | 'medium' | 'hard'
+// 	status: 'completed' | 'inProgress'
+// 	addingDate: string
+// 	addingDate: Date
+// }
