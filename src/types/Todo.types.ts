@@ -1,7 +1,9 @@
 export type TypeTodoItem = {
 	id: string
 	text: string
-	done?: boolean
+	complexity: 'easy' | 'medium' | 'hard'
+	status: 'Done' | 'In progress'
+	addingDate: string
 }
 
 export type TypeItemsList = TypeTodoItem[]

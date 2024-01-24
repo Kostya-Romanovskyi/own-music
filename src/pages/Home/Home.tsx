@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from 'react'
+import { FC, useContext, useState, useEffect } from 'react'
 import SideBarTodo from '../../components/SideBarTodo/SideBarTodo'
 import TodoSearch from '../../components/TodoSearch/TodoSearch'
 import TodoList from '../../components/TodoList/TodoList'
@@ -36,8 +36,8 @@ const Home: FC = () => {
 				<GridWrapper>
 					<SideBarTodo isHidden={isHidden} toggleBar={handleToggleBar} />
 					<div>
-						<TodoList data={contextValue.searchList} />
-						<CreateTodo setData={contextValue.setDataTodo} />
+						<TodoList data={contextValue.filteredTodos} />
+						<CreateTodo setData={contextValue.setFilteredTodos} />
 					</div>
 				</GridWrapper>
 			</div>

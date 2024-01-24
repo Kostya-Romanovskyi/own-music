@@ -7,8 +7,8 @@ const TodoList: FC<TypeItems> = ({ data }) => {
 	return (
 		<>
 			<List>
-				{data.map(({ id, text }) => (
-					<TodoItem key={id} id={id} text={text} />
+				{data.map(({ id, text, complexity, status, addingDate }) => (
+					<TodoItem key={id} id={id} text={text} complexity={complexity} status={status} addingDate={addingDate} />
 				))}
 			</List>
 		</>

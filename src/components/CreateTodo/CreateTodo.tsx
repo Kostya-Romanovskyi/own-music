@@ -14,7 +14,13 @@ const CreateTodo: FC<TypeCreateTodo> = ({ setData }) => {
 	const handleSubmit = () => {
 		const newId = nanoid()
 
-		const newTodo: TypeTodoItem = { id: newId, text: newValue, done: false }
+		const newTodo: TypeTodoItem = {
+			id: newId,
+			text: newValue,
+			complexity: 'easy',
+			status: 'Done',
+			addingDate: '12.11.25',
+		}
 
 		setData(prevState => [...prevState, newTodo])
 	}

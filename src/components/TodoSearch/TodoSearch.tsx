@@ -4,23 +4,23 @@ import { TypeTodoItem } from '../../types/Todo.types'
 
 const TodoSearch: FC = () => {
 	const [inputValue, setInputValue] = useState('')
-	const contextValue = useContext(TodoContextData)
+	const { dataTodo, setFilteredTodos } = useContext(TodoContextData)
 
-	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		const currentInputValue = e.target.value
+
 		setInputValue(currentInputValue)
 
-		const filteredList = contextValue.dataTodo.filter((item: TypeTodoItem) =>
+		const filteredList = dataTodo.filter((item: TypeTodoItem) =>
 			item.text.toLowerCase().includes(currentInputValue.toLowerCase())
 		)
 
-		contextValue.setSearchList(filteredList)
+		setFilteredTodos(filteredList)
 	}
 
 	return (
 		<div>
-			<input onInput={handleSearch} type='text' value={inputValue} />
-			<button>bu</button>
+			<input onChange={handleSearch} type='text' value={inputValue} />
 		</div>
 	)
 }

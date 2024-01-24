@@ -10,23 +10,18 @@ type TypeBarProp = {
 }
 
 const SideBarTodo: FC<TypeBarProp> = ({ isHidden, toggleBar }) => {
-	const contextValue = useContext(TodoContextData)
+	const { dataTodo, setFilteredTodos, darkTheme } = useContext(TodoContextData)
 
 	return (
-		<ToggleBar
-			isHidden={isHidden}
-			style={{
-				background: contextValue.darkTheme ? '#333' : '#fff',
-				color: contextValue.darkTheme ? '#fff' : '#333',
-				height: '100vh',
-			}}
-		>
-			<CloseBarButton type='button' onClick={toggleBar}>
-				<IoCloseSharp className='global-icons' />
-			</CloseBarButton>
-			<SideBarList>
-				<SideBarItem />
-			</SideBarList>
+		<ToggleBar isHidden={isHidden}>
+			
+				<CloseBarButton type='button' onClick={toggleBar}>
+					<IoCloseSharp className='global-icons' />
+				</CloseBarButton>
+				<SideBarList>
+					<SideBarItem dataFilter={dataTodo} setFilteredTodos={setFilteredTodos} isHidden={isHidden} />
+				</SideBarList>
+		
 		</ToggleBar>
 	)
 }

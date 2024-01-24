@@ -7,9 +7,10 @@ export const Item = styled.li`
 
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 
-	padding: 0 10px;
+	max-height: 112px;
+
+	padding: 10px 10px;
 
 	border: 1px solid;
 	border-radius: 7px;
@@ -26,23 +27,35 @@ export const Text = styled.p`
 	overflow-y: scroll;
 `
 
-export const AdditionalInfoComplexity = styled.p`
-	position: absolute;
-	top: -10px;
-	right: 17%;
+export const AdditionalWrapp = styled.div`
+	align-self: flex-start;
 
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	height: 100%;
+
+	padding: 0 10px;
+`
+
+export const AdditionalComplexity = styled.p`
 	font-size: 10px;
+	margin-bottom: 10px;
+`
+export const AdditionalStatus = styled.p`
+	font-size: 10px;
+	margin-bottom: 10px;
 `
 export const AdditionalInfoDate = styled.p`
-	position: absolute;
-	bottom: -10px;
-	right: 4%;
-
 	font-size: 10px;
 `
 
 export const MoreButton = styled.button`
 	border: none;
+
+	background-color: transparent;
 
 	cursor: pointer;
 `

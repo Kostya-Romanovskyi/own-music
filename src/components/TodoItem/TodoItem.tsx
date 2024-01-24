@@ -1,12 +1,22 @@
 import { FC, useContext, useState } from 'react'
 import { TypeTodoItem } from '../../types/Todo.types'
-import { Item, Text, AdditionalInfoComplexity, AdditionalInfoDate, MoreButton, ShowButtons } from './TodoItem.styled'
+
+import {
+	Item,
+	Text,
+	AdditionalWrapp,
+	AdditionalComplexity,
+	AdditionalStatus,
+	AdditionalInfoDate,
+	MoreButton,
+	ShowButtons,
+} from './TodoItem.styled'
 import { TodoContextData } from '../../context/TodoContext'
 
 import TodoMainButton from '../TodoMainButton/TodoMainButton'
 import { BsThreeDots } from 'react-icons/bs'
 
-const TodoItem: FC<TypeTodoItem> = ({ id, text }) => {
+const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }) => {
 	const [showButtons, setShowButtons] = useState<boolean>(false)
 	const { dataTodo, setDataTodo } = useContext(TodoContextData)
 
@@ -24,13 +34,14 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text }) => {
 		<>
 			<Item>
 				<Text>{text}</Text>
-
-				<AdditionalInfoComplexity>easy</AdditionalInfoComplexity>
-				<AdditionalInfoDate>date time</AdditionalInfoDate>
-
-				<MoreButton type='button' onClick={handleSnowButtons}>
-					<BsThreeDots className='global-icons' />
-				</MoreButton>
+				<AdditionalWrapp>
+					<MoreButton type='button' onClick={handleSnowButtons}>
+						<BsThreeDots className='global-icons' />
+					</MoreButton>
+					<AdditionalComplexity>{complexity}</AdditionalComplexity>
+					<AdditionalStatus>{status}</AdditionalStatus>
+					<AdditionalInfoDate>{addingDate}</AdditionalInfoDate>
+				</AdditionalWrapp>
 
 				<ShowButtons isShow={showButtons}>
 					<TodoMainButton btnContent='Edit' />
