@@ -1,8 +1,9 @@
-import { FC, useContext, useState, useEffect } from 'react'
+import { FC, useContext, useState } from 'react'
 import SideBarTodo from '../../components/SideBarTodo/SideBarTodo'
 import TodoSearch from '../../components/TodoSearch/TodoSearch'
 import TodoList from '../../components/TodoList/TodoList'
 import CreateTodo from '../../components/CreateTodo/CreateTodo'
+
 import { TodoContextData } from '../../context/TodoContext'
 
 import { HiddenButton, FiltersWrapper, GridWrapper } from './Home.styled'
@@ -28,6 +29,7 @@ const Home: FC = () => {
 			}}
 		>
 			<div className='container'>
+				<CreateTodo />
 				<button onClick={toggleTheme}>wdwed</button>
 				<FiltersWrapper>
 					<HiddenButton onClick={handleToggleBar}>Filters</HiddenButton>
@@ -36,8 +38,7 @@ const Home: FC = () => {
 				<GridWrapper>
 					<SideBarTodo isHidden={isHidden} toggleBar={handleToggleBar} />
 					<div>
-						<TodoList data={contextValue.filteredTodos} />
-						<CreateTodo setData={contextValue.setFilteredTodos} />
+						<TodoList data={contextValue.searchTodo} />
 					</div>
 				</GridWrapper>
 			</div>

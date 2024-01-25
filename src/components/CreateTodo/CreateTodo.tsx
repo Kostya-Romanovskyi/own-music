@@ -1,11 +1,31 @@
-import { FC, SetStateAction, useState } from 'react'
+import { FC, SetStateAction, useContext, useState } from 'react'
 import { nanoid } from 'nanoid'
-import { TypeTodoItem, TypeCreateTodo } from '../../types/Todo.types'
+import { TypeTodoItem } from '../../types/Todo.types'
 
-import { CreateTodoWrapper } from './CreateTodo.styled'
+import { GoPlus } from 'react-icons/go'
+import { IoCloseSharp } from 'react-icons/io5'
+import { TodoContextData } from '../../context/TodoContext'
 
-const CreateTodo: FC<TypeCreateTodo> = ({ setData }) => {
+import {
+	CreateTodoWrapper,
+	OpenCreateWindow,
+	CreateWindow,
+	CloseButton,
+	CreateTextarea,
+	DescriptionText,
+	Select,
+	AddTaskButton,
+} from './CreateTodo.styled'
+
+const CreateTodo: FC = () => {
+	const [showCreate, setShowCreate] = useState(false)
 	const [newValue, setNewValue] = useState('')
+
+	const { addTodo } = useContext(TodoContextData)
+
+	const toggleCreate = () => {
+		setShowCreate(!showCreate)
+	}
 
 	const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
 		setNewValue(e.target.value)
@@ -14,23 +34,52 @@ const CreateTodo: FC<TypeCreateTodo> = ({ setData }) => {
 	const handleSubmit = () => {
 		const newId = nanoid()
 
+		const currentDate = new Date()
+
+		const day = currentDate.getDate().toString().padStart(2, '0')
+		const month = (currentDate.getMonth() + 1).toString().padStart(2, '0')
+		const year = currentDate.getFullYear()
+
+		const formattedDate = `${day}.${month}.${year}`
+
 		const newTodo: TypeTodoItem = {
 			id: newId,
 			text: newValue,
 			complexity: 'easy',
 			status: 'Done',
-			addingDate: '12.11.25',
+			addingDate: formattedDate,
 		}
 
-		setData(prevState => [...prevState, newTodo])
+		addTodo(newTodo)
+
+		setNewValue('')
+		setShowCreate(!showCreate)
 	}
 
 	return (
 		<CreateTodoWrapper>
-			<input type='text' onChange={handleChange} />
-			<button type='button' onClick={handleSubmit}>
+			<OpenCreateWindow onClick={toggleCreate} type='button'>
 				Add note
-			</button>
+				<GoPlus style={{ marginLeft: 10 }} />
+			</OpenCreateWindow>
+
+			<CreateWindow isShow={showCreate}>
+				<CloseButton onClick={toggleCreate}>
+					<IoCloseSharp className='global-icons' />
+				</CloseButton>
+
+				<CreateTextarea onChange={handleChange} value={newValue}></CreateTextarea>
+
+				<DescriptionText>Select task difficulty</DescriptionText>
+
+				<Select style={{ fontSize: '13px' }}>
+					<option value='Easy'>Easy</option>
+					<option value='Medium'>Medium</option>
+					<option value='Hard'>Hard</option>
+				</Select>
+
+				<AddTaskButton onClick={handleSubmit}>Add Task</AddTaskButton>
+			</CreateWindow>
 		</CreateTodoWrapper>
 	)
 }

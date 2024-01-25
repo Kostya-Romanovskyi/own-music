@@ -33,11 +33,25 @@ export const AdditionalWrapp = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-end;
 
 	height: 100%;
 
-	padding: 0 10px;
+	padding: 4px 10px;
+`
+
+export const TopPart = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	padding: 5px 0;
+`
+
+export const BottomPart = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `
 
 export const AdditionalComplexity = styled.p`
@@ -59,6 +73,18 @@ export const MoreButton = styled.button`
 
 	cursor: pointer;
 `
+export const CloseButton = styled.button`
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	border: none;
+	background-color: transparent;
+`
+
+export const EditButton = styled.button`
+	align-self: flex-end;
+`
 
 export const DeleteButton = styled.button`
 	font-family: 'Poppins', sans-serif;
@@ -67,17 +93,21 @@ export const DeleteButton = styled.button`
 
 export const ShowButtons = styled.div<ShowButtonsProps>`
 	position: absolute;
-	top: 70%;
+	top: 0px;
 	right: 0px;
 
-	display: ${props => (props.isShow ? 'flex' : 'none')};
-	align-items: center;
-	justify-content: space-between;
+	/* display: ${props => (props.isShow ? 'block' : 'none')}; */
+
+	opacity: ${props => (props.isShow ? 1 : 0)};
+	pointer-events: ${props => (props.isShow ? 'All' : 'none')};
+
+	transform: translateY(${props => (props.isShow ? 0 : '-100%')});
+	transition: opacity 300ms, transform 300ms;
 
 	padding: 0px 10px;
 
-	width: 100px;
-	height: 50px;
+	width: 100%;
+	height: 100%;
 
 	border: 1px solid ${GlobalColors.black};
 	border-radius: 5px;
@@ -85,4 +115,8 @@ export const ShowButtons = styled.div<ShowButtonsProps>`
 	background-color: ${GlobalColors.white};
 
 	z-index: 10;
+`
+export const TextArea = styled.textarea`
+	width: 80%;
+	height: 60px;
 `
