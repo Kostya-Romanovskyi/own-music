@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { TypeThemeProps } from '../../types/Theme.types'
+import { TypeThemeProps, TypeToggleBurger } from '../../types/Theme.types'
 import Select from 'react-select'
 
 export const CreateTodoWrapper = styled.div``
@@ -24,7 +24,7 @@ export const OpenCreateWindow = styled.button<TypeThemeProps>`
 	transition: background-color 300ms;
 `
 
-export const CreateWindow = styled.div`
+export const CreateWindow = styled.div<TypeToggleBurger>`
 	position: absolute;
 	top: 0%;
 	left: 2%;
@@ -33,7 +33,7 @@ export const CreateWindow = styled.div`
 
 	padding: 20px;
 
-	transform: translateY(${({ isShow }) => (isShow ? 0 : '-110%')});
+	transform: translateY(${({ isOpen }) => (isOpen ? 0 : '-110%')});
 	transition: transform 300ms;
 
 	border: 2px solid ${({ theme }) => theme.border};
@@ -41,7 +41,7 @@ export const CreateWindow = styled.div`
 
 	z-index: 15;
 `
-export const CloseButton = styled.button`
+export const CloseButton = styled.button<TypeThemeProps>`
 	position: absolute;
 	top: 3%;
 	right: 3%;
@@ -56,7 +56,7 @@ export const CloseButton = styled.button`
 	background-color: ${({ theme }) => theme.background};
 `
 
-export const CreateTextarea = styled.textarea`
+export const CreateTextarea = styled.textarea<TypeThemeProps>`
 	width: 100%;
 	height: 90px;
 

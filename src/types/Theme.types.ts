@@ -16,6 +16,9 @@ export type TypeToggleBurger = {
 	theme?: TypeTheme
 	isOpen: boolean
 }
+export type TypeConditionProp = {
+	[key: string]: string
+}
 
 export type TypeSideButton = {
 	theme?: TypeToggleTheme

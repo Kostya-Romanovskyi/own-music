@@ -1,16 +1,11 @@
 import styled from '@emotion/styled'
-import { ShowButtonsProps } from '../../types/Todo.types'
 import GlobalColors from '../../UI/GlobalColors'
 import Select from 'react-select'
 import { IoCloseSharp } from 'react-icons/io5'
+import { TypeThemeProps, TypeConditionProp, TypeToggleBurger } from '../../types/Theme.types'
 
 export const Item = styled.li`
 	position: relative;
-
-	/* display: flex;
-	justify-content: space-between; */
-
-	/* max-height: 112px; */
 
 	padding: 10px 10px;
 
@@ -22,8 +17,6 @@ export const Item = styled.li`
 	}
 
 	border: 2px solid #48319d;
-	/* border-bottom-color: rgba(72, 49, 157, 0.2); */
-	/* background-color: #332b53; */
 
 	@media screen and (min-width: 768px) {
 	}
@@ -64,7 +57,7 @@ export const BottomPart = styled.div`
 	justify-content: space-between;
 `
 
-export const AdditionalComplexity = styled.p`
+export const AdditionalComplexity = styled.p<TypeConditionProp>`
 	font-size: 10px;
 	font-weight: 600;
 	padding: 5px 10px;
@@ -86,7 +79,7 @@ export const AdditionalComplexity = styled.p`
 		}
 	}};
 `
-export const AdditionalStatus = styled.p`
+export const AdditionalStatus = styled.p<TypeConditionProp>`
 	font-size: 10px;
 	font-weight: 600;
 	padding: 5px 10px;
@@ -119,7 +112,7 @@ export const AdditionalInfoDate = styled.p`
 	background-color: #c0c0c0;
 `
 
-export const MoreButton = styled.button`
+export const MoreButton = styled.button<TypeThemeProps>`
 	border: none;
 
 	color: ${({ theme }) => theme.color};
@@ -136,7 +129,7 @@ export const CloseButton = styled.button`
 	background-color: transparent;
 `
 
-export const EditButton = styled.button`
+export const EditButton = styled.button<TypeThemeProps>`
 	align-self: flex-end;
 
 	padding: 5px 10px;
@@ -155,15 +148,15 @@ export const DeleteButton = styled.button`
 	cursor: pointer;
 `
 
-export const ShowButtons = styled.div<ShowButtonsProps>`
+export const ShowButtons = styled.div<TypeToggleBurger>`
 	position: absolute;
 	top: 0px;
 	right: 0px;
 
-	opacity: ${props => (props.isShow ? 1 : 0)};
-	pointer-events: ${props => (props.isShow ? 'All' : 'none')};
+	opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+	pointer-events: ${({ isOpen }) => (isOpen ? 'All' : 'none')};
 
-	transform: translateY(${props => (props.isShow ? 0 : '-100%')});
+	transform: translateY(${({ isOpen }) => (isOpen ? 0 : '-100%')});
 
 	padding: 0px 10px;
 
@@ -179,7 +172,7 @@ export const ShowButtons = styled.div<ShowButtonsProps>`
 
 	z-index: 10;
 `
-export const TextArea = styled.textarea`
+export const TextArea = styled.textarea<TypeThemeProps>`
 	width: 80%;
 	height: 60px;
 
@@ -197,7 +190,7 @@ export const StyledSelect = styled(Select)`
 	font-size: 10px;
 `
 
-export const StyledCloseIcon = styled(IoCloseSharp)`
+export const StyledCloseIcon = styled(IoCloseSharp)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 `
 

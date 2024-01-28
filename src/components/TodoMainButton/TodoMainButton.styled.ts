@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { TypeThemeProps } from '../../types/Theme.types'
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<TypeThemeProps>`
 	display: flex;
 	align-items: center;
 

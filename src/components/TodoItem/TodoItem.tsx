@@ -58,7 +58,7 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 					<AdditionalInfoDate>{addingDate}</AdditionalInfoDate>
 				</AdditionalWrapp>
 
-				<ShowButtons isShow={showButtons}>
+				<ShowButtons isOpen={showButtons}>
 					<TopPart>
 						<TextArea placeholder='Edit text' defaultValue={text}></TextArea>
 						{/* <TodoMainButton btnContent='Edit' /> */}

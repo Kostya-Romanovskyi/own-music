@@ -1,7 +1,6 @@
 import { FC, SetStateAction, useContext, useState } from 'react'
 import { nanoid } from 'nanoid'
 import { TypeTodoItem } from '../../types/Todo.types'
-import TodoMainButton from '../TodoMainButton/TodoMainButton'
 
 import { GoPlus } from 'react-icons/go'
 import { IoCloseSharp } from 'react-icons/io5'
@@ -25,20 +24,20 @@ const options = [
 ]
 
 const CreateTodo: FC = () => {
-	const [showCreate, setShowCreate] = useState(false)
-	const [newValue, setNewValue] = useState('')
+	const [showCreate, setShowCreate] = useState<boolean>(false)
+	const [newValue, setNewValue] = useState<string>('')
 
 	const { addTodo } = useContext(TodoContextData)
 
-	const toggleCreate = () => {
+	const toggleCreate = (): void => {
 		setShowCreate(!showCreate)
 	}
 
-	const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
+	const handleChange = (e: { target: { value: SetStateAction<string> } }): void => {
 		setNewValue(e.target.value)
 	}
 
-	const handleSubmit = () => {
+	const handleSubmit = (): void => {
 		const newId = nanoid()
 
 		const currentDate = new Date()
@@ -70,7 +69,7 @@ const CreateTodo: FC = () => {
 				<GoPlus style={{ marginLeft: 10 }} />
 			</OpenCreateWindow>
 
-			<CreateWindow isShow={showCreate}>
+			<CreateWindow isOpen={showCreate}>
 				<CloseButton onClick={toggleCreate}>
 					<IoCloseSharp className='global-icons' />
 				</CloseButton>
@@ -81,7 +80,6 @@ const CreateTodo: FC = () => {
 
 				<StyledSelect options={options} />
 
-				{/* <AddTaskButton onClick={handleSubmit}>Add Task</AddTaskButton> */}
 				<AddTaskButton onClick={handleSubmit}>Add Task</AddTaskButton>
 			</CreateWindow>
 		</CreateTodoWrapper>

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import { CgSun } from 'react-icons/cg'
+import { TypeThemeProps } from '../../types/Theme.types'
 
-export const StyledIcon = styled(CgSun)`
+export const StyledIcon = styled(CgSun)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 `
 

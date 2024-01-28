@@ -4,7 +4,6 @@ import TodoSearch from '../../components/TodoSearch/TodoSearch'
 import TodoList from '../../components/TodoList/TodoList'
 import CreateTodo from '../../components/CreateTodo/CreateTodo'
 import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
-import Footer from '../../components/Footer/Footer'
 
 import { TodoContextData } from '../../context/TodoContext'
 
@@ -30,8 +29,6 @@ const Home: FC = () => {
 
 					<TodoList data={contextValue.toDoListWithSearch} />
 				</GridWrapper>
-
-				<Footer />
 			</div>
 		</ThemeContainer>
 	)

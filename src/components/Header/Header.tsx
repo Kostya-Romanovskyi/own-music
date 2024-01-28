@@ -11,8 +11,8 @@ import { HeaderWrapper, LeftSide, LogoText, RightSide, StyledIcon, ThemeButton }
 const Header: FC = () => {
 	const { setIsDarkTheme } = useContext(TodoContextData)
 
-	const toggleTheme = () => {
-		setIsDarkTheme(prev => !prev)
+	const toggleTheme = (): void => {
+		setIsDarkTheme((prev: boolean) => !prev)
 	}
 
 	return (
