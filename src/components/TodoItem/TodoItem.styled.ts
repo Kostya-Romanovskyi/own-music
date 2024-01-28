@@ -43,18 +43,12 @@ export const AdditionalWrapp = styled.div`
 	padding: 4px 10px;
 `
 
-export const TopPart = styled.div`
+export const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 
 	padding: 5px 0;
-`
-
-export const BottomPart = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 `
 
 export const AdditionalComplexity = styled.p<TypeConditionProp>`

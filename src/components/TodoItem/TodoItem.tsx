@@ -4,12 +4,9 @@ import { TypeTodoItem } from '../../types/Todo.types'
 import {
 	Item,
 	Text,
-	TopPart,
-	BottomPart,
+	Wrapper,
 	TextArea,
 	AdditionalWrapp,
-	Label,
-	Checkbox,
 	AdditionalComplexity,
 	AdditionalStatus,
 	AdditionalInfoDate,
@@ -59,20 +56,19 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 				</AdditionalWrapp>
 
 				<ShowButtons isOpen={showButtons}>
-					<TopPart>
+					<Wrapper>
 						<TextArea placeholder='Edit text' defaultValue={text}></TextArea>
-						{/* <TodoMainButton btnContent='Edit' /> */}
 						<CloseButton onClick={handleSnowButtons}>
 							<StyledCloseIcon />
 						</CloseButton>
 						<EditButton>Edit</EditButton>
-					</TopPart>
+					</Wrapper>
 
-					<TopPart>
+					<Wrapper>
 						<StyledSelect defaultValue={optionsComplexity[0]} options={optionsComplexity} />
 						<StyledSelect defaultValue={optionsStatus[0]} options={optionsStatus} />
 						<TodoMainButton onClick={() => deleteTodo(id)}>delete</TodoMainButton>
-					</TopPart>
+					</Wrapper>
 				</ShowButtons>
 			</Item>
 		</>
