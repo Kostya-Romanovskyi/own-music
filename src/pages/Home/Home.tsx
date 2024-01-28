@@ -1,48 +1,39 @@
-import { FC, useContext, useState } from 'react'
+import { FC, useContext } from 'react'
 import SideBarTodo from '../../components/SideBarTodo/SideBarTodo'
 import TodoSearch from '../../components/TodoSearch/TodoSearch'
 import TodoList from '../../components/TodoList/TodoList'
 import CreateTodo from '../../components/CreateTodo/CreateTodo'
+import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
+import Footer from '../../components/Footer/Footer'
 
 import { TodoContextData } from '../../context/TodoContext'
 
-import { HiddenButton, FiltersWrapper, GridWrapper } from './Home.styled'
+import { FiltersWrapper, GridWrapper } from './Home.styled'
+import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 
 const Home: FC = () => {
-	const [isHidden, setIsHidden] = useState<boolean>(false)
 	const contextValue = useContext(TodoContextData)
 
-	const handleToggleBar = () => {
-		setIsHidden(!isHidden)
-	}
-
-	const toggleTheme = () => {
-		contextValue.setDarkTheme((prevTheme: boolean) => !prevTheme)
-	}
-
 	return (
-		<div
-			style={{
-				background: contextValue.darkTheme ? '#333' : '#fff',
-				color: contextValue.darkTheme ? '#fff' : '#333',
-				height: '100vh',
-			}}
-		>
+		<ThemeContainer>
 			<div className='container'>
 				<CreateTodo />
-				<button onClick={toggleTheme}>wdwed</button>
+
 				<FiltersWrapper>
-					<HiddenButton onClick={handleToggleBar}>Filters</HiddenButton>
+					<BurgerMenu />
+
 					<TodoSearch />
 				</FiltersWrapper>
+
 				<GridWrapper>
-					<SideBarTodo isHidden={isHidden} toggleBar={handleToggleBar} />
-					<div>
-						<TodoList data={contextValue.searchTodo} />
-					</div>
+					<SideBarTodo />
+
+					<TodoList data={contextValue.toDoListWithSearch} />
 				</GridWrapper>
+
+				<Footer />
 			</div>
-		</div>
+		</ThemeContainer>
 	)
 }
 

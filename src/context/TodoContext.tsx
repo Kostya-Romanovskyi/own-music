@@ -7,30 +7,46 @@ const initialContextValue: Record<string, any> = {}
 export const TodoContextData = createContext<Record<string, any>>(initialContextValue)
 
 const TodoContext: FC<TypeContextProps> = ({ children }) => {
-	const [dataTodo, setDataTodo] = useState(data)
-	const [darkTheme, setDarkTheme] = useState(false)
-	const [search, setSearch] = useState('')
+	const [dataTodo, setDataTodo] = useState<TypeTodoItem[]>(data)
+	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
+	const [search, setSearch] = useState<string>('')
+	const [filterTodo, setFilterTodo] = useState<TypeTodoItem[]>(dataTodo)
 
-	const addTodo = (todo: TypeTodoItem) => {
+	const addTodo = (todo: TypeTodoItem): void => {
 		setDataTodo([...dataTodo, todo])
+		setFilterTodo([...filterTodo, todo])
 	}
 
-	const deleteTodo = (todoId: string) => {
+	const deleteTodo = (todoId: string): void => {
 		setDataTodo(dataTodo.filter(todo => todo.id !== todoId))
+		setFilterTodo(filterTodo.filter(todo => todo.id !== todoId))
 	}
 
-	const searchTodo = dataTodo.filter(todo => todo.text.toLowerCase().includes(search.toLowerCase()))
+	const filtersTodo = (categoryText: string): void => {
+		if (categoryText === 'All') {
+			setFilterTodo(dataTodo)
+			return
+		}
+
+		const allFilters = dataTodo.filter(todo => todo.status.toLowerCase() === categoryText.toLowerCase())
+
+		setFilterTodo(allFilters)
+	}
+
+	const toDoListWithSearch = filterTodo.filter(todo => todo.text.toLowerCase().includes(search.toLowerCase()))
 
 	const contextValue = {
 		dataTodo,
 		setDataTodo,
-		darkTheme,
-		setDarkTheme,
+		isDarkTheme,
+		setIsDarkTheme,
 		addTodo,
 		deleteTodo,
-		searchTodo,
+		filtersTodo,
+		filterTodo,
 		search,
 		setSearch,
+		toDoListWithSearch,
 	}
 
 	return <TodoContextData.Provider value={contextValue}>{children}</TodoContextData.Provider>

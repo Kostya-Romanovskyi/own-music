@@ -1,6 +1,7 @@
 import { FC, SetStateAction, useContext, useState } from 'react'
 import { nanoid } from 'nanoid'
 import { TypeTodoItem } from '../../types/Todo.types'
+import TodoMainButton from '../TodoMainButton/TodoMainButton'
 
 import { GoPlus } from 'react-icons/go'
 import { IoCloseSharp } from 'react-icons/io5'
@@ -13,9 +14,15 @@ import {
 	CloseButton,
 	CreateTextarea,
 	DescriptionText,
-	Select,
+	StyledSelect,
 	AddTaskButton,
 } from './CreateTodo.styled'
+
+const options = [
+	{ value: 'easy', label: 'Easy' },
+	{ value: 'medium', label: 'Medium' },
+	{ value: 'hard', label: 'Hard' },
+]
 
 const CreateTodo: FC = () => {
 	const [showCreate, setShowCreate] = useState(false)
@@ -59,7 +66,7 @@ const CreateTodo: FC = () => {
 	return (
 		<CreateTodoWrapper>
 			<OpenCreateWindow onClick={toggleCreate} type='button'>
-				Add note
+				Add to do
 				<GoPlus style={{ marginLeft: 10 }} />
 			</OpenCreateWindow>
 
@@ -72,12 +79,9 @@ const CreateTodo: FC = () => {
 
 				<DescriptionText>Select task difficulty</DescriptionText>
 
-				<Select style={{ fontSize: '13px' }}>
-					<option value='Easy'>Easy</option>
-					<option value='Medium'>Medium</option>
-					<option value='Hard'>Hard</option>
-				</Select>
+				<StyledSelect options={options} />
 
+				{/* <AddTaskButton onClick={handleSubmit}>Add Task</AddTaskButton> */}
 				<AddTaskButton onClick={handleSubmit}>Add Task</AddTaskButton>
 			</CreateWindow>
 		</CreateTodoWrapper>

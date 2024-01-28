@@ -41,6 +41,6 @@ export type TypeHiddenProp = {
 }
 
 export type TypeTodoMainButton = {
-	btnContent: string
+	children?: React.ReactNode
 	onClick?: () => void
 }

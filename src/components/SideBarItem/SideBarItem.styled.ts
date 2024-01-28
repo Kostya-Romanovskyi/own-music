@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { TypeSideButton } from '../../types/Theme.types'
 
 export const SideItemStyled = styled.li`
 	display: flex;
@@ -10,7 +11,7 @@ export const SideItemStyled = styled.li`
 	}
 `
 
-export const SideButtonStyled = styled.button`
+export const SideButtonStyled = styled.button<TypeSideButton>`
 	font-family: 'Poppins', sans-serif;
 
 	padding: 30px 10px;
@@ -19,7 +20,9 @@ export const SideButtonStyled = styled.button`
 	width: 100%;
 
 	border: none;
-	border-radius: 10px;
+
+	color: ${({ theme }) => theme.color};
+	background-color: ${({ theme }) => theme.background};
 
 	cursor: pointer;
 `

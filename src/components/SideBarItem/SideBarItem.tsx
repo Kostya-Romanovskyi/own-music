@@ -1,36 +1,27 @@
-import { FC } from 'react'
+import { FC, useContext } from 'react'
 import { SideItemStyled, SideButtonStyled } from './SideBarItem.styled'
-import { TypeItemsList } from '../../types/Todo.types'
+import { TodoContextData } from '../../context/TodoContext'
 
 type TypeBarItemProps = {
-	dataFilter: TypeItemsList
-	setFilteredTodos: React.Dispatch<React.SetStateAction<TypeItemsList>>
-	isHidden: boolean
+	closeBurger?: (value: boolean) => void
 }
 
-const SideBarItem: FC<TypeBarItemProps> = ({ dataFilter, setFilteredTodos, isHidden }) => {
-	const filterСategories: string[] = ['All', 'In progress', 'Done', 'Add last 2 days']
+const SideBarItem: FC<TypeBarItemProps> = ({ closeBurger }) => {
+	const { filtersTodo } = useContext(TodoContextData)
+	const filterCategories: string[] = ['All', 'In progress', 'Done', 'Add last 2 days']
 
-	const handleFilteredCategories = (e: React.MouseEvent<HTMLButtonElement>) => {
+	const handleFilteredCategories = (e: React.MouseEvent<HTMLButtonElement>): void => {
 		const itemContent = (e.currentTarget as HTMLButtonElement).textContent
 
-		if (itemContent === 'All') {
-			setFilteredTodos(dataFilter)
+		filtersTodo(itemContent)
 
-			return
-		}
-
-		const filteredTodos: TypeItemsList = dataFilter.filter(todo => todo.status === itemContent)
-
-		setFilteredTodos(filteredTodos)
+		if (closeBurger !== undefined) closeBurger(false)
 	}
 
-	return filterСategories.map((category, index) => {
+	return filterCategories.map((category, index) => {
 		return (
 			<SideItemStyled key={index}>
-				<SideButtonStyled onClick={handleFilteredCategories} type='button'>
-					{category}
-				</SideButtonStyled>
+				<SideButtonStyled onClick={handleFilteredCategories}>{category}</SideButtonStyled>
 			</SideItemStyled>
 		)
 	})

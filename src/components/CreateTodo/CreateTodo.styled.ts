@@ -1,38 +1,45 @@
 import styled from '@emotion/styled'
+import { TypeThemeProps } from '../../types/Theme.types'
+import Select from 'react-select'
 
 export const CreateTodoWrapper = styled.div``
 
-export const OpenCreateWindow = styled.button`
+export const OpenCreateWindow = styled.button<TypeThemeProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
 
 	margin: 0 auto;
+	margin-bottom: 20px;
 
 	padding: 10px 40px;
 
-	border: 1px solid;
+	border: 2px solid #000000;
 	border-radius: 10px;
 
-	background-color: 'transparent';
+	border: 2px solid ${({ theme }) => theme.border};
+
+	color: ${({ theme }) => theme.color};
+	background-color: ${({ theme }) => theme.background};
+	transition: background-color 300ms;
 `
 
 export const CreateWindow = styled.div`
 	position: absolute;
 	top: 0%;
-	left: 5%;
+	left: 2%;
 
-	width: 90%;
+	width: 95%;
 
 	padding: 20px;
 
-	transform: translateY(${({ isShow }) => (isShow ? 0 : '-100%')});
+	transform: translateY(${({ isShow }) => (isShow ? 0 : '-110%')});
 	transition: transform 300ms;
 
-	border: 1px solid red;
-	background-color: #fff;
+	border: 2px solid ${({ theme }) => theme.border};
+	background-color: ${({ theme }) => theme.background};
 
-	z-index: 10;
+	z-index: 15;
 `
 export const CloseButton = styled.button`
 	position: absolute;
@@ -46,7 +53,7 @@ export const CloseButton = styled.button`
 
 	border: none;
 
-	background-color: #fff;
+	background-color: ${({ theme }) => theme.background};
 `
 
 export const CreateTextarea = styled.textarea`
@@ -55,13 +62,21 @@ export const CreateTextarea = styled.textarea`
 
 	margin-top: 20px;
 	margin-bottom: 20px;
+
+	border: 1px solid;
+
+	color: ${({ theme }) => theme.color};
+
+	background-color: ${({ theme }) => theme.background};
+
+	resize: none;
 `
 
 export const DescriptionText = styled.p`
 	margin-bottom: 10px;
 `
 
-export const Select = styled.select`
+export const StyledSelect = styled(Select)`
 	margin-bottom: 20px;
 `
 

@@ -1,8 +1,6 @@
 import { FC, useContext, useState } from 'react'
 import { TypeTodoItem } from '../../types/Todo.types'
 
-import { IoCloseSharp } from 'react-icons/io5'
-
 import {
 	Item,
 	Text,
@@ -10,12 +8,16 @@ import {
 	BottomPart,
 	TextArea,
 	AdditionalWrapp,
+	Label,
+	Checkbox,
 	AdditionalComplexity,
 	AdditionalStatus,
 	AdditionalInfoDate,
 	MoreButton,
 	CloseButton,
+	StyledCloseIcon,
 	EditButton,
+	StyledSelect,
 	ShowButtons,
 } from './TodoItem.styled'
 import { TodoContextData } from '../../context/TodoContext'
@@ -23,8 +25,19 @@ import { TodoContextData } from '../../context/TodoContext'
 import TodoMainButton from '../TodoMainButton/TodoMainButton'
 import { BsThreeDots } from 'react-icons/bs'
 
+const optionsComplexity = [
+	{ value: 'easy', label: 'Easy' },
+	{ value: 'medium', label: 'Medium' },
+	{ value: 'hard', label: 'Hard' },
+]
+const optionsStatus = [
+	{ value: 'done', label: 'Done' },
+	{ value: 'InProgress', label: 'In Progress' },
+]
+
 const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }) => {
 	const [showButtons, setShowButtons] = useState<boolean>(false)
+
 	const { deleteTodo } = useContext(TodoContextData)
 
 	const handleSnowButtons = (): void => {
@@ -39,8 +52,9 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 					<MoreButton type='button' onClick={handleSnowButtons}>
 						<BsThreeDots className='global-icons' />
 					</MoreButton>
-					<AdditionalComplexity>{complexity}</AdditionalComplexity>
-					<AdditionalStatus>{status}</AdditionalStatus>
+
+					<AdditionalComplexity complexity={complexity}>{complexity}</AdditionalComplexity>
+					<AdditionalStatus status={status}>{status}</AdditionalStatus>
 					<AdditionalInfoDate>{addingDate}</AdditionalInfoDate>
 				</AdditionalWrapp>
 
@@ -49,22 +63,15 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 						<TextArea placeholder='Edit text' defaultValue={text}></TextArea>
 						{/* <TodoMainButton btnContent='Edit' /> */}
 						<CloseButton onClick={handleSnowButtons}>
-							<IoCloseSharp className='global-icons' />
+							<StyledCloseIcon />
 						</CloseButton>
 						<EditButton>Edit</EditButton>
 					</TopPart>
 
 					<TopPart>
-						<select style={{ fontSize: '13px' }}>
-							<option value='Done'>Done</option>
-							<option value='In progress'>In progress</option>
-						</select>
-						<select style={{ fontSize: '13px' }}>
-							<option value='Easy'>Easy</option>
-							<option value='Medium'>Medium</option>
-							<option value='Hard'>Hard</option>
-						</select>
-						<TodoMainButton btnContent='Delete' onClick={() => deleteTodo(id)} />
+						<StyledSelect defaultValue={optionsComplexity[0]} options={optionsComplexity} />
+						<StyledSelect defaultValue={optionsStatus[0]} options={optionsStatus} />
+						<TodoMainButton onClick={() => deleteTodo(id)}>delete</TodoMainButton>
 					</TopPart>
 				</ShowButtons>
 			</Item>
