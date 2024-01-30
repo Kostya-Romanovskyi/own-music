@@ -8,7 +8,7 @@ import { initializeApp } from 'firebase/app'
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
 	apiKey: 'AIzaSyD2Eh3T3bE5DppbPEFVHOM3V26b28Pgj8w',
-	authDomain: 'owntodo-46425.firebaseapp.com',
+	authDomain: 'kostya-romanovskyi.github.io',
 	projectId: 'owntodo-46425',
 	storageBucket: 'owntodo-46425.appspot.com',
 	messagingSenderId: '431234222803',
