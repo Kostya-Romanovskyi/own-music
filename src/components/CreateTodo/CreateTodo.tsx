@@ -2,19 +2,19 @@ import { FC, SetStateAction, useContext, useState } from 'react'
 import { nanoid } from 'nanoid'
 import { TypeTodoItem } from '../../types/Todo.types'
 
-import { GoPlus } from 'react-icons/go'
-import { IoCloseSharp } from 'react-icons/io5'
 import { TodoContextData } from '../../context/TodoContext'
 
 import {
 	CreateTodoWrapper,
 	OpenCreateWindow,
 	CreateWindow,
+	CloseIcon,
 	CloseButton,
 	CreateTextarea,
 	DescriptionText,
 	StyledSelect,
 	AddTaskButton,
+	IconPlus,
 } from './CreateTodo.styled'
 
 const options = [
@@ -66,19 +66,19 @@ const CreateTodo: FC = () => {
 		<CreateTodoWrapper>
 			<OpenCreateWindow onClick={toggleCreate} type='button'>
 				Add to do
-				<GoPlus style={{ marginLeft: 10 }} />
+				<IconPlus />
 			</OpenCreateWindow>
 
 			<CreateWindow isOpen={showCreate}>
 				<CloseButton onClick={toggleCreate}>
-					<IoCloseSharp className='global-icons' />
+					<CloseIcon />
 				</CloseButton>
 
 				<CreateTextarea onChange={handleChange} value={newValue}></CreateTextarea>
 
 				<DescriptionText>Select task difficulty</DescriptionText>
 
-				<StyledSelect options={options} />
+				<StyledSelect options={options} defaultValue={options[0]} />
 
 				<AddTaskButton onClick={handleSubmit}>Add Task</AddTaskButton>
 			</CreateWindow>

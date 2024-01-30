@@ -54,7 +54,7 @@ export const Wrapper = styled.div`
 export const AdditionalComplexity = styled.p<TypeConditionProp>`
 	font-size: 10px;
 	font-weight: 600;
-	padding: 5px 10px;
+	padding: 3px 7px;
 
 	border: none;
 	border-radius: 5px;
@@ -72,11 +72,15 @@ export const AdditionalComplexity = styled.p<TypeConditionProp>`
 				return '#ffffff'
 		}
 	}};
+
+	@media screen and(min-width:350px) {
+		padding: 5px 10px;
+	}
 `
 export const AdditionalStatus = styled.p<TypeConditionProp>`
 	font-size: 10px;
 	font-weight: 600;
-	padding: 5px 10px;
+	padding: 3px 7px;
 
 	border: none;
 	border-radius: 5px;
@@ -92,18 +96,25 @@ export const AdditionalStatus = styled.p<TypeConditionProp>`
 				return '#ffffff'
 		}
 	}};
+	@media screen and(min-width:350px) {
+		padding: 5px 10px;
+	}
 `
 export const AdditionalInfoDate = styled.p`
 	font-size: 10px;
 
 	font-weight: 600;
-	padding: 5px 10px;
+	padding: 3px 7px;
 
 	border: none;
 	border-radius: 5px;
 
 	color: #000000 !important;
 	background-color: #c0c0c0;
+
+	@media screen and(min-width:350px) {
+		padding: 5px 10px;
+	}
 `
 
 export const MoreButton = styled.button<TypeThemeProps>`

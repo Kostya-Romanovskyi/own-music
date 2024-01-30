@@ -7,6 +7,8 @@ const initialContextValue: Record<string, any> = {}
 export const TodoContextData = createContext<Record<string, any>>(initialContextValue)
 
 const TodoContext: FC<TypeContextProps> = ({ children }) => {
+	const [userAuth, setUserAuth] = useState(null)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [dataTodo, setDataTodo] = useState<TypeTodoItem[]>(data)
 	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
 	const [search, setSearch] = useState<string>('')
@@ -36,6 +38,10 @@ const TodoContext: FC<TypeContextProps> = ({ children }) => {
 	const toDoListWithSearch = filterTodo.filter(todo => todo.text.toLowerCase().includes(search.toLowerCase()))
 
 	const contextValue = {
+		userAuth,
+		setUserAuth,
+		isLoading,
+		setIsLoading,
 		dataTodo,
 		setDataTodo,
 		isDarkTheme,

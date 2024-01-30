@@ -13,7 +13,7 @@ import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 const Home: FC = () => {
 	const contextValue = useContext(TodoContextData)
 
-	return (
+	return contextValue.userAuth ? (
 		<ThemeContainer>
 			<div className='container'>
 				<CreateTodo />
@@ -31,6 +31,8 @@ const Home: FC = () => {
 				</GridWrapper>
 			</div>
 		</ThemeContainer>
+	) : (
+		<div>login</div>
 	)
 }
 

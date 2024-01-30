@@ -2,6 +2,9 @@ import styled from '@emotion/styled'
 import { TypeThemeProps, TypeToggleBurger } from '../../types/Theme.types'
 import Select from 'react-select'
 
+import { IoCloseSharp } from 'react-icons/io5'
+import { GoPlus } from 'react-icons/go'
+
 export const CreateTodoWrapper = styled.div``
 
 export const OpenCreateWindow = styled.button<TypeThemeProps>`
@@ -55,6 +58,9 @@ export const CloseButton = styled.button<TypeThemeProps>`
 
 	background-color: ${({ theme }) => theme.background};
 `
+export const CloseIcon = styled(IoCloseSharp)<TypeThemeProps>`
+	color: ${({ theme }) => theme.color};
+`
 
 export const CreateTextarea = styled.textarea<TypeThemeProps>`
 	width: 100%;
@@ -63,7 +69,8 @@ export const CreateTextarea = styled.textarea<TypeThemeProps>`
 	margin-top: 20px;
 	margin-bottom: 20px;
 
-	border: 1px solid;
+	border: 1px solid ${({ theme }) => theme.border};
+	border-radius: 5px;
 
 	color: ${({ theme }) => theme.color};
 
@@ -79,8 +86,20 @@ export const DescriptionText = styled.p`
 export const StyledSelect = styled(Select)`
 	margin-bottom: 20px;
 `
+export const IconPlus = styled(GoPlus)`
+	margin-left: 10px;
+`
 
-export const AddTaskButton = styled.button`
+export const AddTaskButton = styled.button<TypeThemeProps>`
 	display: block;
 	margin: 0 auto;
+
+	padding: 10px 20px;
+
+	border-radius: 10px;
+
+	border: 2px solid ${({ theme }) => theme.border};
+
+	color: ${({ theme }) => theme.color};
+	background-color: ${({ theme }) => theme.background};
 `

@@ -9,6 +9,7 @@ export const ThemeContainer = styled.div<TypeThemeProps>`
 `
 export const ThemeInput = styled.input<TypeThemeProps>`
 	font-size: 17px;
+	line-height: 1.5;
 
 	width: 100%;
 

@@ -19,7 +19,7 @@ export const BurgerMenuContent = styled.div<TypeToggleBurger>`
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 300px;
+	width: 250px;
 	background-color: ${({ theme }) => theme.background};
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	transition: transform 0.3s ease;

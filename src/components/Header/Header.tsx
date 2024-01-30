@@ -8,8 +8,11 @@ import { FaRegWindowRestore } from 'react-icons/fa'
 import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 import { HeaderWrapper, LeftSide, LogoText, RightSide, StyledIcon, ThemeButton } from './Header.styled'
 
+import LogInButton from '../../firebase/LogIn'
+import LogOutButton from '../../firebase/LogOut'
+
 const Header: FC = () => {
-	const { setIsDarkTheme } = useContext(TodoContextData)
+	const { setIsDarkTheme, userAuth, isLoading } = useContext(TodoContextData)
 
 	const toggleTheme = (): void => {
 		setIsDarkTheme((prev: boolean) => !prev)
@@ -31,7 +34,7 @@ const Header: FC = () => {
 									<StyledIcon />
 								</ThemeButton>
 
-								<p>login</p>
+								{userAuth ? <LogOutButton /> : isLoading ? <div>Loading</div> : <LogInButton />}
 							</RightSide>
 						</HeaderWrapper>
 					</div>

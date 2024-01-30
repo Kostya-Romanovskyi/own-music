@@ -30,6 +30,20 @@ const BurgerMenu = () => {
 	}, [isOpen])
 
 	useEffect(() => {
+		const handleScroll = () => {
+			const sidebar = document.querySelector('.burger-menu') as HTMLElement
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+			sidebar.style.top = scrollTop + 'px'
+		}
+
+		window.addEventListener('scroll', handleScroll)
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
+
+	useEffect(() => {
 		if (isOpen) {
 			document.body.style.overflow = 'hidden'
 		} else {
