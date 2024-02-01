@@ -1,39 +1,38 @@
-import { TypeItemsList } from '../types/Todo.types'
+import { collection, getDocs, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
+import { db } from '../firebase/initializeFirebase'
 
-export const data: TypeItemsList = [
-	{
-		id: '1',
-		text: 'Its first todo regererg ergerger egrgerger ergergerg ergerge ergerger ergerger ergerg ergerg wefew vdvdfv fvdfvdf dfvdfv dfvdfv dfvdfv dfdfv dfvdfvdf dfdfvdf dfvdv dfvdfv dfvdfv dfvdf dfvdfvdf dfvdf ewfwef wewefw wfeweff we we fw fwe fwef w fwef we fwe fw fwe w wef ',
-		complexity: 'easy',
-		status: 'Done',
-		addingDate: '11.12.24',
-	},
-	{
-		id: '2',
-		text: 'Its second todo',
-		complexity: 'medium',
-		status: 'In progress',
-		addingDate: '11.12.24',
-	},
-	{
-		id: '3',
-		text: 'Its third todo',
-		complexity: 'hard',
-		status: 'Done',
-		addingDate: '11.12.24',
-	},
-	{
-		id: '4',
-		text: 'Its fourth todo',
-		complexity: 'medium',
-		status: 'In progress',
-		addingDate: '11.12.24',
-	},
-	{
-		id: '5',
-		text: 'Its fifth todo',
-		complexity: 'hard',
-		status: 'Done',
-		addingDate: '11.12.24',
-	},
-]
+import { TypeItemsList, TypeTodoItem, TypeNewTodoItem } from '../types/Todo.types'
+
+type TypeUser = {
+	[key: string]: string
+}
+
+export const getAllDocuments = async (user: TypeUser) => {
+	const documents: TypeItemsList = []
+	const querySnapshot = await getDocs(collection(db, `TodoList.${user.uid}`))
+	querySnapshot.forEach(doc => {
+		documents.push({ id: doc.id, ...doc.data() } as TypeTodoItem)
+	})
+
+	return documents
+}
+
+export const addTodo = async (id: string, newTodo: TypeNewTodoItem) => {
+	await addDoc(collection(db, `TodoList.${id}`), newTodo)
+}
+
+export const deleteTodo = async (uid: string, id: string) => {
+	try {
+		await deleteDoc(doc(db, `TodoList.${uid}`, id))
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+export const updateTodo = async (uid: string, id: string, updatedTodo: TypeNewTodoItem) => {
+	try {
+		await updateDoc(doc(db, `TodoList.${uid}`, id), updatedTodo)
+	} catch (error) {
+		console.log(error)
+	}
+}

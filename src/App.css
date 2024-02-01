@@ -12,3 +12,42 @@ body {
 	background-color: #fff;
 	transition: background-color 300ms;
 }
+
+.ReactModal__Overlay--after-open {
+	background-color: #ffffff1f !important;
+}
+.modal-dark {
+	position: absolute;
+	inset: 40px;
+	border: 1px solid rgb(204, 204, 204);
+	background-color: #332b53;
+	overflow: auto;
+	border-radius: 4px;
+	outline: none;
+	padding: 20px;
+	transition: background-color 300ms;
+}
+.modal-light {
+	position: absolute;
+	inset: 40px;
+	border: 1px solid rgb(204, 204, 204);
+	background-color: #fff;
+	overflow: auto;
+	border-radius: 4px;
+	outline: none;
+	padding: 20px;
+	transition: background-color 300ms;
+}
+
+.ReactModal__Overlay {
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+	opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+	opacity: 0;
+}

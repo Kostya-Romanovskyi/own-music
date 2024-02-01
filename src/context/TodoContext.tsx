@@ -1,6 +1,6 @@
-import { FC, createContext, useState } from 'react'
-import { data } from '../API/API-list'
+import { FC, createContext, useState, useEffect } from 'react'
 import { TypeContextProps, TypeTodoItem } from '../types/Todo.types'
+import { addTodo } from '../API/API-list'
 
 const initialContextValue: Record<string, any> = {}
 
@@ -9,15 +9,14 @@ export const TodoContextData = createContext<Record<string, any>>(initialContext
 const TodoContext: FC<TypeContextProps> = ({ children }) => {
 	const [userAuth, setUserAuth] = useState(null)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
-	const [dataTodo, setDataTodo] = useState<TypeTodoItem[]>(data)
+	const [dataTodo, setDataTodo] = useState<TypeTodoItem[]>([])
 	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
 	const [search, setSearch] = useState<string>('')
 	const [filterTodo, setFilterTodo] = useState<TypeTodoItem[]>(dataTodo)
 
-	const addTodo = (todo: TypeTodoItem): void => {
-		setDataTodo([...dataTodo, todo])
-		setFilterTodo([...filterTodo, todo])
-	}
+	useEffect(() => {
+		setFilterTodo(dataTodo)
+	}, [dataTodo])
 
 	const deleteTodo = (todoId: string): void => {
 		setDataTodo(dataTodo.filter(todo => todo.id !== todoId))
@@ -30,7 +29,15 @@ const TodoContext: FC<TypeContextProps> = ({ children }) => {
 			return
 		}
 
-		const allFilters = dataTodo.filter(todo => todo.status.toLowerCase() === categoryText.toLowerCase())
+		const allFilters = dataTodo.filter(todo => {
+			if (todo.status) {
+				return 'Done'.toLowerCase() === categoryText.toLowerCase()
+			}
+
+			if (!todo.status) {
+				return 'In Progress'.toLowerCase() === categoryText.toLowerCase()
+			}
+		})
 
 		setFilterTodo(allFilters)
 	}

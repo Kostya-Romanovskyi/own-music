@@ -1,8 +1,5 @@
 import { FC, SetStateAction, useContext, useState } from 'react'
-import { nanoid } from 'nanoid'
-import { TypeTodoItem } from '../../types/Todo.types'
-
-import { TodoContextData } from '../../context/TodoContext'
+import { TypeNewTodoItem } from '../../types/Todo.types'
 
 import {
 	CreateTodoWrapper,
@@ -12,34 +9,37 @@ import {
 	CloseButton,
 	CreateTextarea,
 	DescriptionText,
-	StyledSelect,
 	AddTaskButton,
 	IconPlus,
+	RadioWrapper,
+	RadioButton,
+	Label,
 } from './CreateTodo.styled'
 
-const options = [
-	{ value: 'easy', label: 'Easy' },
-	{ value: 'medium', label: 'Medium' },
-	{ value: 'hard', label: 'Hard' },
-]
+import { addTodo } from '../../API/API-list'
+import { TodoContextData } from '../../context/TodoContext'
+import { getAllDocuments } from '../../API/API-list'
 
 const CreateTodo: FC = () => {
+	const [selectedValue, setSelectedValue] = useState<string>('easy')
 	const [showCreate, setShowCreate] = useState<boolean>(false)
 	const [newValue, setNewValue] = useState<string>('')
 
-	const { addTodo } = useContext(TodoContextData)
+	const { userAuth, setDataTodo } = useContext(TodoContextData)
 
 	const toggleCreate = (): void => {
 		setShowCreate(!showCreate)
+	}
+
+	const handleChecked = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		setSelectedValue(e.target.value)
 	}
 
 	const handleChange = (e: { target: { value: SetStateAction<string> } }): void => {
 		setNewValue(e.target.value)
 	}
 
-	const handleSubmit = (): void => {
-		const newId = nanoid()
-
+	const handleAddTodo = (): void => {
 		const currentDate = new Date()
 
 		const day = currentDate.getDate().toString().padStart(2, '0')
@@ -48,18 +48,35 @@ const CreateTodo: FC = () => {
 
 		const formattedDate = `${day}.${month}.${year}`
 
-		const newTodo: TypeTodoItem = {
-			id: newId,
+		const newTodo: TypeNewTodoItem = {
 			text: newValue,
-			complexity: 'easy',
-			status: 'Done',
+			complexity: selectedValue as 'easy' | 'medium' | 'hard',
+			status: false,
 			addingDate: formattedDate,
 		}
 
-		addTodo(newTodo)
+		try {
+			addTodo(userAuth.uid, newTodo)
 
-		setNewValue('')
-		setShowCreate(!showCreate)
+			setNewValue('')
+			setShowCreate(!showCreate)
+
+			const fetchDocuments = async () => {
+				try {
+					if (userAuth) {
+						const docs = await getAllDocuments(userAuth)
+
+						setDataTodo(docs)
+					}
+				} catch (error) {
+					console.error('Error fetching documents:', error)
+				}
+			}
+
+			fetchDocuments()
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	return (
@@ -78,9 +95,44 @@ const CreateTodo: FC = () => {
 
 				<DescriptionText>Select task difficulty</DescriptionText>
 
-				<StyledSelect options={options} defaultValue={options[0]} />
+				<RadioWrapper>
+					<li>
+						<Label htmlFor='easy-create' type='easy' checked={selectedValue === 'easy'}>
+							Easy
+						</Label>
+						<RadioButton onChange={handleChecked} type='radio' name='complexity-create' value='easy' id='easy-create' />
+					</li>
 
-				<AddTaskButton onClick={handleSubmit}>Add Task</AddTaskButton>
+					<li>
+						<Label htmlFor='medium-create' type='medium' checked={selectedValue === 'medium'}>
+							Medium
+						</Label>
+						<RadioButton
+							onChange={handleChecked}
+							type='radio'
+							name='complexity-create'
+							value='medium'
+							checked={selectedValue === 'medium'}
+							id='medium-create'
+						/>
+					</li>
+
+					<li>
+						<Label htmlFor='hard-create' type='hard' checked={selectedValue === 'hard'}>
+							Hard
+						</Label>
+						<RadioButton
+							onChange={handleChecked}
+							type='radio'
+							name='complexity-create'
+							value='hard'
+							checked={selectedValue === 'hard'}
+							id='hard-create'
+						/>
+					</li>
+				</RadioWrapper>
+
+				<AddTaskButton onClick={handleAddTodo}>Add Task</AddTaskButton>
 			</CreateWindow>
 		</CreateTodoWrapper>
 	)

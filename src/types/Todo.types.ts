@@ -2,7 +2,13 @@ export type TypeTodoItem = {
 	id: string
 	text: string
 	complexity: 'easy' | 'medium' | 'hard'
-	status: 'Done' | 'In progress'
+	status: boolean
+	addingDate: string
+}
+export type TypeNewTodoItem = {
+	text: string
+	complexity: 'easy' | 'medium' | 'hard'
+	status: boolean
 	addingDate: string
 }
 

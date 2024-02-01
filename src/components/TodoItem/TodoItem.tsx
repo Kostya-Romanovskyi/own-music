@@ -4,41 +4,71 @@ import { TypeTodoItem } from '../../types/Todo.types'
 import {
 	Item,
 	Text,
-	Wrapper,
-	TextArea,
 	AdditionalWrapp,
 	AdditionalComplexity,
 	AdditionalStatus,
 	AdditionalInfoDate,
+	Checkbox,
 	MoreButton,
-	CloseButton,
-	StyledCloseIcon,
-	EditButton,
-	StyledSelect,
-	ShowButtons,
 } from './TodoItem.styled'
-import { TodoContextData } from '../../context/TodoContext'
 
-import TodoMainButton from '../TodoMainButton/TodoMainButton'
 import { BsThreeDots } from 'react-icons/bs'
-
-const optionsComplexity = [
-	{ value: 'easy', label: 'Easy' },
-	{ value: 'medium', label: 'Medium' },
-	{ value: 'hard', label: 'Hard' },
-]
-const optionsStatus = [
-	{ value: 'done', label: 'Done' },
-	{ value: 'InProgress', label: 'In Progress' },
-]
+import ModalWindow from '../Modal/Modal'
+import { updateTodo } from '../../API/API-list'
+import { TodoContextData } from '../../context/TodoContext'
+import { getAllDocuments } from '../../API/API-list'
 
 const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }) => {
-	const [showButtons, setShowButtons] = useState<boolean>(false)
+	const [modalIsOpen, setIsOpen] = useState<boolean>(false)
+	const [statusValue, setStatusValue] = useState<boolean>(false)
 
-	const { deleteTodo } = useContext(TodoContextData)
+	const { userAuth, setDataTodo } = useContext(TodoContextData)
 
-	const handleSnowButtons = (): void => {
-		setShowButtons(!showButtons)
+	function openModal() {
+		setIsOpen(true)
+	}
+
+	const handleCheckboxChange = async (uid: string, TodoId: string) => {
+		try {
+			const newStatusValue: boolean = !statusValue
+
+			await handleUpdateStatus(uid, TodoId)
+
+			setStatusValue(newStatusValue)
+		} catch (error) {
+			console.error('Error updating status:', error)
+		}
+	}
+
+	const handleUpdateStatus = async (uid: string, TodoId: string) => {
+		try {
+			const newStatusValue = {
+				id,
+				text,
+				complexity,
+				status: statusValue,
+				addingDate,
+			}
+
+			await updateTodo(uid, TodoId, newStatusValue)
+
+			const fetchDocuments = async () => {
+				try {
+					if (userAuth) {
+						const docs = await getAllDocuments(userAuth)
+
+						setDataTodo(docs)
+					}
+				} catch (error) {
+					console.error('Error fetching documents:', error)
+				}
+			}
+
+			fetchDocuments()
+		} catch (error) {
+			console.error('Error updating status:', error)
+			throw error
+		}
 	}
 
 	return (
@@ -46,30 +76,17 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 			<Item>
 				<Text>{text}</Text>
 				<AdditionalWrapp>
-					<MoreButton type='button' onClick={handleSnowButtons}>
+					<MoreButton type='button' onClick={openModal}>
 						<BsThreeDots className='global-icons' />
 					</MoreButton>
 
 					<AdditionalComplexity complexity={complexity}>{complexity}</AdditionalComplexity>
-					<AdditionalStatus status={status}>{status}</AdditionalStatus>
+					<AdditionalStatus status={status}>{status ? 'Done' : 'In Progress'}</AdditionalStatus>
 					<AdditionalInfoDate>{addingDate}</AdditionalInfoDate>
+					<Checkbox onChange={() => handleCheckboxChange(userAuth.uid, id)} type='checkbox' checked={status} />
 				</AdditionalWrapp>
 
-				<ShowButtons isOpen={showButtons}>
-					<Wrapper>
-						<TextArea placeholder='Edit text' defaultValue={text}></TextArea>
-						<CloseButton onClick={handleSnowButtons}>
-							<StyledCloseIcon />
-						</CloseButton>
-						<EditButton>Edit</EditButton>
-					</Wrapper>
-
-					<Wrapper>
-						<StyledSelect defaultValue={optionsComplexity[0]} options={optionsComplexity} />
-						<StyledSelect defaultValue={optionsStatus[0]} options={optionsStatus} />
-						<TodoMainButton onClick={() => deleteTodo(id)}>delete</TodoMainButton>
-					</Wrapper>
-				</ShowButtons>
+				<ModalWindow modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} text={text} id={id} />
 			</Item>
 		</>
 	)

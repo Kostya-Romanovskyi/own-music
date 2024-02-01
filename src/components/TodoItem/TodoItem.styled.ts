@@ -73,11 +73,15 @@ export const AdditionalComplexity = styled.p<TypeConditionProp>`
 		}
 	}};
 
-	@media screen and(min-width:350px) {
+	@media screen and (min-width: 340px) {
 		padding: 5px 10px;
 	}
 `
-export const AdditionalStatus = styled.p<TypeConditionProp>`
+type TypeStatusProps = {
+	status: string | boolean
+}
+
+export const AdditionalStatus = styled.p<TypeStatusProps>`
 	font-size: 10px;
 	font-weight: 600;
 	padding: 3px 7px;
@@ -88,15 +92,16 @@ export const AdditionalStatus = styled.p<TypeConditionProp>`
 	color: #000000 !important;
 	background-color: ${({ status }) => {
 		switch (status) {
-			case 'Done':
+			case true:
 				return '#00ff00'
-			case 'In progress':
+			case false:
 				return '#ADD8E6'
 			default:
 				return '#ffffff'
 		}
 	}};
-	@media screen and(min-width:350px) {
+
+	@media screen and (min-width: 340px) {
 		padding: 5px 10px;
 	}
 `
@@ -112,10 +117,12 @@ export const AdditionalInfoDate = styled.p`
 	color: #000000 !important;
 	background-color: #c0c0c0;
 
-	@media screen and(min-width:350px) {
+	@media screen and(min-width: 350px) {
 		padding: 5px 10px;
 	}
 `
+
+export const Checkbox = styled.input``
 
 export const MoreButton = styled.button<TypeThemeProps>`
 	border: none;
@@ -198,7 +205,3 @@ export const StyledSelect = styled(Select)`
 export const StyledCloseIcon = styled(IoCloseSharp)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 `
-
-export const Checkbox = styled.input``
-
-export const Label = styled.label``

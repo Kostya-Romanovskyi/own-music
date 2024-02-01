@@ -7,7 +7,7 @@ export const lightTheme: TypeToggleTheme = {
 
 export const darkTheme: TypeToggleTheme = {
 	background: '#332b53',
-	color: '#fff',
-	border: '#48319d',
+	color: '#ffffff',
+	border: '#7b7676',
 	transition: '300ms',
 }
