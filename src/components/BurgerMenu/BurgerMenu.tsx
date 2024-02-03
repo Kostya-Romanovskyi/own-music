@@ -15,6 +15,30 @@ import SideBarItem from '../SideBarItem/SideBarItem'
 const BurgerMenu = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 
+	function openBurgerMenu() {
+		// Сохраняем текущую позицию прокрутки
+		const scrollY = window.scrollY
+
+		// Добавляем класс, который запрещает скролл
+		document.body.classList.add('no-scroll')
+
+		// Фиксируем позицию прокрутки, чтобы страница не смещалась
+		document.body.style.top = `-${scrollY}px`
+	}
+
+	// При закрытии бургер-меню
+	function closeBurgerMenu() {
+		// Удаляем класс, который запрещает скролл
+		document.body.classList.remove('no-scroll')
+
+		// Получаем сохраненную позицию прокрутки
+		const scrollY = parseInt(document.body.style.top || '0', 10)
+
+		// Восстанавливаем позицию прокрутки
+		document.body.style.top = ''
+		window.scrollTo(0, Math.abs(scrollY))
+	}
+
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (isOpen && !(event.target as HTMLElement).closest('.burger-menu')) {
@@ -46,11 +70,14 @@ const BurgerMenu = () => {
 	useEffect(() => {
 		if (isOpen) {
 			document.body.style.overflow = 'hidden'
+			openBurgerMenu()
 		} else {
 			document.body.style.overflow = 'auto'
+			closeBurgerMenu()
 		}
 		return () => {
 			document.body.style.overflow = 'auto'
+			closeBurgerMenu()
 		}
 	}, [isOpen])
 
