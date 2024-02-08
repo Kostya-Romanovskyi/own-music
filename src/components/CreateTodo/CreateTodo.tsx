@@ -1,5 +1,7 @@
-import { FC, SetStateAction, useContext, useState } from 'react'
-import { TypeNewTodoItem } from '../../types/Todo.types'
+import { FC, SetStateAction, useState } from 'react'
+import { TypeTodoItem } from '../../types/Todo.types'
+import { nanoid } from 'nanoid'
+import { formattedDate } from '../../constance/Date'
 
 import {
 	CreateTodoWrapper,
@@ -16,16 +18,16 @@ import {
 	Label,
 } from './CreateTodo.styled'
 
-import { addTodo } from '../../API/API-list'
-import { TodoContextData } from '../../context/TodoContext'
-import { getAllDocuments } from '../../API/API-list'
+import { useTodoContext } from '../../context/TodoContext'
+import { useAuthContext } from '../../context/AuthContext'
 
 const CreateTodo: FC = () => {
 	const [selectedValue, setSelectedValue] = useState<string>('easy')
 	const [showCreate, setShowCreate] = useState<boolean>(false)
 	const [newValue, setNewValue] = useState<string>('')
 
-	const { userAuth, setDataTodo } = useContext(TodoContextData)
+	const { userAuth } = useAuthContext()
+	const { addTodo } = useTodoContext()
 
 	const toggleCreate = (): void => {
 		setShowCreate(!showCreate)
@@ -39,43 +41,19 @@ const CreateTodo: FC = () => {
 		setNewValue(e.target.value)
 	}
 
-	const handleAddTodo = (): void => {
-		const currentDate = new Date()
+	const handleAddTodo = async () => {
+		const id = nanoid()
 
-		const day = currentDate.getDate().toString().padStart(2, '0')
-		const month = (currentDate.getMonth() + 1).toString().padStart(2, '0')
-		const year = currentDate.getFullYear()
-
-		const formattedDate = `${day}.${month}.${year}`
-
-		const newTodo: TypeNewTodoItem = {
+		const newTodo: TypeTodoItem = {
+			id,
 			text: newValue,
 			complexity: selectedValue as 'easy' | 'medium' | 'hard',
 			status: false,
 			addingDate: formattedDate,
 		}
 
-		try {
+		if (userAuth) {
 			addTodo(userAuth.uid, newTodo)
-
-			setNewValue('')
-			setShowCreate(!showCreate)
-
-			const fetchDocuments = async () => {
-				try {
-					if (userAuth) {
-						const docs = await getAllDocuments(userAuth)
-
-						setDataTodo(docs)
-					}
-				} catch (error) {
-					console.error('Error fetching documents:', error)
-				}
-			}
-
-			fetchDocuments()
-		} catch (error) {
-			console.log(error)
 		}
 	}
 

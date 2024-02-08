@@ -1,4 +1,6 @@
+
 import { TypeToggleTheme } from '../types/Theme.types'
+
 
 export const lightTheme: TypeToggleTheme = {
 	background: '#fff',
@@ -11,3 +13,5 @@ export const darkTheme: TypeToggleTheme = {
 	border: '#7b7676',
 	transition: '300ms',
 }
+
+

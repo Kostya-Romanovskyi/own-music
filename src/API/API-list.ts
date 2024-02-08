@@ -1,38 +1,55 @@
-import { collection, getDocs, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
-import { db } from '../firebase/initializeFirebase'
+import { ref, set, push, get, update, remove } from 'firebase/database'
+import { database } from '../firebase/initializeFirebase'
+import { TypeTodoItem } from '../types/Todo.types'
+import { TypeUser } from '../types/UserAuth.types'
 
-import { TypeItemsList, TypeTodoItem, TypeNewTodoItem } from '../types/Todo.types'
-
-type TypeUser = {
-	[key: string]: string
-}
-
-export const getAllDocuments = async (user: TypeUser) => {
-	const documents: TypeItemsList = []
-	const querySnapshot = await getDocs(collection(db, `TodoList.${user.uid}`))
-	querySnapshot.forEach(doc => {
-		documents.push({ id: doc.id, ...doc.data() } as TypeTodoItem)
-	})
-
-	return documents
-}
-
-export const addTodo = async (id: string, newTodo: TypeNewTodoItem) => {
-	await addDoc(collection(db, `TodoList.${id}`), newTodo)
-}
-
-export const deleteTodo = async (uid: string, id: string) => {
+export const getAllTodo = async (user: TypeUser) => {
 	try {
-		await deleteDoc(doc(db, `TodoList.${uid}`, id))
+		const dbRef = ref(database, `TodoList/${user.uid}`)
+		const snapshot = await get(dbRef)
+
+		if (snapshot.exists()) {
+			const tasksObject = snapshot.val()
+
+			const tasksArray = Object.keys(tasksObject).map(taskId => {
+				const taskWithId = tasksObject[taskId]
+				taskWithId.id = taskId
+				return taskWithId
+			})
+
+			return tasksArray
+		} else {
+			return []
+		}
 	} catch (error) {
-		console.log(error)
+		console.error(error)
+		throw error
 	}
 }
 
-export const updateTodo = async (uid: string, id: string, updatedTodo: TypeNewTodoItem) => {
+export const writeUserData = async (userId: string, newTodo: TypeTodoItem) => {
 	try {
-		await updateDoc(doc(db, `TodoList.${uid}`, id), updatedTodo)
+		const todoListRef = ref(database, `TodoList/${userId}`)
+		const newTodoRef = push(todoListRef)
+		await set(newTodoRef, newTodo)
+
+		console.log('Задача успешно добавлена')
 	} catch (error) {
-		console.log(error)
+		console.error('Ошибка при записи данных:', error)
+		throw error
+	}
+}
+
+export const updateDataTodo = async (userId: string, todoId: string, updatedTodo: TypeTodoItem) => {
+	update(ref(database, `TodoList/${userId}/${todoId}`), updatedTodo)
+}
+
+export const removeTodo = async (userId: string, todoId: string) => {
+	try {
+		const todoRef = ref(database, `TodoList/${userId}/${todoId}`)
+		remove(todoRef)
+		console.log(`Задача с ID ${todoId} удалена для пользователя ${userId}`)
+	} catch (error: any) {
+		console.error(`Ошибка при удалении задачи для пользователя ${userId}: ${error.message}`)
 	}
 }

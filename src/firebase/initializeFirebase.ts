@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { getDatabase } from 'firebase/database'
 // import { getAnalytics } from 'firebase/analytics'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -10,6 +10,7 @@ import { getFirestore } from 'firebase/firestore'
 const firebaseConfig = {
 	apiKey: 'AIzaSyD2Eh3T3bE5DppbPEFVHOM3V26b28Pgj8w',
 	authDomain: 'owntodo-46425.firebaseapp.com',
+	databaseURL: 'https://owntodo-46425-default-rtdb.europe-west1.firebasedatabase.app',
 	projectId: 'owntodo-46425',
 	storageBucket: 'owntodo-46425.appspot.com',
 	messagingSenderId: '431234222803',
@@ -19,5 +20,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app);
+export const database = getDatabase(app)
 // const analytics = getAnalytics(app)

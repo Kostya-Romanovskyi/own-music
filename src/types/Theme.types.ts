@@ -1,6 +1,7 @@
 export type TypeToggleTheme = {
 	[key: string]: string
 }
+
 export type TypeTheme = {
 	border?: string
 	color: string
@@ -24,4 +25,8 @@ export type TypeSideButton = {
 	theme?: TypeToggleTheme
 	children: string
 	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+export type ert = {
+	[key: string]: string
 }

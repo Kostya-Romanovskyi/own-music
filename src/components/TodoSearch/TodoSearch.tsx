@@ -1,17 +1,17 @@
-import { FC, useContext } from 'react'
-import { TodoContextData } from '../../context/TodoContext'
+import { FC } from 'react'
+import { useTodoContext } from '../../context/TodoContext'
 import { ThemeInput } from '../../UI/GlobalTheme.styled'
 
 const TodoSearch: FC = () => {
-	const { search, setSearch } = useContext(TodoContextData)
+	const { searchTodo } = useTodoContext()
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		setSearch(e.target.value)
+		searchTodo(e.target.value)
 	}
 
 	return (
 		<div>
-			<ThemeInput onChange={handleSearch} type='text' value={search} placeholder='Searching by text' />
+			<ThemeInput onChange={handleSearch} type='text' placeholder='Searching by text' />
 		</div>
 	)
 }

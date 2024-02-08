@@ -1,22 +1,19 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
-
-import { TodoContextData } from '../../context/TodoContext'
 
 import { FaRegWindowRestore } from 'react-icons/fa'
 
 import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 import { HeaderWrapper, LeftSide, LogoText, RightSide, StyledIcon, ThemeButton } from './Header.styled'
+import { useAuthContext } from '../../context/AuthContext'
 
-import LogInButton from '../../firebase/LogIn'
 import LogOutButton from '../../firebase/LogOut'
 
-const Header: FC = () => {
-	const { setIsDarkTheme, userAuth, isLoading } = useContext(TodoContextData)
+import { useThemeContext } from '../../context/ThemeContext'
 
-	const toggleTheme = (): void => {
-		setIsDarkTheme((prev: boolean) => !prev)
-	}
+const Header: FC = () => {
+	const { handleClick } = useAuthContext()
+	const { handleToggleTheme } = useThemeContext()
 
 	return (
 		<>
@@ -30,11 +27,11 @@ const Header: FC = () => {
 							</LeftSide>
 							<RightSide>
 								<p>lang</p>
-								<ThemeButton onClick={toggleTheme}>
+								<ThemeButton onClick={handleToggleTheme}>
 									<StyledIcon />
 								</ThemeButton>
-
-								{userAuth ? <LogOutButton /> : isLoading ? <div>Loading</div> : <LogInButton />}
+								<button onClick={() => handleClick()}>Login</button>
+								{/* {userAuth ? <LogOutButton /> : isLoading ? <div>Loading</div> : <LogInButton />} */}
 							</RightSide>
 						</HeaderWrapper>
 					</div>

@@ -15,6 +15,7 @@ import SideBarItem from '../SideBarItem/SideBarItem'
 const BurgerMenu = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 
+	// remove scroll when burger menu is open in Safary
 	function openBurgerMenu() {
 		// Сохраняем текущую позицию прокрутки
 		const scrollY = window.scrollY

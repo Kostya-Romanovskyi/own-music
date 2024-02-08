@@ -1,38 +1,29 @@
-import { FC, useContext, useEffect } from 'react'
-import SideBarTodo from '../../components/SideBarTodo/SideBarTodo'
+import { FC, useEffect } from 'react'
+
 import TodoSearch from '../../components/TodoSearch/TodoSearch'
 import TodoList from '../../components/TodoList/TodoList'
 import CreateTodo from '../../components/CreateTodo/CreateTodo'
 import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
-import { getAllDocuments } from '../../API/API-list'
-
-import { TodoContextData } from '../../context/TodoContext'
+import SideBarTodo from '../../components/SideBarTodo/SideBarTodo'
 
 import { FiltersWrapper, GridWrapper } from './Home.styled'
 import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 
+import { useAuthContext } from '../../context/AuthContext'
+import { useTodoContext } from '../../context/TodoContext'
+
 const Home: FC = () => {
-	const contextValue = useContext(TodoContextData)
+	const { userAuth } = useAuthContext()
+	const { state, fetchAllTodo } = useTodoContext()
+	console.log(userAuth)
 
 	useEffect(() => {
-		const fetchDocuments = async () => {
-			try {
-				if (contextValue.userAuth) {
-					const docs = await getAllDocuments(contextValue.userAuth)
-
-					contextValue.setDataTodo(docs)
-				}
-			} catch (error) {
-				console.error('Error fetching documents:', error)
-			}
+		if (userAuth) {
+			fetchAllTodo(userAuth)
 		}
+	}, [userAuth])
 
-		fetchDocuments()
-	}, [contextValue.userAuth, contextValue.setDataTodo])
-
-	console.log(contextValue.dataTodo)
-
-	return contextValue.userAuth ? (
+	return (
 		<ThemeContainer>
 			<div className='container'>
 				<CreateTodo />
@@ -46,12 +37,12 @@ const Home: FC = () => {
 				<GridWrapper>
 					<SideBarTodo />
 
-					<TodoList data={contextValue.toDoListWithSearch} />
+					<TodoList data={state.filteredTodo} />
 				</GridWrapper>
+
+				<TodoList />
 			</div>
 		</ThemeContainer>
-	) : (
-		<div>login</div>
 	)
 }
 

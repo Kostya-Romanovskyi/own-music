@@ -121,8 +121,49 @@ export const AdditionalInfoDate = styled.p`
 		padding: 5px 10px;
 	}
 `
+// export const Label = styled.label`
+// 	cursor: pointer;
+// 	text-indent: -9999px;
+// 	width: 200px;
+// 	height: 100px;
+// 	background: grey;
+// 	display: block;
+// 	border-radius: 100px;
+// 	position: relative;
 
-export const Checkbox = styled.input``
+// 	&:after {
+// 		content: '';
+// 		position: absolute;
+// 		top: 5px;
+// 		left: 5px;
+// 		width: 90px;
+// 		height: 90px;
+// 		background: #fff;
+// 		border-radius: 90px;
+// 		transition: 0.3s;
+// 	}
+
+// 	&:active:after {
+// 		width: 130px;
+// 	}
+// `
+
+// export const Checkbox = styled.input`
+// 	&[type='checkbox'] {
+// 		height: 0;
+// 		width: 0;
+// 		visibility: hidden;
+// 	}
+
+// 	&:checked + ${Label} {
+// 		background: #bada55;
+
+// 		&:after {
+// 			left: calc(100% - 5px);
+// 			transform: translateX(-100%);
+// 		}
+// 	}
+// `
 
 export const MoreButton = styled.button<TypeThemeProps>`
 	border: none;

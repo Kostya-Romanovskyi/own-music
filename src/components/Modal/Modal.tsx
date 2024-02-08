@@ -1,5 +1,12 @@
-import { FC, useContext, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Modal from 'react-modal'
+
+import { useTodoContext } from '../../context/TodoContext'
+import { useAuthContext } from '../../context/AuthContext'
+import { useThemeContext } from '../../context/ThemeContext'
+
+import { formattedDate } from '../../constance/Date'
+import { TypeTodoItem } from '../../types/Todo.types'
 
 import {
 	TextArea,
@@ -11,9 +18,8 @@ import {
 	EditButton,
 	DeleteButton,
 } from './Modal.styled'
-import { TodoContextData } from '../../context/TodoContext'
-import { getAllDocuments, deleteTodo, updateTodo } from '../../API/API-list'
-import { TypeTodoItem, TypeNewTodoItem } from '../../types/Todo.types'
+
+import { darkTheme } from '../../UI/GlobalTheme'
 
 Modal.setAppElement('#root')
 
@@ -25,10 +31,24 @@ type TypeModalWindow = {
 }
 
 const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) => {
-	const [textAreaValue, setTextAreaValue] = useState('')
-	const [selectedValue, setSelectedValue] = useState('easy')
+	const [textAreaValue, setTextAreaValue] = useState<string>('')
+	const [selectedValue, setSelectedValue] = useState<string>('easy')
 
-	const { isDarkTheme, dataTodo, setDataTodo, userAuth } = useContext(TodoContextData)
+	const { userAuth } = useAuthContext()
+	const { deleteTodo, updateTodo } = useTodoContext()
+	const { currentTheme } = useThemeContext()
+
+	useEffect(() => {
+		if (modalIsOpen) {
+			document.body.style.overflow = 'hidden'
+		} else {
+			document.body.style.overflow = 'auto'
+		}
+
+		return () => {
+			document.body.style.overflow = 'auto'
+		}
+	}, [modalIsOpen])
 
 	useEffect(() => {
 		setTextAreaValue(text)
@@ -42,42 +62,31 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 		setSelectedValue(e.target.value)
 	}
 
-	const handleUpdate = (uid: string, TodoId: string): void => {
-		const updatedTodo: TypeNewTodoItem = {
-			text: textAreaValue,
-			complexity: selectedValue as 'easy' | 'medium' | 'hard',
-			status: false,
-			addingDate: '21.21.21',
-		}
-
-		updateTodo(uid, TodoId, updatedTodo)
-
-		const fetchDocuments = async () => {
-			try {
-				if (userAuth) {
-					const docs = await getAllDocuments(userAuth)
-
-					setDataTodo(docs)
-				}
-			} catch (error) {
-				console.error('Error fetching documents:', error)
+	const handleUpdate = (uid: string, todoId: string) => {
+		try {
+			const updatedTodo: TypeTodoItem = {
+				id: todoId,
+				text: textAreaValue,
+				complexity: selectedValue as 'easy' | 'medium' | 'hard',
+				status: false,
+				addingDate: formattedDate,
 			}
-		}
 
-		fetchDocuments()
+			updateTodo(uid, todoId, updatedTodo)
+		} catch (error) {
+			alert('error')
+		}
 
 		setIsOpen(false)
 	}
 
-	const handleDelete = (uid: string, TodoId: string): void => {
-		deleteTodo(uid, TodoId)
-
-		setDataTodo(dataTodo.filter((todo: TypeTodoItem) => todo.id !== TodoId))
+	const handleDelete = (uid: string, todoId: string) => {
+		deleteTodo(uid, todoId)
 	}
 
 	return (
 		<Modal
-			className={isDarkTheme ? 'modal-dark' : 'modal-light'}
+			className={currentTheme === darkTheme ? 'modal-dark' : 'modal-light'}
 			style={{
 				overlay: {
 					position: 'fixed',
@@ -85,7 +94,7 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 					left: 0,
 					right: 0,
 					bottom: 0,
-					backgroundColor: isDarkTheme ? '#ffffff1f' : 'rgba(255, 255, 255, 0.75)',
+					backgroundColor: currentTheme === darkTheme ? '#ffffff1f' : 'rgba(255, 255, 255, 0.75)',
 				},
 			}}
 			isOpen={modalIsOpen}
@@ -139,9 +148,25 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 				</li>
 			</RadioWrapper>
 
-			<EditButton onClick={() => handleUpdate(userAuth.uid, id)}>Edit</EditButton>
+			<EditButton
+				onClick={() => {
+					if (userAuth) {
+						handleUpdate(userAuth.uid, id)
+					}
+				}}
+			>
+				Edit
+			</EditButton>
 
-			<DeleteButton onClick={() => handleDelete(userAuth.uid, id)}>delete</DeleteButton>
+			<DeleteButton
+				onClick={() => {
+					if (userAuth) {
+						handleDelete(userAuth.uid, id)
+					}
+				}}
+			>
+				delete
+			</DeleteButton>
 		</Modal>
 	)
 }

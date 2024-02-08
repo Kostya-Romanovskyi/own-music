@@ -1,28 +1,28 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
 import Second from './pages/Second'
 
 import { ThemeProvider } from '@emotion/react'
-import { TodoContextData } from './context/TodoContext'
-import { darkTheme, lightTheme } from './UI/GlobalTheme'
+
+import { darkTheme } from './UI/GlobalTheme'
 
 import { Routes, Route } from 'react-router-dom'
+import { useThemeContext } from './context/ThemeContext'
 
 function App() {
-	const { isDarkTheme } = useContext(TodoContextData)
-	const theme = isDarkTheme ? darkTheme : lightTheme
+	const { theme, currentTheme } = useThemeContext()
 
 	useEffect(() => {
-		if (isDarkTheme) {
+		if (currentTheme === darkTheme) {
 			document.body.classList.remove('light')
 			document.body.classList.add('dark')
 		} else {
 			document.body.classList.remove('dark')
 			document.body.classList.add('light')
 		}
-	}, [isDarkTheme])
+	}, [currentTheme])
 
 	return (
 		<ThemeProvider theme={theme}>

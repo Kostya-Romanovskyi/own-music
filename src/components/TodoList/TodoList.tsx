@@ -4,15 +4,19 @@ import { TypeItems } from '../../types/Todo.types'
 import { List } from './TodoList.styled'
 
 const TodoList: FC<TypeItems> = ({ data }) => {
-	console.log(data)
-
 	return (
 		<>
-			<List>
-				{data.map(({ id, text, complexity, status, addingDate }) => (
-					<TodoItem key={id} id={id} text={text} complexity={complexity} status={status} addingDate={addingDate} />
-				))}
-			</List>
+			{data && (
+				<List>
+					{data.length !== 0 ? (
+						data.map(({ id, text, complexity, status, addingDate }) => (
+							<TodoItem key={id} id={id} text={text} complexity={complexity} status={status} addingDate={addingDate} />
+						))
+					) : (
+						<div>loading</div>
+					)}
+				</List>
+			)}
 		</>
 	)
 }
