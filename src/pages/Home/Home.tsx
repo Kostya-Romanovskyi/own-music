@@ -2,11 +2,11 @@ import { FC, useEffect } from 'react'
 
 import TodoSearch from '../../components/TodoSearch/TodoSearch'
 import TodoList from '../../components/TodoList/TodoList'
-import CreateTodo from '../../components/CreateTodo/CreateTodo'
+
 import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
 import SideBarTodo from '../../components/SideBarTodo/SideBarTodo'
 
-import { FiltersWrapper, GridWrapper, InitialPageWrap, Title, Image } from './Home.styled'
+import { StyledLink, FiltersWrapper, GridWrapper, InitialPageWrap, Title, Image } from './Home.styled'
 import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 
 import { useAuthContext } from '../../context/AuthContext'
@@ -27,13 +27,13 @@ const Home: FC = () => {
 	return userAuth ? (
 		<ThemeContainer>
 			<div className='container'>
-				<CreateTodo />
-
 				<FiltersWrapper>
 					<BurgerMenu />
 
 					<TodoSearch />
 				</FiltersWrapper>
+
+				<StyledLink to='/create'>Create Todo</StyledLink>
 
 				<GridWrapper>
 					<SideBarTodo />

@@ -13,9 +13,18 @@ const TodoList: FC<TypeItems> = ({ data }) => {
 			{data && (
 				<List>
 					{data.length !== 0 ? (
-						data.map(({ id, text, complexity, status, addingDate }) => (
-							<TodoItem key={id} id={id} text={text} complexity={complexity} status={status} addingDate={addingDate} />
-						))
+						data
+							.map(({ id, text, complexity, status, addingDate }) => (
+								<TodoItem
+									key={id}
+									id={id}
+									text={text}
+									complexity={complexity}
+									status={status}
+									addingDate={addingDate}
+								/>
+							))
+							.reverse()
 					) : (
 						<div>loading</div>
 					)}

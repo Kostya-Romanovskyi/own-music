@@ -17,6 +17,8 @@ export const HeaderWrapper = styled.div`
 
 	padding-top: 20px;
 	padding-bottom: 20px;
+
+	margin-bottom: 10px;
 `
 export const LeftSide = styled.div`
 	display: flex;

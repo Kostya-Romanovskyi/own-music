@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
-import Second from './pages/Second'
+import CreateTodoPage from './pages/CreateTodo/CreateTodoPage'
 
 import { ThemeProvider } from '@emotion/react'
 
@@ -29,7 +29,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Header />}>
 					<Route index path='/' element={<Home />} />
-					<Route path='/second' element={<Second />} />
+					<Route path='/create' element={<CreateTodoPage />} />
 				</Route>
 			</Routes>
 		</ThemeProvider>

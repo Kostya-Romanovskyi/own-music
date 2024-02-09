@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { IoFilterOutline } from 'react-icons/io5'
 import { TypeThemeProps } from '../../types/Theme.types'
+import { Link } from 'react-router-dom'
 
 export const StyledIcon = styled(IoFilterOutline)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
@@ -54,3 +55,24 @@ export const Title = styled.h1<TypeThemeProps>`
 `
 
 export const Image = styled.img``
+
+export const StyledLink = styled(Link)<TypeThemeProps>`
+	display: block;
+	text-align: center;
+	text-decoration: none;
+
+	margin: 0 auto;
+
+	width: 150px;
+
+	padding: 10px 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+
+	border-radius: 10px;
+
+	border: 2px solid ${({ theme }) => theme.border};
+
+	color: ${({ theme }) => theme.color};
+	background-color: ${({ theme }) => theme.background};
+`

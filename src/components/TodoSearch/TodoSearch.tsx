@@ -9,11 +9,7 @@ const TodoSearch: FC = () => {
 		searchTodo(e.target.value)
 	}
 
-	return (
-		<div>
-			<ThemeInput onChange={handleSearch} type='text' placeholder='Searching by text' />
-		</div>
-	)
+	return <ThemeInput onChange={handleSearch} type='text' placeholder='Searching by text' />
 }
 
 export default TodoSearch

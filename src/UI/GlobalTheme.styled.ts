@@ -11,7 +11,7 @@ export const ThemeInput = styled.input<TypeThemeProps>`
 	font-size: 17px;
 	line-height: 1.5;
 
-	width: 100%;
+	width: 90%;
 
 	padding: 10px 0 10px 5px;
 
