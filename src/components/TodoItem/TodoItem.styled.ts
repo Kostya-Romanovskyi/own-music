@@ -22,8 +22,7 @@ export const Item = styled.li`
 `
 
 export const Text = styled.p`
-	/* overflow-y: auto; */
-	overflow-x: hidden;
+	overflow-y: auto;
 
 	width: 200px;
 	height: 60px;
