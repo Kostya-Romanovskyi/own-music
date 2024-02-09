@@ -21,8 +21,13 @@ export const Item = styled.li`
 	}
 `
 
+export const TextWrapper = styled.div`
+	width: 200px;
+`
+
 export const Text = styled.p`
-	overflow-y: auto;
+	overflow-y: scroll;
+	overflow-x: hidden;
 
 	width: 200px;
 	height: 60px;

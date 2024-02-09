@@ -4,6 +4,7 @@ import { formattedDate } from '../../constance/Date'
 
 import {
 	Item,
+	TextWrapper,
 	Text,
 	AdditionalWrapp,
 	AdditionalComplexity,
@@ -47,9 +48,9 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 	return (
 		<>
 			<Item>
-				<div>
+				<TextWrapper>
 					<Text>{text}</Text>
-				</div>
+				</TextWrapper>
 				<AdditionalWrapp>
 					<MoreButton type='button' onClick={openModal}>
 						<BsThreeDots className='global-icons' />
