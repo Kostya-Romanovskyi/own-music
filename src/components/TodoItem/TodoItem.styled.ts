@@ -24,7 +24,7 @@ export const Item = styled.li`
 export const Text = styled.p`
 	overflow-y: scroll;
 
-	width: 80%;
+	width: 200px;
 	height: 60px;
 
 	margin-bottom: 20px;
