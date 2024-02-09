@@ -1,8 +1,12 @@
 import styled from '@emotion/styled'
 import { CgSun } from 'react-icons/cg'
+import { FaRegMoon } from 'react-icons/fa'
 import { TypeThemeProps } from '../../types/Theme.types'
 
-export const StyledIcon = styled(CgSun)<TypeThemeProps>`
+export const StyledIconSun = styled(CgSun)<TypeThemeProps>`
+	color: ${({ theme }) => theme.color};
+`
+export const StyledIconMoon = styled(FaRegMoon)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 `
 

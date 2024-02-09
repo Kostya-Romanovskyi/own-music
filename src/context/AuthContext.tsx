@@ -1,36 +1,33 @@
 import { FC, createContext, useContext, useEffect, useState } from 'react'
-import { signInWithPopup, getAuth, GoogleAuthProvider, UserCredential, User } from 'firebase/auth'
+import { signInWithPopup, getAuth, GoogleAuthProvider, UserCredential, User, signOut } from 'firebase/auth'
 import { TypeContextProps } from '../types/Todo.types'
+
 import { app } from '../firebase/initializeFirebase'
 
-// Получение объекта аутентификации Firebase
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 
-// Тип контекста авторизации
 type AuthContextType = {
-	userAuth: User | null
+	userAuth: any | null
 	isLoading: boolean
-	handleClick: () => void
+	handleLogIn: () => void
+	handleLogOut: () => void
 }
 
-// Начальное состояние контекста
 const initialStateContext: AuthContextType = {
 	userAuth: null,
 	isLoading: false,
-	handleClick: () => {},
+	handleLogIn: () => {},
+	handleLogOut: () => {},
 }
 
-// Создание контекста авторизации
 export const AuthContext = createContext<AuthContextType>(initialStateContext)
 
-// Провайдер контекста авторизации
 export const AuthProvider: FC<TypeContextProps> = ({ children }) => {
-	const [userAuth, setUserAuth] = useState<User | null>(null)
+	const [userAuth, setUserAuth] = useState<any | null>(null)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 
-	// Функция для обработки нажатия на кнопку входа
-	const handleClick = () => {
+	const handleLogIn = () => {
 		setIsLoading(true)
 
 		signInWithPopup(auth, provider)
@@ -50,7 +47,17 @@ export const AuthProvider: FC<TypeContextProps> = ({ children }) => {
 			})
 	}
 
-	// Предположим, что у вас уже есть функция useState и другие необходимые импорты
+	const handleLogOut = () => {
+		signOut(auth)
+			.then(() => {
+				setUserAuth(null)
+
+				localStorage.clear()
+			})
+			.catch(error => {
+				console.log(error)
+			})
+	}
 
 	useEffect(() => {
 		const storedAuthData = localStorage.getItem('auth')
@@ -59,22 +66,9 @@ export const AuthProvider: FC<TypeContextProps> = ({ children }) => {
 
 			const { name, email, uid } = JSON.parse(storedAuthData)
 
-			const user: User = {
+			const user: any = {
 				displayName: name,
 				email: email,
-				emailVerified: false, // Пример заполнения других свойств
-				isAnonymous: false,
-				metadata: {}, // Пример заполнения других свойств
-				providerData: [], // Пример заполнения других свойств
-				refreshToken: '',
-				tenantId: '',
-				delete: () => Promise.resolve(),
-				getIdToken: () => Promise.resolve(''),
-				getIdTokenResult: () => Promise.resolve({} as any),
-				reload: () => Promise.resolve(),
-
-				toJSON: () => ({}),
-
 				uid: uid,
 			}
 
@@ -84,15 +78,14 @@ export const AuthProvider: FC<TypeContextProps> = ({ children }) => {
 		}
 	}, [])
 
-	// Значение контекста
 	const authContextValue: AuthContextType = {
 		userAuth,
 		isLoading,
-		handleClick,
+		handleLogIn,
+		handleLogOut,
 	}
 
 	return <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>
 }
 
-// Хук для использования контекста авторизации
 export const useAuthContext = () => useContext(AuthContext)

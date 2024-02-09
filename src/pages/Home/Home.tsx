@@ -6,16 +6,17 @@ import CreateTodo from '../../components/CreateTodo/CreateTodo'
 import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
 import SideBarTodo from '../../components/SideBarTodo/SideBarTodo'
 
-import { FiltersWrapper, GridWrapper } from './Home.styled'
+import { FiltersWrapper, GridWrapper, InitialPageWrap, Title, Image } from './Home.styled'
 import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 
 import { useAuthContext } from '../../context/AuthContext'
 import { useTodoContext } from '../../context/TodoContext'
 
+import HomePageGif from '../../assets/drawing-sketch.gif'
+
 const Home: FC = () => {
 	const { userAuth } = useAuthContext()
 	const { state, fetchAllTodo } = useTodoContext()
-	console.log(userAuth)
 
 	useEffect(() => {
 		if (userAuth) {
@@ -23,7 +24,7 @@ const Home: FC = () => {
 		}
 	}, [userAuth])
 
-	return (
+	return userAuth ? (
 		<ThemeContainer>
 			<div className='container'>
 				<CreateTodo />
@@ -39,10 +40,13 @@ const Home: FC = () => {
 
 					<TodoList data={state.filteredTodo} />
 				</GridWrapper>
-
-				<TodoList />
 			</div>
 		</ThemeContainer>
+	) : (
+		<InitialPageWrap>
+			<Title>Log In for start writing your todo</Title>
+			<Image src={HomePageGif} width={200} height='auto' alt='Worksheet writes tasks to itself' />
+		</InitialPageWrap>
 	)
 }
 

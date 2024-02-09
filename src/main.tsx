@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
-// import TodoContext from './context/TodoContext'
 
 import { AuthProvider } from './context/AuthContext.tsx'
 import { TodoProvider } from './context/TodoContext.tsx'
 import { ThemeContextProvider } from './context/ThemeContext.tsx'
 import { IconContext } from 'react-icons'
+import GlobalStyles from './UI/GlobalStyles.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 				<AuthProvider>
 					<TodoProvider>
 						<IconContext.Provider value={{ className: 'global-icons' }}>
+							<GlobalStyles />
 							<App />
 						</IconContext.Provider>
 					</TodoProvider>

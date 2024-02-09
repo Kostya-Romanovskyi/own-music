@@ -42,3 +42,15 @@ export const GridWrapper = styled.div`
 		grid-template-columns: 1fr 2fr;
 	}
 `
+
+export const InitialPageWrap = styled.div`
+	text-align: center;
+
+	margin-top: 50px;
+`
+
+export const Title = styled.h1<TypeThemeProps>`
+	color: ${({ theme }) => theme.color};
+`
+
+export const Image = styled.img``

@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import GlobalColors from '../../UI/GlobalColors'
-import Select from 'react-select'
 import { IoCloseSharp } from 'react-icons/io5'
 import { TypeThemeProps, TypeConditionProp, TypeToggleBurger } from '../../types/Theme.types'
 
@@ -52,6 +51,7 @@ export const Wrapper = styled.div`
 `
 
 export const AdditionalComplexity = styled.p<TypeConditionProp>`
+	font-family: 'RubikSemiBold', sans-serif;
 	font-size: 10px;
 	font-weight: 600;
 	padding: 3px 7px;
@@ -121,49 +121,6 @@ export const AdditionalInfoDate = styled.p`
 		padding: 5px 10px;
 	}
 `
-// export const Label = styled.label`
-// 	cursor: pointer;
-// 	text-indent: -9999px;
-// 	width: 200px;
-// 	height: 100px;
-// 	background: grey;
-// 	display: block;
-// 	border-radius: 100px;
-// 	position: relative;
-
-// 	&:after {
-// 		content: '';
-// 		position: absolute;
-// 		top: 5px;
-// 		left: 5px;
-// 		width: 90px;
-// 		height: 90px;
-// 		background: #fff;
-// 		border-radius: 90px;
-// 		transition: 0.3s;
-// 	}
-
-// 	&:active:after {
-// 		width: 130px;
-// 	}
-// `
-
-// export const Checkbox = styled.input`
-// 	&[type='checkbox'] {
-// 		height: 0;
-// 		width: 0;
-// 		visibility: hidden;
-// 	}
-
-// 	&:checked + ${Label} {
-// 		background: #bada55;
-
-// 		&:after {
-// 			left: calc(100% - 5px);
-// 			transform: translateX(-100%);
-// 		}
-// 	}
-// `
 
 export const MoreButton = styled.button<TypeThemeProps>`
 	border: none;
@@ -237,10 +194,6 @@ export const TextArea = styled.textarea<TypeThemeProps>`
 	transition: background-color 300ms;
 
 	resize: none;
-`
-
-export const StyledSelect = styled(Select)`
-	font-size: 10px;
 `
 
 export const StyledCloseIcon = styled(IoCloseSharp)<TypeThemeProps>`

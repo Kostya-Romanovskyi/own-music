@@ -1,4 +1,4 @@
-import { FC, createContext, useState, useContext } from 'react'
+import { FC, createContext, useState, useContext, useEffect } from 'react'
 import { darkTheme, lightTheme } from '../UI/GlobalTheme'
 import { TypeContextProps } from '../types/Todo.types'
 import { TypeToggleTheme } from '../types/Theme.types'
@@ -16,7 +16,21 @@ export const ThemeContextProvider: FC<TypeContextProps> = ({ children }) => {
 
 	const handleToggleTheme = () => {
 		setCurrentTheme(currentTheme === lightTheme ? darkTheme : lightTheme)
+
+		localStorage.setItem('theme', currentTheme === lightTheme ? darkTheme.background : lightTheme.background)
 	}
+
+	useEffect(() => {
+		const currentLocalTheme: string | null = localStorage.getItem('theme')
+
+		if (currentLocalTheme === null) {
+			localStorage.setItem('theme', currentTheme.background)
+		} else if (currentLocalTheme === '#fff') {
+			setCurrentTheme(lightTheme)
+		} else {
+			setCurrentTheme(darkTheme)
+		}
+	}, [])
 
 	return (
 		<ThemeContext.Provider value={{ theme: currentTheme, handleToggleTheme, currentTheme }}>

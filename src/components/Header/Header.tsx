@@ -4,16 +4,23 @@ import { Outlet } from 'react-router-dom'
 import { FaRegWindowRestore } from 'react-icons/fa'
 
 import { ThemeContainer } from '../../UI/GlobalTheme.styled'
-import { HeaderWrapper, LeftSide, LogoText, RightSide, StyledIcon, ThemeButton } from './Header.styled'
+import {
+	HeaderWrapper,
+	LeftSide,
+	LogoText,
+	RightSide,
+	StyledIconSun,
+	StyledIconMoon,
+	ThemeButton,
+} from './Header.styled'
 import { useAuthContext } from '../../context/AuthContext'
 
-import LogOutButton from '../../firebase/LogOut'
-
 import { useThemeContext } from '../../context/ThemeContext'
+import TodoMainButton from '../TodoMainButton/TodoMainButton'
 
 const Header: FC = () => {
-	const { handleClick } = useAuthContext()
-	const { handleToggleTheme } = useThemeContext()
+	const { userAuth, handleLogIn, handleLogOut } = useAuthContext()
+	const { currentTheme, handleToggleTheme } = useThemeContext()
 
 	return (
 		<>
@@ -28,10 +35,14 @@ const Header: FC = () => {
 							<RightSide>
 								<p>lang</p>
 								<ThemeButton onClick={handleToggleTheme}>
-									<StyledIcon />
+									{currentTheme.background === '#fff' ? <StyledIconMoon /> : <StyledIconSun />}
 								</ThemeButton>
-								<button onClick={() => handleClick()}>Login</button>
-								{/* {userAuth ? <LogOutButton /> : isLoading ? <div>Loading</div> : <LogInButton />} */}
+
+								{userAuth ? (
+									<TodoMainButton onClick={() => handleLogOut()}>Log Out</TodoMainButton>
+								) : (
+									<TodoMainButton onClick={() => handleLogIn()}>Log In</TodoMainButton>
+								)}
 							</RightSide>
 						</HeaderWrapper>
 					</div>
