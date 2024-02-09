@@ -22,7 +22,7 @@ export const Item = styled.li`
 `
 
 export const Text = styled.p`
-	overflow-y: scroll;
+	overflow-y: auto;
 
 	width: 200px;
 	height: 60px;
