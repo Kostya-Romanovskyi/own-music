@@ -129,6 +129,7 @@ const globalStyles = css`
 	}
 
 	.checkbox-input[type='checkbox'] {
+		display: none;
 		height: 0;
 		width: 0;
 		visibility: hidden;

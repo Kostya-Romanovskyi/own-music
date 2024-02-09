@@ -24,7 +24,8 @@ export const Item = styled.li`
 export const Text = styled.p`
 	overflow-y: scroll;
 
-	height: 55px;
+	width: 80%;
+	height: 60px;
 
 	margin-bottom: 20px;
 `
@@ -106,6 +107,10 @@ export const AdditionalStatus = styled.p<TypeStatusProps>`
 	}
 `
 export const AdditionalInfoDate = styled.p`
+	position: absolute;
+	top: 10px;
+	right: 3px;
+
 	font-size: 10px;
 
 	font-weight: 600;
