@@ -1,5 +1,5 @@
 import { FC, createContext, useContext, useEffect, useState } from 'react'
-import { signInWithPopup, getAuth, GoogleAuthProvider, UserCredential, User, signOut } from 'firebase/auth'
+import { signInWithPopup, getAuth, GoogleAuthProvider, UserCredential, signOut } from 'firebase/auth'
 import { TypeContextProps } from '../types/Todo.types'
 
 import { app } from '../firebase/initializeFirebase'
