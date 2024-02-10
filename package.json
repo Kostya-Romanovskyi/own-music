@@ -14,8 +14,11 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.6",
     "firebase": "^10.7.2",
+    "i18next": "^23.8.2",
+    "i18next-browser-languagedetector": "^7.2.0",
     "nanoid": "^5.0.5",
     "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
     "react-icons": "^5.0.1",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.3"

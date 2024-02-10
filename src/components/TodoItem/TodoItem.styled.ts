@@ -57,9 +57,12 @@ export const Wrapper = styled.div`
 `
 
 export const AdditionalComplexity = styled.p<TypeConditionProp>`
-	font-family: 'RubikSemiBold', sans-serif;
+	font-family: 'RubikLight', sans-serif;
+
 	font-size: 10px;
 	font-weight: 600;
+	letter-spacing: 0.7px;
+
 	padding: 3px 7px;
 
 	border: none;
@@ -88,8 +91,12 @@ type TypeStatusProps = {
 }
 
 export const AdditionalStatus = styled.p<TypeStatusProps>`
+	font-family: 'RubikLight', sans-serif;
+
 	font-size: 10px;
 	font-weight: 600;
+	letter-spacing: 0.7px;
+
 	padding: 3px 7px;
 
 	border: none;
@@ -114,9 +121,12 @@ export const AdditionalStatus = styled.p<TypeStatusProps>`
 export const AdditionalInfoDate = styled.p`
 	position: absolute;
 	top: 10px;
-	right: 3px;
+	right: 5px;
+
+	font-family: 'RubikLight', sans-serif;
 
 	font-size: 10px;
+	letter-spacing: 0.7px;
 
 	font-weight: 600;
 	padding: 3px 7px;

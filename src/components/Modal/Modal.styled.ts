@@ -90,6 +90,8 @@ export const Label = styled.label<TypeLabelProps>`
 `
 
 export const EditButton = styled.button<TypeThemeProps>`
+	font-family: ${({ theme }) => theme.fontFamily};
+
 	width: 100%;
 
 	padding: 10px 0px;
@@ -109,11 +111,16 @@ export const CloseButton = styled.button`
 	top: 10px;
 	right: 10px;
 
+	font-family: ${({ theme }) => theme.fontFamily};
+
 	border: none;
 	background-color: transparent;
 `
 
 export const DeleteButton = styled.button<TypeThemeProps>`
+	font-family: ${({ theme }) => theme.fontFamily};
+	font-size: 14px;
+
 	width: 100%;
 
 	padding: 15px 0;

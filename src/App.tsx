@@ -11,8 +11,11 @@ import { darkTheme } from './UI/GlobalTheme'
 import { Routes, Route } from 'react-router-dom'
 import { useThemeContext } from './context/ThemeContext'
 
+import { useTranslation } from 'react-i18next'
+
 function App() {
 	const { theme, currentTheme } = useThemeContext()
+
 
 	useEffect(() => {
 		if (currentTheme === darkTheme) {

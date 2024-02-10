@@ -58,6 +58,9 @@ export const Image = styled.img``
 
 export const StyledLink = styled(Link)<TypeThemeProps>`
 	display: block;
+
+	font-family: 'RubikRegular', sans-serif;
+
 	text-align: center;
 	text-decoration: none;
 

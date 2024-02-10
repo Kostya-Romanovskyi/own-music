@@ -21,6 +21,8 @@ import {
 
 import { darkTheme } from '../../UI/GlobalTheme'
 
+import { useTranslation } from 'react-i18next'
+
 Modal.setAppElement('#root')
 
 type TypeModalWindow = {
@@ -37,6 +39,7 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 	const { userAuth } = useAuthContext()
 	const { deleteTodo, updateTodo } = useTodoContext()
 	const { currentTheme } = useThemeContext()
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		if (modalIsOpen) {
@@ -114,14 +117,14 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 			<RadioWrapper>
 				<li>
 					<Label htmlFor='easy-update' type='easy' checked={selectedValue === 'easy'}>
-						Easy
+						{t('easy')}
 					</Label>
 					<RadioButton onChange={handleChecked} type='radio' name='complexity-update' value='easy' id='easy-update' />
 				</li>
 
 				<li>
 					<Label htmlFor='medium-update' type='medium' checked={selectedValue === 'medium'}>
-						Medium
+						{t('medium')}
 					</Label>
 					<RadioButton
 						onChange={handleChecked}
@@ -135,7 +138,7 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 
 				<li>
 					<Label htmlFor='hard-update' type='hard' checked={selectedValue === 'hard'}>
-						Hard
+						{t('hard')}
 					</Label>
 					<RadioButton
 						onChange={handleChecked}
@@ -155,7 +158,7 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 					}
 				}}
 			>
-				Edit
+				{t('editTodo')}
 			</EditButton>
 
 			<DeleteButton
@@ -165,7 +168,7 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 					}
 				}}
 			>
-				delete
+				{t('deleteTodo')}
 			</DeleteButton>
 		</Modal>
 	)

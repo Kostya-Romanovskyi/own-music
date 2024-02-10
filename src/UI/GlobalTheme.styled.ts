@@ -8,6 +8,8 @@ export const ThemeContainer = styled.div<TypeThemeProps>`
 	transition: all 0.3s ease;
 `
 export const ThemeInput = styled.input<TypeThemeProps>`
+	font-family: ${({ theme }) => theme.fontFamily};
+
 	font-size: 17px;
 	line-height: 1.5;
 

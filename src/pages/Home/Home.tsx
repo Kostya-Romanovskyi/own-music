@@ -14,9 +14,12 @@ import { useTodoContext } from '../../context/TodoContext'
 
 import HomePageGif from '../../assets/drawing-sketch.gif'
 
+import { useTranslation } from 'react-i18next'
+
 const Home: FC = () => {
 	const { userAuth } = useAuthContext()
 	const { state, fetchAllTodo } = useTodoContext()
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		if (userAuth) {
@@ -33,7 +36,7 @@ const Home: FC = () => {
 					<TodoSearch />
 				</FiltersWrapper>
 
-				<StyledLink to='/create'>Create Todo</StyledLink>
+				<StyledLink to='/create'>{t('createTodo')}</StyledLink>
 
 				<GridWrapper>
 					<SideBarTodo />
@@ -43,10 +46,13 @@ const Home: FC = () => {
 			</div>
 		</ThemeContainer>
 	) : (
-		<InitialPageWrap>
-			<Title>Log In for start writing your todo</Title>
-			<Image src={HomePageGif} width={200} height='auto' alt='Worksheet writes tasks to itself' />
-		</InitialPageWrap>
+		<div className='container'>
+			<InitialPageWrap>
+				<Title>{t('mainTitle')}</Title>
+
+				<Image src={HomePageGif} width={200} height='auto' alt='Worksheet writes tasks to itself' />
+			</InitialPageWrap>
+		</div>
 	)
 }
 

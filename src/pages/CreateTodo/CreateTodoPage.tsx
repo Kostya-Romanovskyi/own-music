@@ -19,6 +19,8 @@ import { formattedDate } from '../../constance/Date'
 
 import { useNavigate } from 'react-router-dom'
 
+import { useTranslation } from 'react-i18next'
+
 const CreateTodoPage = () => {
 	const [selectedValue, setSelectedValue] = useState<string>('easy')
 	const [newValue, setNewValue] = useState<string>('')
@@ -27,6 +29,7 @@ const CreateTodoPage = () => {
 	const { addTodo } = useTodoContext()
 
 	const navigate = useNavigate()
+	const { t } = useTranslation()
 
 	const handleChecked = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		setSelectedValue(e.target.value)
@@ -56,23 +59,23 @@ const CreateTodoPage = () => {
 
 	return (
 		<div className='container'>
-			<Link to={'/'}>Back</Link>
+			<Link to={'/'}>{t('backBtn')}</Link>
 
 			<CreateTextarea onChange={handleChange} value={newValue}></CreateTextarea>
 
-			<DescriptionText>Select task difficulty:</DescriptionText>
+			<DescriptionText>{t('taskDifficulty')}:</DescriptionText>
 
 			<RadioWrapper>
 				<li>
 					<Label htmlFor='easy-create' type='easy' checked={selectedValue === 'easy'}>
-						Easy
+						{t('easy')}
 					</Label>
 					<RadioButton onChange={handleChecked} type='radio' name='complexity-create' value='easy' id='easy-create' />
 				</li>
 
 				<li>
 					<Label htmlFor='medium-create' type='medium' checked={selectedValue === 'medium'}>
-						Medium
+						{t('medium')}
 					</Label>
 					<RadioButton
 						onChange={handleChecked}
@@ -86,7 +89,7 @@ const CreateTodoPage = () => {
 
 				<li>
 					<Label htmlFor='hard-create' type='hard' checked={selectedValue === 'hard'}>
-						Hard
+						{t('hard')}
 					</Label>
 					<RadioButton
 						onChange={handleChecked}
@@ -99,7 +102,7 @@ const CreateTodoPage = () => {
 				</li>
 			</RadioWrapper>
 
-			<AddTaskButton onClick={handleAddTodo}>Add Task</AddTaskButton>
+			<AddTaskButton onClick={handleAddTodo}>{t('addTodo')}</AddTaskButton>
 		</div>
 	)
 }

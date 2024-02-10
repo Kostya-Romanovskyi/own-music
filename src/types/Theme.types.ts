@@ -3,6 +3,7 @@ export type TypeToggleTheme = {
 }
 
 export type TypeTheme = {
+	fontFamily: string
 	border?: string
 	color: string
 	background: string

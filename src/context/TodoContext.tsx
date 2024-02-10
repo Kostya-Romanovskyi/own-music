@@ -94,17 +94,17 @@ const reducer = (state: TypeInitTodoContext, action: TypeAction) => {
 		case FILTER_TODO:
 			let filteredTodo: TypeTodoItem[] = []
 
-			if (payload === 'All') {
+			if (payload === 'All' || payload === 'Усі') {
 				filteredTodo = state.dataTodo
-			} else if (payload === 'In progress') {
+			} else if (payload === 'In progress' || payload === 'Виконуються') {
 				filteredTodo = state.dataTodo.filter(todo => !todo.status)
-			} else if (payload === 'Done') {
+			} else if (payload === 'Done' || payload === 'Виконано') {
 				filteredTodo = state.dataTodo.filter(todo => todo.status)
-			} else if (payload === 'Easy') {
+			} else if (payload === 'Easy' || payload === 'Легко') {
 				filteredTodo = state.dataTodo.filter(todo => todo.complexity === 'easy')
-			} else if (payload === 'Medium') {
+			} else if (payload === 'Medium' || payload === 'Середньо') {
 				filteredTodo = state.dataTodo.filter(todo => todo.complexity === 'medium')
-			} else if (payload === 'Hard') {
+			} else if (payload === 'Hard' || payload === 'Важко') {
 				filteredTodo = state.dataTodo.filter(todo => todo.complexity === 'hard')
 			}
 			return {

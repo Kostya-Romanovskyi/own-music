@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { SideItemStyled, SideButtonStyled } from './SideBarItem.styled'
 import { useTodoContext } from '../../context/TodoContext'
+import { useTranslation } from 'react-i18next'
 
 type TypeBarItemProps = {
 	closeBurger?: (value: boolean) => void
@@ -8,7 +9,9 @@ type TypeBarItemProps = {
 
 const SideBarItem: FC<TypeBarItemProps> = ({ closeBurger }) => {
 	const { filterTodo } = useTodoContext()
-	const filterCategories: string[] = ['All', 'In progress', 'Done', 'Add last 2 days', 'Easy', 'Medium', 'Hard']
+	const { t } = useTranslation()
+
+	const filterCategories: string[] = [t('all'), t('inProgress'), t('done'), t('easy'), t('medium'), t('hard')]
 
 	const handleFilteredCategories = (e: React.MouseEvent<HTMLButtonElement>): void => {
 		const itemContent = (e.currentTarget as HTMLButtonElement).textContent

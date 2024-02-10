@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { TypeTodoItem } from '../../types/Todo.types'
 import { formattedDate } from '../../constance/Date'
 
@@ -19,8 +19,12 @@ import ModalWindow from '../Modal/Modal'
 import { useTodoContext } from '../../context/TodoContext'
 import { useAuthContext } from '../../context/AuthContext'
 
+import { useTranslation } from 'react-i18next'
+
 const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }) => {
 	const [modalIsOpen, setIsOpen] = useState<boolean>(false)
+	const [transComplexity, setTransComplexity] = useState<string>(complexity)
+	const { t, i18n } = useTranslation()
 
 	const { userAuth } = useAuthContext()
 	const { updateTodo } = useTodoContext()
@@ -45,6 +49,10 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 		}
 	}
 
+	useEffect(() => {
+		setTransComplexity(t(complexity))
+	}, [i18n.language])
+
 	return (
 		<>
 			<Item>
@@ -56,8 +64,8 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 						<BsThreeDots className='global-icons' />
 					</MoreButton>
 
-					<AdditionalComplexity complexity={complexity}>{complexity}</AdditionalComplexity>
-					<AdditionalStatus status={status}>{status ? 'Done' : 'In progress'}</AdditionalStatus>
+					<AdditionalComplexity complexity={complexity}>{transComplexity}</AdditionalComplexity>
+					<AdditionalStatus status={status}>{status ? t('done') : t('inProgress')}</AdditionalStatus>
 					<AdditionalInfoDate>{addingDate}</AdditionalInfoDate>
 
 					<input

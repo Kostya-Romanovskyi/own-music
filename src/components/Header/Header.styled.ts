@@ -4,9 +4,12 @@ import { FaRegMoon } from 'react-icons/fa'
 import { TypeThemeProps } from '../../types/Theme.types'
 
 export const StyledIconSun = styled(CgSun)<TypeThemeProps>`
+	margin-left: 10px;
 	color: ${({ theme }) => theme.color};
 `
+
 export const StyledIconMoon = styled(FaRegMoon)<TypeThemeProps>`
+	margin-left: 10px;
 	color: ${({ theme }) => theme.color};
 `
 
@@ -38,6 +41,28 @@ export const RightSide = styled.div`
 export const ThemeButton = styled.button`
 	border: none;
 	background-color: transparent;
+
+	cursor: pointer;
+`
+export const LangButton = styled.button<TypeThemeProps>`
+	font-family: ${({ theme }) => theme.fontFamily};
+
+	font-size: 15px;
+
+	border: none;
+	background-color: transparent;
+
+	color: ${({ theme }) => theme.color};
+
+	padding: 3px 8px;
+
+	border: 1px solid #48319d;
+	border-radius: 5px;
+
+	color: ${({ theme }) => theme.color};
+	background-color: ${({ theme }) => theme.background};
+
+	transition: background-color 300ms;
 
 	cursor: pointer;
 `

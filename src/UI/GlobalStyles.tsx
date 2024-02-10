@@ -47,6 +47,11 @@ const globalStyles = css`
 		font-display: swap;
 	}
 
+	* {
+		padding: 0;
+		margin: 0;
+	}
+
 	body {
 		font-family: 'RubikRegular', sans-serif;
 	}

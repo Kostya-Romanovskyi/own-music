@@ -12,7 +12,8 @@ export const SideItemStyled = styled.li`
 `
 
 export const SideButtonStyled = styled.button<TypeSideButton>`
-	font-family: 'Poppins', sans-serif;
+	font-family: ${({ theme }) => theme.fontFamily};
+	font-size: 17px;
 
 	padding: 30px 10px;
 

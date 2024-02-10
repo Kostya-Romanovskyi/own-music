@@ -9,6 +9,10 @@ export const BurgerButton = styled.button<TypeThemeProps>`
 	align-items: center;
 	justify-content: space-between;
 
+	font-family: 'RubikRegular', sans-serif;
+
+	margin-right: 10px;
+
 	color: ${({ theme }) => theme.color};
 	background: none;
 	border: none;

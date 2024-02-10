@@ -11,9 +11,11 @@ import {
 } from './BurgerMenu.styled'
 
 import SideBarItem from '../SideBarItem/SideBarItem'
+import { useTranslation } from 'react-i18next'
 
 const BurgerMenu = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
+	const { t } = useTranslation()
 
 	// remove scroll when burger menu is open in Safary
 	function openBurgerMenu() {
@@ -89,7 +91,7 @@ const BurgerMenu = () => {
 	return (
 		<BurgerMenuWrapper>
 			<BurgerButton onClick={toggleMenu}>
-				Filters
+				{t('filterBtn')}
 				<FilterIcon />
 			</BurgerButton>
 			<BurgerMenuContent className='burger-menu' isOpen={isOpen}>
