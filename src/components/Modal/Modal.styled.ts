@@ -111,8 +111,6 @@ export const CloseButton = styled.button`
 	top: 10px;
 	right: 10px;
 
-	font-family: ${({ theme }) => theme.fontFamily};
-
 	border: none;
 	background-color: transparent;
 `
