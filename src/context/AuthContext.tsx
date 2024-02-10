@@ -1,4 +1,5 @@
 import { FC, createContext, useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { signInWithPopup, getAuth, GoogleAuthProvider, UserCredential, signOut } from 'firebase/auth'
 import { TypeContextProps } from '../types/Todo.types'
 
@@ -26,6 +27,7 @@ export const AuthContext = createContext<AuthContextType>(initialStateContext)
 export const AuthProvider: FC<TypeContextProps> = ({ children }) => {
 	const [userAuth, setUserAuth] = useState<any | null>(null)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const navigate = useNavigate()
 
 	const handleLogIn = () => {
 		setIsLoading(true)
@@ -53,6 +55,8 @@ export const AuthProvider: FC<TypeContextProps> = ({ children }) => {
 				setUserAuth(null)
 
 				localStorage.clear()
+
+				navigate('/')
 			})
 			.catch(error => {
 				console.log(error)
