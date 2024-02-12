@@ -15,10 +15,10 @@ export const TextArea = styled.textarea<TypeThemeProps>`
 	padding-top: 5px;
 	padding-left: 5px;
 
-	border: 1px solid #48319d;
+	border: 1px solid ${({ theme }) => theme.border};
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	transition: background-color 300ms;
 
@@ -122,11 +122,11 @@ export const EditButton = styled.button<TypeThemeProps>`
 	padding: 10px 0px;
 	margin-bottom: 20px;
 
-	border: 1px solid #48319d;
+	border: 1px solid ${({ theme }) => theme.border};
 	border-radius: 5px;
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	transition: background-color 300ms;
 `
@@ -152,7 +152,7 @@ export const DeleteButton = styled.button<TypeThemeProps>`
 
 	border: 2px solid ${GlobalColors.deleteColor};
 
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	cursor: pointer;
 `

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { TypeThemeProps } from '../types/Theme.types'
 
 export const ThemeContainer = styled.div<TypeThemeProps>`
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 	color: ${({ theme }) => theme.color};
 
 	transition: all 0.3s ease;
@@ -21,7 +21,7 @@ export const ThemeInput = styled.input<TypeThemeProps>`
 	border-radius: 5px;
 	transition: all 0.3s ease;
 
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 	color: ${({ theme }) => theme.color};
 
 	&::placeholder {

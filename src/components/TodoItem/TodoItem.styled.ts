@@ -4,7 +4,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import { TypeThemeProps, TypeConditionProp, TypeToggleBurger } from '../../types/Theme.types'
 import { transitionTime } from '../../Constant/TransitionTime'
 
-export const Item = styled.li`
+export const Item = styled.li<TypeThemeProps>`
 	position: relative;
 
 	padding: 10px 10px;
@@ -16,7 +16,7 @@ export const Item = styled.li`
 		margin-bottom: 20px;
 	}
 
-	border: 2px solid #48319d;
+	border: 2px solid ${({ theme }) => theme.border};
 
 	@media screen and (min-width: 768px) {
 	}
@@ -38,7 +38,7 @@ export const Text = styled.div<TypeThemeProps>`
 
 	margin-bottom: 20px;
 
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition};
 
 	resize: none;
@@ -177,11 +177,11 @@ export const EditButton = styled.button<TypeThemeProps>`
 
 	padding: 5px 10px;
 
-	border: 1px solid #48319d;
+	border: 1px solid ${({ theme }) => theme.border};
 	border-radius: 5px;
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	transition: background-color ${transitionTime.transition};
 `
@@ -209,7 +209,7 @@ export const ShowButtons = styled.div<TypeToggleBurger>`
 	border: 1px solid ${GlobalColors.black};
 	border-radius: 5px;
 
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	transition: opacity ${transitionTime.transition}, transform ${transitionTime.transition},
 		background-color ${transitionTime.transition};
@@ -220,10 +220,10 @@ export const TextArea = styled.textarea<TypeThemeProps>`
 	width: 80%;
 	height: 60px;
 
-	border: 1px solid #48319d;
+	border: 1px solid ${({ theme }) => theme.border};
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	transition: background-color ${transitionTime.transition};
 

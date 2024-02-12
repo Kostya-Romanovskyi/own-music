@@ -13,6 +13,8 @@ export const ArrowIcon = styled(FaArrowLeftLong)<TypeThemeProps>`
 	margin-right: 10px;
 
 	color: ${({ theme }) => theme.color};
+
+	transition: color ${transitionTime.transition};
 `
 
 export const StyledLink = styled(Link)<TypeThemeProps>`
@@ -23,6 +25,8 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 	align-items: center;
 
 	color: ${({ theme }) => theme.color};
+
+	transition: color ${transitionTime.transition};
 
 	text-decoration: none;
 `
@@ -42,7 +46,7 @@ export const CreateTextarea = styled.textarea<TypeThemeProps>`
 
 	color: ${({ theme }) => theme.color};
 
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
 		border ${transitionTime.transition};
@@ -131,18 +135,20 @@ export const Label = styled.label<TypeLabelProps>`
 		}
 	}};
 
-	background-color: ${({ type, checked }) => {
+	background-color: ${({ type, checked, theme }) => {
 		switch (type) {
 			case 'easy':
-				return checked ? GlobalColors.easyActive : GlobalColors.easy
+				return checked ? theme.activeBgColorEasy : theme.bgColorEasy
 			case 'medium':
-				return checked ? GlobalColors.mediumActive : GlobalColors.medium
+				return checked ? theme.activeBgColorMedium : theme.bgColorMedium
 			case 'hard':
-				return checked ? GlobalColors.hardActive : GlobalColors.hard
+				return checked ? theme.activeBgColorHard : theme.bgColorHard
 			default:
 				return '#ffffff'
 		}
 	}};
+
+	transition: background-color ${transitionTime.transition}, outline-color ${transitionTime.transition};
 `
 
 export const IconPlus = styled(GoPlus)`
@@ -164,7 +170,7 @@ export const AddTaskButton = styled.button<TypeThemeProps>`
 	border: 2px solid ${({ theme }) => theme.border};
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
 		border ${transitionTime.transition};

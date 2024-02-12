@@ -23,7 +23,7 @@ export const SideButtonStyled = styled.button<TypeSideButton>`
 	border: none;
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	cursor: pointer;
 `

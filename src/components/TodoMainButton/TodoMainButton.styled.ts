@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { TypeThemeProps } from '../../types/Theme.types'
+import { transitionTime } from '../../Constant/TransitionTime'
 
 export const StyledButton = styled.button<TypeThemeProps>`
 	font-family: ${({ theme }) => theme.fontFamily};
@@ -15,7 +16,7 @@ export const StyledButton = styled.button<TypeThemeProps>`
 	border-radius: 5px;
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
-	transition: background-color 300ms;
+	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition};
 `

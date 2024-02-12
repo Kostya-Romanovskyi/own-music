@@ -6,8 +6,17 @@ export type TypeTheme = {
 	fontFamily: string
 	border?: string
 	color: string
-	background: string
+	backgroundColor: string
 	transition?: string
+	bgColorEasy: string
+	bgColorMedium: string
+	bgColorHard: string
+	textColorEasy: string
+	textColorMedium: string
+	textColorHard: string
+	activeBgColorEasy: string
+	activeBgColorMedium: string
+	activeBgColorHard: string
 }
 
 export type TypeThemeProps = {

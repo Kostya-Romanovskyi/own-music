@@ -23,7 +23,7 @@ export const OpenCreateWindow = styled.button<TypeThemeProps>`
 	border: 2px solid ${({ theme }) => theme.border};
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 	transition: background-color 300ms;
 `
 
@@ -40,7 +40,7 @@ export const CreateWindow = styled.div<TypeToggleBurger>`
 	transition: transform 300ms;
 
 	border: 2px solid ${({ theme }) => theme.border};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	z-index: 15;
 `
@@ -56,7 +56,7 @@ export const CloseButton = styled.button<TypeThemeProps>`
 
 	border: none;
 
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 `
 export const CloseIcon = styled(IoCloseSharp)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
@@ -74,7 +74,7 @@ export const CreateTextarea = styled.textarea<TypeThemeProps>`
 
 	color: ${({ theme }) => theme.color};
 
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 
 	resize: none;
 `
@@ -169,5 +169,5 @@ export const AddTaskButton = styled.button<TypeThemeProps>`
 	border: 2px solid ${({ theme }) => theme.border};
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.backgroundColor};
 `

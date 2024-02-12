@@ -6,6 +6,8 @@ import RubikMedium from '../fonts/Rubik-Medium.ttf'
 import RubikRegular from '../fonts/Rubik-Regular.ttf'
 import RubikSemiBold from '../fonts/Rubik-SemiBold.ttf'
 
+import { transitionTime } from '../Constant/TransitionTime'
+
 const globalStyles = css`
 	@font-face {
 		font-family: 'RubikBold';
@@ -86,12 +88,13 @@ const globalStyles = css`
 	}
 
 	.dark {
-		background-color: #332b53;
-		transition: background-color 300ms;
+		background-color: #34495e;
+		transition: background-color ${transitionTime.transition};
 	}
+
 	.light {
-		background-color: #fff;
-		transition: background-color 300ms;
+		background-color: #ecf0f1;
+		transition: background-color ${transitionTime.transition};
 	}
 
 	.ReactModal__Overlay--after-open {
@@ -101,7 +104,7 @@ const globalStyles = css`
 		position: absolute;
 		inset: 40px;
 		border: 1px solid rgb(204, 204, 204);
-		background-color: #332b53;
+		background-color: #34495e;
 		overflow: auto;
 		border-radius: 4px;
 		outline: none;

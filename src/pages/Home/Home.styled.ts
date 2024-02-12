@@ -6,6 +6,7 @@ import { transitionTime } from '../../Constant/TransitionTime'
 
 export const StyledIcon = styled(IoFilterOutline)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
+	transition: color ${transitionTime.transition};
 `
 
 export const HiddenButton = styled.button`
@@ -27,6 +28,8 @@ export const HiddenButton = styled.button`
 export const MarginText = styled.span<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 	margin-right: 3px;
+
+	transition: color ${transitionTime.transition};
 `
 
 export const FiltersWrapper = styled.div`
@@ -53,6 +56,8 @@ export const InitialPageWrap = styled.div`
 
 export const Title = styled.h1<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
+
+	transition: color ${transitionTime.transition};
 `
 
 export const Image = styled.img``
@@ -78,6 +83,8 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 	border: 2px solid ${({ theme }) => theme.border};
 
 	color: ${({ theme }) => theme.color};
-	background-color: ${({ theme }) => theme.background};
-	transition: background-color ${transitionTime.transition};
+	background-color: ${({ theme }) => theme.backgroundColor};
+
+	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
+		border ${transitionTime.transition};
 `
