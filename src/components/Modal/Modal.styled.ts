@@ -4,11 +4,16 @@ import GlobalColors from '../../UI/GlobalColors'
 import { IoCloseSharp } from 'react-icons/io5'
 
 export const TextArea = styled.textarea<TypeThemeProps>`
+	font-family: 'RubikRegular', sans-serif;
+
 	width: 100%;
 	height: 150px;
 
 	margin-top: 30px;
 	margin-bottom: 30px;
+
+	padding-top: 5px;
+	padding-left: 5px;
 
 	border: 1px solid #48319d;
 
@@ -18,6 +23,10 @@ export const TextArea = styled.textarea<TypeThemeProps>`
 	transition: background-color 300ms;
 
 	resize: none;
+
+	:focus {
+		outline: 1px solid grey;
+	}
 `
 
 export const RadioWrapper = styled.ul`
@@ -38,25 +47,28 @@ export const RadioButton = styled.input`
 type TypeLabelProps = {
 	type: string
 	checked: boolean
-}
+} & TypeThemeProps
 
 export const Label = styled.label<TypeLabelProps>`
+	font-family: 'RubikMedium', sans-serif;
+
 	display: inline-block;
 
 	margin-bottom: 20px;
 
 	padding: 10px 20px;
 
+	border: none;
 	border-radius: 10px;
 
 	outline-width: ${({ type, checked }) => {
 		switch (type) {
 			case 'easy':
-				return checked ? '1px' : 'none'
+				return checked ? '3px' : 'none'
 			case 'medium':
-				return checked ? '1px' : 'none'
+				return checked ? '3px' : 'none'
 			case 'hard':
-				return checked ? '1px' : 'none'
+				return checked ? '3px' : 'none'
 			default:
 				return '#ffffff'
 		}
@@ -70,6 +82,19 @@ export const Label = styled.label<TypeLabelProps>`
 				return checked ? 'solid' : 'none'
 			case 'hard':
 				return checked ? 'solid' : 'none'
+			default:
+				return '#ffffff'
+		}
+	}};
+
+	outline-color: ${({ type, checked, theme }) => {
+		switch (type) {
+			case 'easy':
+				return checked ? `${theme.color}` : 'none'
+			case 'medium':
+				return checked ? `${theme.color}` : 'none'
+			case 'hard':
+				return checked ? `${theme.color}` : 'none'
 			default:
 				return '#ffffff'
 		}
@@ -116,7 +141,7 @@ export const CloseButton = styled.button`
 `
 
 export const DeleteButton = styled.button<TypeThemeProps>`
-	font-family: ${({ theme }) => theme.fontFamily};
+	font-family: 'RubikMedium', sans-serif;
 	font-size: 14px;
 
 	width: 100%;

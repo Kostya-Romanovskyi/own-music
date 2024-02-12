@@ -2,7 +2,7 @@ import { FC, SetStateAction, useState } from 'react'
 
 import { TypeTodoItem } from '../../types/Todo.types'
 import { nanoid } from 'nanoid'
-import { formattedDate } from '../../constance/Date'
+import { formattedDate } from '../../Constant/Date'
 
 import {
 	CreateTodoWrapper,

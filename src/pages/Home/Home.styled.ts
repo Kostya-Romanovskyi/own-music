@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { IoFilterOutline } from 'react-icons/io5'
 import { TypeThemeProps } from '../../types/Theme.types'
 import { Link } from 'react-router-dom'
+import { transitionTime } from '../../Constant/TransitionTime'
 
 export const StyledIcon = styled(IoFilterOutline)<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
@@ -78,4 +79,5 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 
 	color: ${({ theme }) => theme.color};
 	background-color: ${({ theme }) => theme.background};
+	transition: background-color ${transitionTime.transition};
 `

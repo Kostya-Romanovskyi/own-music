@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import GlobalColors from '../../UI/GlobalColors'
 import { IoCloseSharp } from 'react-icons/io5'
 import { TypeThemeProps, TypeConditionProp, TypeToggleBurger } from '../../types/Theme.types'
+import { transitionTime } from '../../Constant/TransitionTime'
 
 export const Item = styled.li`
 	position: relative;
@@ -38,6 +39,7 @@ export const Text = styled.div<TypeThemeProps>`
 	margin-bottom: 20px;
 
 	background-color: ${({ theme }) => theme.background};
+	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition};
 
 	resize: none;
 
@@ -157,6 +159,8 @@ export const MoreButton = styled.button<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 	background-color: transparent;
 
+	transition: color ${transitionTime.transition};
+
 	cursor: pointer;
 `
 export const CloseButton = styled.button`
@@ -179,7 +183,7 @@ export const EditButton = styled.button<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 	background-color: ${({ theme }) => theme.background};
 
-	transition: background-color 300ms;
+	transition: background-color ${transitionTime.transition};
 `
 
 export const DeleteButton = styled.button`
@@ -207,7 +211,8 @@ export const ShowButtons = styled.div<TypeToggleBurger>`
 
 	background-color: ${({ theme }) => theme.background};
 
-	transition: opacity 300ms, transform 300ms, background-color 300ms;
+	transition: opacity ${transitionTime.transition}, transform ${transitionTime.transition},
+		background-color ${transitionTime.transition};
 
 	z-index: 10;
 `
@@ -220,7 +225,7 @@ export const TextArea = styled.textarea<TypeThemeProps>`
 	color: ${({ theme }) => theme.color};
 	background-color: ${({ theme }) => theme.background};
 
-	transition: background-color 300ms;
+	transition: background-color ${transitionTime.transition};
 
 	resize: none;
 `

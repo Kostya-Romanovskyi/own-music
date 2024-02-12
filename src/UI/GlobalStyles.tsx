@@ -144,7 +144,7 @@ const globalStyles = css`
 		cursor: pointer;
 		text-indent: -9999px;
 		width: 38px;
-		height: 14px;
+		height: 17px;
 		background: grey;
 		display: block;
 		border-radius: 100px;
@@ -156,8 +156,8 @@ const globalStyles = css`
 		position: absolute;
 		top: 2px;
 		left: 2px;
-		width: 10px;
-		height: 10px;
+		width: 14px;
+		height: 13px;
 		background: #fff;
 		border-radius: 90px;
 		transition: 0.3s;

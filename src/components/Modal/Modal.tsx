@@ -5,7 +5,7 @@ import { useTodoContext } from '../../context/TodoContext'
 import { useAuthContext } from '../../context/AuthContext'
 import { useThemeContext } from '../../context/ThemeContext'
 
-import { formattedDate } from '../../constance/Date'
+import { formattedDate } from '../../Constant/Date'
 import { TypeTodoItem } from '../../types/Todo.types'
 
 import {

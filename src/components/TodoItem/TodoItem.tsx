@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { TypeTodoItem } from '../../types/Todo.types'
-import { formattedDate } from '../../constance/Date'
+import { formattedDate } from '../../Constant/Date'
 
 import {
 	Item,

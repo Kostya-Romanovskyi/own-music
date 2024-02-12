@@ -1,5 +1,7 @@
-import { useState, SetStateAction } from 'react'
+import { FC, useState, SetStateAction } from 'react'
 import {
+	StyledLink,
+	ArrowIcon,
 	CreateTextarea,
 	DescriptionText,
 	RadioWrapper,
@@ -9,19 +11,18 @@ import {
 } from './CreateTodoPage.styled'
 import { useAuthContext } from '../../context/AuthContext'
 import { useTodoContext } from '../../context/TodoContext'
-import { Link } from 'react-router-dom'
 
 import { TypeTodoItem } from '../../types/Todo.types'
 
 import { nanoid } from 'nanoid'
 
-import { formattedDate } from '../../constance/Date'
+import { formattedDate } from '../../Constant/Date'
 
 import { useNavigate } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
-const CreateTodoPage = () => {
+const CreateTodoPage: FC = () => {
 	const [selectedValue, setSelectedValue] = useState<string>('easy')
 	const [newValue, setNewValue] = useState<string>('')
 
@@ -59,7 +60,10 @@ const CreateTodoPage = () => {
 
 	return (
 		<div className='container'>
-			<Link to={'/'}>{t('backBtn')}</Link>
+			<StyledLink to={'/'}>
+				<ArrowIcon />
+				{t('backBtn')}
+			</StyledLink>
 
 			<CreateTextarea onChange={handleChange} value={newValue}></CreateTextarea>
 

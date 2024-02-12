@@ -11,9 +11,9 @@ const GlobalColors: TypeGlobalColors = {
 	done: '#00ff00',
 	inProgress: '#ADD8E6',
 	date: '#c0c0c0',
-	easyActive: '#00ff8e',
-	mediumActive: '#6345ec',
-	hardActive: '#eb4a4a',
+	easyActive: '#01bc38',
+	mediumActive: '#4521eb',
+	hardActive: '#f71b1b',
 	deleteColor: '#ff0000',
 }
 

@@ -11,5 +11,4 @@ export const darkTheme: TypeToggleTheme = {
 	background: '#332b53',
 	color: '#ffffff',
 	border: '#7b7676',
-	transition: '300ms',
 }

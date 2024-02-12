@@ -3,6 +3,29 @@ import { TypeThemeProps } from '../../types/Theme.types'
 import GlobalColors from '../../UI/GlobalColors'
 
 import { GoPlus } from 'react-icons/go'
+import { FaArrowLeftLong } from 'react-icons/fa6'
+
+import { transitionTime } from '../../Constant/TransitionTime'
+
+import { Link } from 'react-router-dom'
+
+export const ArrowIcon = styled(FaArrowLeftLong)<TypeThemeProps>`
+	margin-right: 10px;
+
+	color: ${({ theme }) => theme.color};
+`
+
+export const StyledLink = styled(Link)<TypeThemeProps>`
+	font-family: 'RubikRegular', sans-serif;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	color: ${({ theme }) => theme.color};
+
+	text-decoration: none;
+`
 
 export const CreateTextarea = styled.textarea<TypeThemeProps>`
 	display: block;
@@ -21,13 +44,20 @@ export const CreateTextarea = styled.textarea<TypeThemeProps>`
 
 	background-color: ${({ theme }) => theme.background};
 
+	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
+		border ${transitionTime.transition};
+
 	resize: none;
 `
 
-export const DescriptionText = styled.p`
+export const DescriptionText = styled.p<TypeThemeProps>`
 	text-align: center;
 
-	margin-bottom: 10px;
+	color: ${({ theme }) => theme.color};
+
+	transition: color ${transitionTime.transition};
+
+	margin-bottom: 20px;
 `
 
 export const RadioWrapper = styled.ul`
@@ -48,25 +78,28 @@ export const RadioButton = styled.input`
 type TypeLabelProps = {
 	type: string
 	checked: boolean
-}
+} & TypeThemeProps
 
 export const Label = styled.label<TypeLabelProps>`
+	font-family: 'RubikMedium', sans-serif;
+
 	display: inline-block;
 
 	margin-bottom: 20px;
 
 	padding: 10px 20px;
 
+	border: none;
 	border-radius: 10px;
 
 	outline-width: ${({ type, checked }) => {
 		switch (type) {
 			case 'easy':
-				return checked ? '1px' : 'none'
+				return checked ? '3px' : 'none'
 			case 'medium':
-				return checked ? '1px' : 'none'
+				return checked ? '3px' : 'none'
 			case 'hard':
-				return checked ? '1px' : 'none'
+				return checked ? '3px' : 'none'
 			default:
 				return '#ffffff'
 		}
@@ -80,6 +113,19 @@ export const Label = styled.label<TypeLabelProps>`
 				return checked ? 'solid' : 'none'
 			case 'hard':
 				return checked ? 'solid' : 'none'
+			default:
+				return '#ffffff'
+		}
+	}};
+
+	outline-color: ${({ type, checked, theme }) => {
+		switch (type) {
+			case 'easy':
+				return checked ? `${theme.color}` : 'none'
+			case 'medium':
+				return checked ? `${theme.color}` : 'none'
+			case 'hard':
+				return checked ? `${theme.color}` : 'none'
 			default:
 				return '#ffffff'
 		}
@@ -104,6 +150,8 @@ export const IconPlus = styled(GoPlus)`
 `
 
 export const AddTaskButton = styled.button<TypeThemeProps>`
+	font-family: 'RubikMedium', sans-serif;
+
 	display: block;
 	margin: 0 auto;
 
@@ -117,4 +165,7 @@ export const AddTaskButton = styled.button<TypeThemeProps>`
 
 	color: ${({ theme }) => theme.color};
 	background-color: ${({ theme }) => theme.background};
+
+	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
+		border ${transitionTime.transition};
 `
