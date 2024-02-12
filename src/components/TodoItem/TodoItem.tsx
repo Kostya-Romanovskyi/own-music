@@ -58,6 +58,7 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 			<Item>
 				<TextWrapper>
 					<Text>{text}</Text>
+			
 				</TextWrapper>
 				<AdditionalWrapp>
 					<MoreButton type='button' onClick={openModal}>

@@ -25,14 +25,22 @@ export const TextWrapper = styled.div`
 	width: 200px;
 `
 
-export const Text = styled.p`
+export const Text = styled.div<TypeThemeProps>`
 	overflow-y: scroll;
 	overflow-x: hidden;
 
-	width: 200px;
+	white-space: wrap;
+
+	width: 100%;
 	height: 60px;
 
 	margin-bottom: 20px;
+
+	background-color: ${({ theme }) => theme.background};
+
+	resize: none;
+
+	border: none;
 `
 
 export const AdditionalWrapp = styled.div`
