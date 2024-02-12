@@ -51,14 +51,13 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 
 	useEffect(() => {
 		setTransComplexity(t(complexity))
-	}, [i18n.language])
+	}, [i18n.language, complexity])
 
 	return (
 		<>
 			<Item>
 				<TextWrapper>
 					<Text>{text}</Text>
-			
 				</TextWrapper>
 				<AdditionalWrapp>
 					<MoreButton type='button' onClick={openModal}>

@@ -30,6 +30,7 @@ export const Text = styled.div<TypeThemeProps>`
 	overflow-x: hidden;
 
 	white-space: wrap;
+	-webkit-white-space: wrap;
 
 	width: 100%;
 	height: 60px;
