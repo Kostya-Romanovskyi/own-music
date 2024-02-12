@@ -22,9 +22,9 @@ export const Item = styled.li<TypeThemeProps>`
 	}
 `
 
-export const TextWrapper = styled.div`
-	width: 200px;
-`
+// export const TextWrapper = styled.div`
+// 	width: 200px;
+// `
 
 export const Text = styled.div<TypeThemeProps>`
 	overflow-y: scroll;
@@ -33,7 +33,7 @@ export const Text = styled.div<TypeThemeProps>`
 	white-space: wrap;
 	-webkit-white-space: wrap;
 
-	width: 100%;
+	width: 80%;
 	height: 60px;
 
 	margin-bottom: 20px;
