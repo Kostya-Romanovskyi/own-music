@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { TypeThemeProps } from '../../types/Theme.types'
-import GlobalColors from '../../UI/GlobalColors'
+// import GlobalColors from '../../UI/GlobalColors'
 
 import { GoPlus } from 'react-icons/go'
 import { FaArrowLeftLong } from 'react-icons/fa6'
