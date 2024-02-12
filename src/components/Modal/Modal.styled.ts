@@ -2,12 +2,16 @@ import styled from '@emotion/styled'
 import { TypeThemeProps } from '../../types/Theme.types'
 import GlobalColors from '../../UI/GlobalColors'
 import { IoCloseSharp } from 'react-icons/io5'
+import { transitionTime } from '../../Constant/TransitionTime'
 
 export const TextArea = styled.textarea<TypeThemeProps>`
 	font-family: 'RubikRegular', sans-serif;
 
 	width: 100%;
 	height: 150px;
+
+	margin: 0;
+	padding: 0;
 
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -100,22 +104,25 @@ export const Label = styled.label<TypeLabelProps>`
 		}
 	}};
 
-	background-color: ${({ type, checked }) => {
+	background-color: ${({ type, checked, theme }) => {
 		switch (type) {
 			case 'easy':
-				return checked ? GlobalColors.easyActive : GlobalColors.easy
+				return checked ? theme.activeBgColorEasy : theme.bgColorEasy
 			case 'medium':
-				return checked ? GlobalColors.mediumActive : GlobalColors.medium
+				return checked ? theme.activeBgColorMedium : theme.bgColorMedium
 			case 'hard':
-				return checked ? GlobalColors.hardActive : GlobalColors.hard
+				return checked ? theme.activeBgColorHard : theme.bgColorHard
 			default:
 				return '#ffffff'
 		}
 	}};
+
+	transition: background-color ${transitionTime.transition}, outline-color ${transitionTime.transition};
 `
 
 export const EditButton = styled.button<TypeThemeProps>`
 	font-family: ${({ theme }) => theme.fontFamily};
+	font-size: 17px;
 
 	width: 100%;
 
@@ -142,7 +149,7 @@ export const CloseButton = styled.button`
 
 export const DeleteButton = styled.button<TypeThemeProps>`
 	font-family: 'RubikMedium', sans-serif;
-	font-size: 14px;
+	font-size: 17px;
 
 	width: 100%;
 

@@ -17,15 +17,15 @@ export const ThemeContextProvider: FC<TypeContextProps> = ({ children }) => {
 	const handleToggleTheme = () => {
 		setCurrentTheme(currentTheme === lightTheme ? darkTheme : lightTheme)
 
-		localStorage.setItem('theme', currentTheme === lightTheme ? darkTheme.background : lightTheme.background)
+		localStorage.setItem('theme', currentTheme === lightTheme ? darkTheme.backgroundColor : lightTheme.backgroundColor)
 	}
 
 	useEffect(() => {
 		const currentLocalTheme: string | null = localStorage.getItem('theme')
 
 		if (currentLocalTheme === null) {
-			localStorage.setItem('theme', currentTheme.background)
-		} else if (currentLocalTheme === '#fff') {
+			localStorage.setItem('theme', currentTheme.backgroundColor)
+		} else if (currentLocalTheme === '#ecf0f1') {
 			setCurrentTheme(lightTheme)
 		} else {
 			setCurrentTheme(darkTheme)

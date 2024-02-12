@@ -37,6 +37,7 @@ export const Text = styled.div<TypeThemeProps>`
 	height: 60px;
 
 	margin-bottom: 20px;
+	padding-right: 5px;
 
 	background-color: ${({ theme }) => theme.backgroundColor};
 	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition};
@@ -83,11 +84,11 @@ export const AdditionalComplexity = styled.p<TypeConditionProp>`
 	background-color: ${({ complexity }) => {
 		switch (complexity) {
 			case 'easy':
-				return '#00FFBF'
+				return GlobalColors.easy
 			case 'medium':
-				return '#7645ec'
+				return GlobalColors.medium
 			case 'hard':
-				return '#f06161'
+				return GlobalColors.hard
 			default:
 				return '#ffffff'
 		}
@@ -113,13 +114,14 @@ export const AdditionalStatus = styled.p<TypeStatusProps>`
 	border: none;
 	border-radius: 5px;
 
-	color: #000000 !important;
+	color: ${GlobalColors.black} !important;
+
 	background-color: ${({ status }) => {
 		switch (status) {
 			case true:
-				return '#00ff00'
+				return GlobalColors.done
 			case false:
-				return '#ADD8E6'
+				return GlobalColors.inProgress
 			default:
 				return '#ffffff'
 		}

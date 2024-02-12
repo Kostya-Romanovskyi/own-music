@@ -6,6 +6,7 @@ import { TypeUser } from '../types/UserAuth.types'
 type TypeInitTodoContext = {
 	dataTodo: TypeTodoItem[]
 	filteredTodo: TypeTodoItem[]
+	isLoading: boolean
 }
 
 type TypeAction = {
@@ -17,6 +18,7 @@ type TypeAction = {
 const initialState: TypeInitTodoContext = {
 	dataTodo: [],
 	filteredTodo: [],
+	isLoading: false,
 }
 
 // Создаем контекст
@@ -45,6 +47,7 @@ const SET_ALL_TODO = 'SET_ALL_TODO'
 const DELETE_TODO = 'DELETE_TODO'
 const SEARCH_TODO = 'SEARCH_TODO'
 const FILTER_TODO = 'FILTER_TODO'
+const SET_IS_LOADING = 'SET_IS_LOADING'
 
 // Редуктор для управления состоянием
 const reducer = (state: TypeInitTodoContext, action: TypeAction) => {
@@ -93,10 +96,11 @@ const reducer = (state: TypeInitTodoContext, action: TypeAction) => {
 
 		case FILTER_TODO:
 			let filteredTodo: TypeTodoItem[] = []
+			console.log(payload)
 
 			if (payload === 'All' || payload === 'Усі') {
 				filteredTodo = state.dataTodo
-			} else if (payload === 'In progress' || payload === 'Виконуються') {
+			} else if (payload === 'In Progress' || payload === 'Виконується') {
 				filteredTodo = state.dataTodo.filter(todo => !todo.status)
 			} else if (payload === 'Done' || payload === 'Виконано') {
 				filteredTodo = state.dataTodo.filter(todo => todo.status)
@@ -111,6 +115,11 @@ const reducer = (state: TypeInitTodoContext, action: TypeAction) => {
 				...state,
 				filteredTodo: filteredTodo,
 			}
+		case SET_IS_LOADING:
+			return {
+				...state,
+				isLoading: payload,
+			}
 
 		default:
 			return state
@@ -124,10 +133,13 @@ export const TodoProvider: FC<TypeContextProps> = ({ children }) => {
 	// fetch All Todo
 	const fetchAllTodo = async (user: TypeUser): Promise<void> => {
 		try {
+			dispatch({ type: SET_IS_LOADING, payload: true }) // Установите isLoading в true при начале загрузки
 			const allTodo: TypeTodoItem[] = await getAllTodo(user)
 			dispatch({ type: SET_ALL_TODO, payload: allTodo })
 		} catch (error) {
 			console.error(error)
+		} finally {
+			dispatch({ type: SET_IS_LOADING, payload: false }) // Установите isLoading в false после завершения загрузки (даже если произошла ошибка)
 		}
 	}
 

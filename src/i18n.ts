@@ -38,7 +38,7 @@ i18next
 					filterBtn: 'Фільтри',
 					filterPlaceholder: 'Пошук по тексту',
 					all: 'Усі',
-					inProgress: 'Виконуються',
+					inProgress: 'Виконується',
 					done: 'Виконано',
 					easy: 'Легко',
 					medium: 'Середньо',

@@ -32,6 +32,8 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 `
 
 export const CreateTextarea = styled.textarea<TypeThemeProps>`
+	font-family: 'RubikRegular';
+
 	display: block;
 
 	width: 100%;
@@ -157,6 +159,7 @@ export const IconPlus = styled(GoPlus)`
 
 export const AddTaskButton = styled.button<TypeThemeProps>`
 	font-family: 'RubikMedium', sans-serif;
+	font-size: 17px;
 
 	display: block;
 	margin: 0 auto;
@@ -164,6 +167,7 @@ export const AddTaskButton = styled.button<TypeThemeProps>`
 	width: 100%;
 
 	padding: 10px 20px;
+	margin-bottom: 20px;
 
 	border-radius: 10px;
 

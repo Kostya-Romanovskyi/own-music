@@ -72,7 +72,7 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 
 	margin: 0 auto;
 
-	width: 150px;
+	width: 200px;
 
 	padding: 10px 20px;
 	margin-top: 30px;

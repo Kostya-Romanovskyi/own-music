@@ -12,11 +12,12 @@ export const StyledButton = styled.button<TypeThemeProps>`
 	padding: 5px 10px;
 	margin-left: 10px;
 
-	border: 1px solid #48319d;
+	border: 1px solid ${({ theme }) => theme.border};
 	border-radius: 5px;
 
 	color: ${({ theme }) => theme.color};
 	background-color: ${({ theme }) => theme.backgroundColor};
 
-	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition};
+	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
+		border ${transitionTime.transition};
 `

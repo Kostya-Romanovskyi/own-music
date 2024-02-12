@@ -56,9 +56,8 @@ const TodoItem: FC<TypeTodoItem> = ({ id, text, complexity, status, addingDate }
 	return (
 		<>
 			<Item>
-				{/* <TextWrapper> */}
 				<Text>{text}</Text>
-				{/* </TextWrapper> */}
+
 				<AdditionalWrapp>
 					<MoreButton type='button' onClick={openModal}>
 						<BsThreeDots className='global-icons' />

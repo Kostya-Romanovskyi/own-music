@@ -52,6 +52,7 @@ const globalStyles = css`
 	* {
 		padding: 0;
 		margin: 0;
+		box-sizing: border-box;
 	}
 
 	body {
@@ -167,7 +168,7 @@ const globalStyles = css`
 	}
 
 	.checkbox-input:checked + .checkbox-label {
-		background: #bada55;
+		background: #2ecc71;
 	}
 
 	.checkbox-input:checked + .checkbox-label:after {
