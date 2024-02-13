@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script type="text/javascript">
+			var pathSegmentsToKeep = 1
+
+			var obj = window.location
+
+			obj.replace(
+				obj.protocol +
+					'//' +
+					obj.hostname +
+					(obj.port ? ':' + obj.port : '') +
+					obj.pathname
+						.split('/')
+						.splice(0, 1 + pathSegmentsToKeep)
+						.join('/') +
+					'/?/' +
+					obj.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+					(obj.search ? '&' + obj.search.slice(1).replace(/&/g, '~and~') : '') +
+					obj.hash
+			)
+		</script>
+	</head>
+	<body></body>
+</html>
