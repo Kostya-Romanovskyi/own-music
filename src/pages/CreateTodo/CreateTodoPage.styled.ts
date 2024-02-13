@@ -41,7 +41,8 @@ export const CreateTextarea = styled.textarea<TypeThemeProps>`
 
 	margin-top: 20px;
 	margin-bottom: 20px;
-	padding: 0;
+	padding-top: 5px;
+	padding-left: 5px;
 
 	border: 1px solid ${({ theme }) => theme.border};
 	border-radius: 5px;

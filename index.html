@@ -5,7 +5,20 @@
 		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>OwnToDo</title>
-		<link rel="stylesheet" href="node_modules/modern-normalize/modern-normalize.css" />
+		<script type="text/javascript">
+			;(function (obj) {
+				if (obj.search[1] === '/') {
+					var decoded = obj.search
+						.slice(1)
+						.split('&')
+						.map(function (s) {
+							return s.replace(/~and~/g, '&')
+						})
+						.join('?')
+					window.history.replaceState(null, null, obj.pathname.slice(0, -1) + decoded + obj.hash)
+				}
+			})(window.location)
+		</script>
 	</head>
 	<body>
 		<div id="root"></div>

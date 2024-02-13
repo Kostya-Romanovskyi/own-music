@@ -8,7 +8,7 @@ export const SideBarList = styled.ul`
 
 	padding: 0;
 	margin: 0 10px;
-	margin-top: 50px;
+	margin-top: 30px;
 
 	max-width: 156px;
 

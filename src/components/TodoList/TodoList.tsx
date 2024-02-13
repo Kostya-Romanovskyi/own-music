@@ -1,9 +1,11 @@
 import { FC } from 'react'
 import TodoItem from '../TodoItem/TodoItem'
 import { TypeItemsList } from '../../types/Todo.types'
-import { List } from './TodoList.styled'
+import { List, IsTodo, LoaderContainer } from './TodoList.styled'
 import { useTodoContext } from '../../context/TodoContext'
-import DotLoader from 'react-spinners/DotLoader'
+import BarLoader from 'react-spinners/BarLoader'
+import { useTranslation } from 'react-i18next'
+import GlobalColors from '../../UI/GlobalColors'
 
 export type TypeItems = {
 	data: TypeItemsList
@@ -11,11 +13,14 @@ export type TypeItems = {
 
 const TodoList: FC<TypeItems> = ({ data }) => {
 	const { state } = useTodoContext()
+	const { t } = useTranslation()
 
 	return (
 		<>
 			{state.isLoading && state.isLoading ? (
-				<DotLoader color='#C0C0C0' />
+				<LoaderContainer>
+					<BarLoader color={GlobalColors.spinnerColor} />
+				</LoaderContainer>
 			) : (
 				data && (
 					<List>
@@ -33,7 +38,7 @@ const TodoList: FC<TypeItems> = ({ data }) => {
 								))
 								.reverse()
 						) : (
-							<div>You haven`t todo now)</div>
+							<IsTodo>{t('isTodo')}</IsTodo>
 						)}
 					</List>
 				)

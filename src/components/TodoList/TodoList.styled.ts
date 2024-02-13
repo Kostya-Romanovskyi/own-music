@@ -9,3 +9,17 @@ export const List = styled.ul`
 
 	margin-bottom: 20px;
 `
+
+export const IsTodo = styled.p`
+	font-size: 30px;
+
+	margin-top: 50px;
+
+	text-align: center;
+`
+export const LoaderContainer = styled.div`
+	display: flex;
+	justify-content: center;
+
+	margin-top: 50px;
+`

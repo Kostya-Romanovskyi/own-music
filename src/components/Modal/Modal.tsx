@@ -20,6 +20,7 @@ import {
 } from './Modal.styled'
 
 import { darkTheme } from '../../UI/GlobalTheme'
+import { toast, ToastOptions } from 'react-toastify'
 
 import { useTranslation } from 'react-i18next'
 
@@ -30,6 +31,12 @@ type TypeModalWindow = {
 	setIsOpen: (value: boolean) => void
 	text: string
 	id: string
+}
+
+const notifyStyled: ToastOptions = {
+	position: 'top-center',
+	theme: 'colored',
+	closeOnClick: true,
 }
 
 const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) => {
@@ -66,6 +73,10 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 	}
 
 	const handleUpdate = (uid: string, todoId: string) => {
+		if (textAreaValue === '') {
+			toast.warning(t('notifyEmptyField'), notifyStyled)
+			return
+		}
 		try {
 			const updatedTodo: TypeTodoItem = {
 				id: todoId,

@@ -14,6 +14,7 @@ const GlobalColors: TypeGlobalColors = {
 	inProgress: '#ADD8E6',
 	date: '#c0c0c0',
 	deleteColor: '#ff0000',
+	spinnerColor: '#C0C0C0',
 }
 
 export default GlobalColors

@@ -51,8 +51,8 @@ export const CloseIcon = styled(IoCloseSharp)<TypeThemeProps>`
 `
 export const CloseBarButton = styled.button<TypeThemeProps>`
 	position: absolute;
-	top: 1%;
-	right: 6%;
+	top: 10px;
+	right: 20px;
 
 	border: none;
 	background-color: ${({ theme }) => theme.backgroundColor};
@@ -64,7 +64,7 @@ export const BurgerList = styled.ul`
 
 	padding: 0;
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 30px;
 
 	max-width: 90%;
 

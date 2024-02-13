@@ -22,6 +22,15 @@ import { useNavigate } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
+import { toast, ToastContainer, ToastOptions } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+const notifyStyled: ToastOptions = {
+	position: 'top-center',
+	theme: 'colored',
+	closeOnClick: true,
+}
+
 const CreateTodoPage: FC = () => {
 	const [selectedValue, setSelectedValue] = useState<string>('easy')
 	const [newValue, setNewValue] = useState<string>('')
@@ -41,6 +50,11 @@ const CreateTodoPage: FC = () => {
 	}
 
 	const handleAddTodo = async () => {
+		if (newValue === '') {
+			toast.warning(t('notifyEmptyField'), notifyStyled)
+			return
+		}
+
 		const id = nanoid()
 
 		const newTodo: TypeTodoItem = {
@@ -60,6 +74,7 @@ const CreateTodoPage: FC = () => {
 
 	return (
 		<div className='container'>
+			<ToastContainer />
 			<StyledLink to={'/'}>
 				<ArrowIcon />
 				{t('backBtn')}

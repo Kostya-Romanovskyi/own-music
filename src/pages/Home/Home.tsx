@@ -16,6 +16,8 @@ import HomePageGif from '../../assets/drawing-sketch.gif'
 
 import { useTranslation } from 'react-i18next'
 
+import { ToastContainer } from 'react-toastify'
+
 const Home: FC = () => {
 	const { userAuth } = useAuthContext()
 	const { state, fetchAllTodo } = useTodoContext()
@@ -30,14 +32,14 @@ const Home: FC = () => {
 	return userAuth ? (
 		<ThemeContainer>
 			<div className='container'>
+				<ToastContainer />
+
 				<FiltersWrapper>
 					<BurgerMenu />
 
 					<TodoSearch />
 				</FiltersWrapper>
-
 				<StyledLink to='/create'>{t('createTodo')}</StyledLink>
-
 				<GridWrapper>
 					<SideBarTodo />
 

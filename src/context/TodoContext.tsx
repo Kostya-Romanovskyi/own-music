@@ -2,6 +2,9 @@ import { FC, createContext, useContext, useReducer } from 'react'
 import { getAllTodo, writeUserData, updateDataTodo, removeTodo } from '../API/API-list'
 import { TypeTodoItem, TypeContextProps } from '../types/Todo.types'
 import { TypeUser } from '../types/UserAuth.types'
+import { toast, ToastOptions } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { t } from 'i18next'
 
 type TypeInitTodoContext = {
 	dataTodo: TypeTodoItem[]
@@ -12,6 +15,12 @@ type TypeInitTodoContext = {
 type TypeAction = {
 	type: string
 	payload?: any
+}
+
+const notifyStyled: ToastOptions = {
+	position: 'top-center',
+	theme: 'colored',
+	closeOnClick: true,
 }
 
 // Начальное состояние
@@ -133,13 +142,13 @@ export const TodoProvider: FC<TypeContextProps> = ({ children }) => {
 	// fetch All Todo
 	const fetchAllTodo = async (user: TypeUser): Promise<void> => {
 		try {
-			dispatch({ type: SET_IS_LOADING, payload: true }) // Установите isLoading в true при начале загрузки
+			dispatch({ type: SET_IS_LOADING, payload: true })
 			const allTodo: TypeTodoItem[] = await getAllTodo(user)
 			dispatch({ type: SET_ALL_TODO, payload: allTodo })
 		} catch (error) {
 			console.error(error)
 		} finally {
-			dispatch({ type: SET_IS_LOADING, payload: false }) // Установите isLoading в false после завершения загрузки (даже если произошла ошибка)
+			dispatch({ type: SET_IS_LOADING, payload: false })
 		}
 	}
 
@@ -148,22 +157,40 @@ export const TodoProvider: FC<TypeContextProps> = ({ children }) => {
 		try {
 			await writeUserData(userId, newTodo)
 			dispatch({ type: ADD_TODO, payload: newTodo })
+
+			toast.success(t('notifyAddTodo'), notifyStyled)
 		} catch (error) {
 			console.error(error)
-			// Обработка ошибки
+
+			toast.error(t('notifyErrorTodo'), notifyStyled)
 		}
 	}
 
 	// update Todo
 	const updateTodo = (userId: string, todoId: string, updatedTodo: TypeTodoItem) => {
-		updateDataTodo(userId, todoId, updatedTodo)
-		dispatch({ type: UPDATE_TODO, payload: updatedTodo })
+		try {
+			updateDataTodo(userId, todoId, updatedTodo)
+			dispatch({ type: UPDATE_TODO, payload: updatedTodo })
+
+			toast.success(t('notifyUpdateTodo'), notifyStyled)
+		} catch (error: any) {
+			console.error(error)
+
+			toast.error(t('notifyErrorTodo'), notifyStyled)
+		}
 	}
 
 	// delete Todo
 	const deleteTodo = (userId: string, todoId: string) => {
-		removeTodo(userId, todoId)
-		dispatch({ type: DELETE_TODO, payload: { userId, todoId } })
+		try {
+			removeTodo(userId, todoId)
+			dispatch({ type: DELETE_TODO, payload: { userId, todoId } })
+			toast.success(t('notifyDeleteTodo'), notifyStyled)
+		} catch (error) {
+			console.error(error)
+
+			toast.error(t('notifyErrorTodo'), notifyStyled)
+		}
 	}
 
 	const searchTodo = (query: string) => {
