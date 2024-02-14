@@ -38,6 +38,10 @@ export const FiltersWrapper = styled.div`
 	justify-content: space-between;
 
 	margin-bottom: 20px;
+
+	@media screen and (min-width: 768px) {
+		display: block;
+	}
 `
 
 export const GridWrapper = styled.div`

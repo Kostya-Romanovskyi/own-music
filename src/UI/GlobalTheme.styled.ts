@@ -27,4 +27,8 @@ export const ThemeInput = styled.input<TypeThemeProps>`
 	&::placeholder {
 		color: #9d9a9a;
 	}
+
+	@media screen and (min-width: 786px) {
+		width: 100%;
+	}
 `

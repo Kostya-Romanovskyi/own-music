@@ -27,7 +27,7 @@ export const Item = styled.li<TypeThemeProps>`
 // `
 
 export const Text = styled.div<TypeThemeProps>`
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 
 	white-space: wrap;
@@ -58,6 +58,10 @@ export const AdditionalWrapp = styled.div`
 	height: 100%;
 
 	padding: 4px 10px;
+
+	@media screen and (min-width: 1200px) {
+		justify-content: flex-start;
+	}
 `
 
 export const Wrapper = styled.div`
@@ -97,6 +101,10 @@ export const AdditionalComplexity = styled.p<TypeConditionProp>`
 	@media screen and (min-width: 340px) {
 		padding: 5px 10px;
 	}
+
+	@media screen and (min-width: 1200px) {
+		margin-left: 30px;
+	}
 `
 type TypeStatusProps = {
 	status: string | boolean
@@ -129,6 +137,10 @@ export const AdditionalStatus = styled.p<TypeStatusProps>`
 
 	@media screen and (min-width: 340px) {
 		padding: 5px 10px;
+	}
+
+	@media screen and (min-width: 1200px) {
+		margin-left: 30px;
 	}
 `
 export const AdditionalInfoDate = styled.p`
@@ -164,6 +176,10 @@ export const MoreButton = styled.button<TypeThemeProps>`
 	transition: color ${transitionTime.transition};
 
 	cursor: pointer;
+
+	@media screen and (min-width: 1200px) {
+		margin-left: 30px;
+	}
 `
 export const CloseButton = styled.button`
 	position: absolute;

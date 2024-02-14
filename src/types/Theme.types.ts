@@ -17,6 +17,9 @@ export type TypeTheme = {
 	activeBgColorEasy: string
 	activeBgColorMedium: string
 	activeBgColorHard: string
+	hoverEasy: string
+	hoverMedium: string
+	hoverHard: string
 }
 
 export type TypeThemeProps = {
@@ -32,8 +35,9 @@ export type TypeConditionProp = {
 }
 
 export type TypeSideButton = {
+	key?: number
 	theme?: TypeToggleTheme
-	children: string
+	children: React.ReactNode
 	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 

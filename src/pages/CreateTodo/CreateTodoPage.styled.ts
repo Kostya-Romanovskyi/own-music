@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { TypeThemeProps } from '../../types/Theme.types'
-// import GlobalColors from '../../UI/GlobalColors'
 
 import { GoPlus } from 'react-icons/go'
 import { FaArrowLeftLong } from 'react-icons/fa6'
@@ -8,6 +7,12 @@ import { FaArrowLeftLong } from 'react-icons/fa6'
 import { transitionTime } from '../../Constant/TransitionTime'
 
 import { Link } from 'react-router-dom'
+
+export const LinkWrapper = styled.div<TypeThemeProps>`
+	width: 90px;
+	margin-left: auto;
+	margin-bottom: 30px;
+`
 
 export const ArrowIcon = styled(FaArrowLeftLong)<TypeThemeProps>`
 	margin-right: 10px;
@@ -21,7 +26,6 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 	font-family: 'RubikRegular', sans-serif;
 
 	display: flex;
-	justify-content: flex-end;
 	align-items: center;
 
 	color: ${({ theme }) => theme.color};
@@ -29,6 +33,15 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 	transition: color ${transitionTime.transition};
 
 	text-decoration: none;
+
+	@media screen and (min-width: 1200px) {
+		font-size: 20px;
+
+		&:hover,
+		&:focus {
+			color: grey;
+		}
+	}
 `
 
 export const CreateTextarea = styled.textarea<TypeThemeProps>`
@@ -55,6 +68,17 @@ export const CreateTextarea = styled.textarea<TypeThemeProps>`
 		border ${transitionTime.transition};
 
 	resize: none;
+
+	@media screen and (min-width: 768px) {
+		margin-bottom: 50px;
+		font-size: 20px;
+
+		height: 120px;
+	}
+
+	@media screen and (min-width: 1200px) {
+		height: 180px;
+	}
 `
 
 export const DescriptionText = styled.p<TypeThemeProps>`
@@ -65,6 +89,14 @@ export const DescriptionText = styled.p<TypeThemeProps>`
 	transition: color ${transitionTime.transition};
 
 	margin-bottom: 20px;
+
+	@media screen and (min-width: 768px) {
+		font-family: 'RubikMedium', sans-serif;
+
+		font-size: 20px;
+
+		margin-bottom: 50px;
+	}
 `
 
 export const RadioWrapper = styled.ul`
@@ -76,6 +108,18 @@ export const RadioWrapper = styled.ul`
 
 	margin: 0;
 	padding: 0;
+
+	@media screen and (min-width: 768px) {
+		flex-direction: row;
+		justify-content: space-around;
+
+		margin-bottom: 50px;
+	}
+
+	@media screen and (min-width: 1200px) {
+		justify-content: center;
+		gap: 100px;
+	}
 `
 
 export const RadioButton = styled.input`
@@ -152,6 +196,26 @@ export const Label = styled.label<TypeLabelProps>`
 	}};
 
 	transition: background-color ${transitionTime.transition}, outline-color ${transitionTime.transition};
+
+	@media screen and (min-width: 1200px) {
+		:hover,
+		:focus {
+			background-color: ${({ type, theme }) => {
+				switch (type) {
+					case 'easy':
+						return theme.hoverEasy
+					case 'medium':
+						return theme.hoverMedium
+					case 'hard':
+						return theme.hoverHard
+					default:
+						return '#ffffff'
+				}
+			}};
+		}
+
+		cursor: pointer;
+	}
 `
 
 export const IconPlus = styled(GoPlus)`
@@ -179,4 +243,18 @@ export const AddTaskButton = styled.button<TypeThemeProps>`
 
 	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
 		border ${transitionTime.transition};
+
+	@media screen and (min-width: 768px) {
+		width: 300px;
+	}
+
+	@media screen and (min-width: 1200px) {
+		:hover,
+		:focus {
+			color: ${({ theme }) => theme.backgroundColor};
+			background-color: ${({ theme }) => theme.border};
+		}
+
+		cursor: pointer;
+	}
 `

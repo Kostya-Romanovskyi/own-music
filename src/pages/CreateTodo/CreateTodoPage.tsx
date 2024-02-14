@@ -1,5 +1,6 @@
 import { FC, useState, SetStateAction } from 'react'
 import {
+	LinkWrapper,
 	StyledLink,
 	ArrowIcon,
 	CreateTextarea,
@@ -75,10 +76,13 @@ const CreateTodoPage: FC = () => {
 	return (
 		<div className='container'>
 			<ToastContainer />
-			<StyledLink to={'/'}>
-				<ArrowIcon />
-				{t('backBtn')}
-			</StyledLink>
+
+			<LinkWrapper>
+				<StyledLink to={'/'}>
+					<ArrowIcon />
+					{t('backBtn')}
+				</StyledLink>
+			</LinkWrapper>
 
 			<CreateTextarea onChange={handleChange} value={newValue}></CreateTextarea>
 

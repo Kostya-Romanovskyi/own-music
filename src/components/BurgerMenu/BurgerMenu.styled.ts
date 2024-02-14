@@ -21,6 +21,10 @@ export const BurgerButton = styled.button<TypeThemeProps>`
 	transition: color ${transitionTime.transition};
 
 	cursor: pointer;
+
+	@media screen and (min-width: 768px) {
+		display: none;
+	}
 `
 
 export const BurgerMenuContent = styled.div<TypeToggleBurger>`

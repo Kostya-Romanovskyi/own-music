@@ -21,6 +21,7 @@ const notifyStyled: ToastOptions = {
 	position: 'top-center',
 	theme: 'colored',
 	closeOnClick: true,
+	draggable: true,
 }
 
 // Начальное состояние

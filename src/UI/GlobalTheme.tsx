@@ -1,17 +1,5 @@
 import { TypeToggleTheme } from '../types/Theme.types'
 
-// export const lightTheme: TypeToggleTheme = {
-// 	fontFamily: 'RubikRegular, sans-serif',
-// 	background: '#fff',
-// 	color: '#333',
-// }
-
-// export const darkTheme: TypeToggleTheme = {
-// 	fontFamily: 'RubikRegular, sans-serif',
-// 	background: '#332b53',
-// 	color: '#ffffff',
-// 	border: '#7b7676',
-// }
 export const lightTheme: TypeToggleTheme = {
 	fontFamily: 'RubikRegular, sans-serif',
 	color: '#2c3e50',
@@ -20,12 +8,15 @@ export const lightTheme: TypeToggleTheme = {
 	bgColorEasy: '#3498db',
 	textColorEasy: '#ffffff',
 	activeBgColorEasy: '#1d6fa5',
-	bgColorMedium: '#FFC107 ',
+	bgColorMedium: '#FFC107',
 	textColorMedium: '#212121',
 	activeBgColorMedium: '#FFD600',
 	bgColorHard: ' #F44336',
 	textColorHard: '#ffffff',
 	activeBgColorHard: '#D32F2F',
+	hoverEasy: 'rgba(29, 111, 165, 0.8)',
+	hoverMedium: 'rgba(230, 174, 6, 1)',
+	hoverHard: 'rgba(244, 67, 54, 0.8)',
 }
 
 export const darkTheme: TypeToggleTheme = {
@@ -42,4 +33,7 @@ export const darkTheme: TypeToggleTheme = {
 	bgColorHard: '#D32F2F',
 	textColorHard: '#ffffff',
 	activeBgColorHard: '#F44336',
+	hoverEasy: 'rgba(52, 152, 219, 0.5)',
+	hoverMedium: 'rgba(255, 160, 0, 0.5)',
+	hoverHard: 'rgba(211, 47, 47, 0.5)',
 }

@@ -32,7 +32,7 @@ const Home: FC = () => {
 	return userAuth ? (
 		<ThemeContainer>
 			<div className='container'>
-				<ToastContainer />
+				<ToastContainer stacked />
 
 				<FiltersWrapper>
 					<BurgerMenu />
