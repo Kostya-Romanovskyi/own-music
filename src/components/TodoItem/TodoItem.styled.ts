@@ -21,11 +21,6 @@ export const Item = styled.li<TypeThemeProps>`
 	@media screen and (min-width: 768px) {
 	}
 `
-
-// export const TextWrapper = styled.div`
-// 	width: 200px;
-// `
-
 export const Text = styled.div<TypeThemeProps>`
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -45,6 +40,26 @@ export const Text = styled.div<TypeThemeProps>`
 	resize: none;
 
 	border: none;
+
+	&::-webkit-scrollbar {
+		background: #ecf0f1;
+		width: 0.4em;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #34495e;
+		border: 1px solid;
+		border-radius: 10px;
+		height: 1em;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: #01bcf3;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: #ecf0f1;
+	}
 `
 
 export const AdditionalWrapp = styled.div`

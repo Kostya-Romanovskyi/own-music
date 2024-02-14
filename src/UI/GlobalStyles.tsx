@@ -58,6 +58,27 @@ const globalStyles = css`
 	body {
 		font-family: 'RubikRegular', sans-serif;
 	}
+
+	body::-webkit-scrollbar {
+		background: #ecf0f1;
+		width: 0.4em;
+	}
+
+	body::-webkit-scrollbar-thumb {
+		background: #34495e;
+		border: 1px solid;
+		border-radius: 10px;
+		height: 6em;
+	}
+
+	body::-webkit-scrollbar-thumb:hover {
+		background: #01bcf3;
+	}
+
+	body::-webkit-scrollbar-track {
+		background-color: #ecf0f1;
+	}
+
 	h1,
 	h2,
 	h3,

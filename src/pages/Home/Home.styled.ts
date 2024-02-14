@@ -1,13 +1,7 @@
 import styled from '@emotion/styled'
-import { IoFilterOutline } from 'react-icons/io5'
 import { TypeThemeProps } from '../../types/Theme.types'
 import { Link } from 'react-router-dom'
 import { transitionTime } from '../../Constant/TransitionTime'
-
-export const StyledIcon = styled(IoFilterOutline)<TypeThemeProps>`
-	color: ${({ theme }) => theme.color};
-	transition: color ${transitionTime.transition};
-`
 
 export const HiddenButton = styled.button`
 	display: none;
@@ -91,4 +85,19 @@ export const StyledLink = styled(Link)<TypeThemeProps>`
 
 	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
 		border ${transitionTime.transition};
+
+	@media screen and (min-width: 1200px) {
+		font-family: 'RubikMedium';
+		font-size: 20px;
+
+		width: 250px;
+
+		margin-bottom: 60px;
+
+		&:hover,
+		&:focus {
+			color: ${({ theme }) => theme.backgroundColor};
+			background-color: ${({ theme }) => theme.border};
+		}
+	}
 `

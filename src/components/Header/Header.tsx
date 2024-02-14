@@ -76,7 +76,7 @@ const Header: FC = () => {
 								)}
 
 								<ThemeButton onClick={handleToggleTheme}>
-									{currentTheme.background === '#fff' ? <StyledIconMoon /> : <StyledIconSun />}
+									{currentTheme.backgroundColor === '#ecf0f1' ? <StyledIconMoon /> : <StyledIconSun />}
 								</ThemeButton>
 
 								{userAuth ? (

@@ -5,13 +5,27 @@ import { TypeThemeProps } from '../../types/Theme.types'
 import { transitionTime } from '../../Constant/TransitionTime'
 
 export const StyledIconSun = styled(CgSun)<TypeThemeProps>`
-	margin-left: 10px;
 	color: ${({ theme }) => theme.color};
+
+	transition: color ${transitionTime.transition};
+
+	&:hover,
+	&:focus {
+		color: ${({ theme }) => theme.activeBgColorMedium};
+	}
 `
 
 export const StyledIconMoon = styled(FaRegMoon)<TypeThemeProps>`
-	margin-left: 10px;
 	color: ${({ theme }) => theme.color};
+
+	transition: color ${transitionTime.transition};
+
+	&:hover,
+	&:focus {
+		color: ${({ theme }) => theme.hoverEasy};
+	}
+
+	@medi;
 `
 
 export const HeaderWrapper = styled.div`
@@ -43,7 +57,13 @@ export const ThemeButton = styled.button`
 	border: none;
 	background-color: transparent;
 
-	cursor: pointer;
+	margin-left: 10px;
+
+	@media screen and (min-width: 1200px) {
+		margin-left: 15px;
+
+		cursor: pointer;
+	}
 `
 export const LangButton = styled.button<TypeThemeProps>`
 	font-family: ${({ theme }) => theme.fontFamily};
@@ -67,4 +87,18 @@ export const LangButton = styled.button<TypeThemeProps>`
 		border ${transitionTime.transition};
 
 	cursor: pointer;
+
+	@media screen and (min-width: 1200px) {
+		font-family: 'RubikMedium', sans-serif;
+
+		font-size: 15px;
+
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			color: ${({ theme }) => theme.backgroundColor};
+			background-color: ${({ theme }) => theme.border};
+		}
+	}
 `

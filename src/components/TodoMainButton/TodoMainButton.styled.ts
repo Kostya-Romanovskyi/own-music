@@ -20,4 +20,22 @@ export const StyledButton = styled.button<TypeThemeProps>`
 
 	transition: background-color ${transitionTime.transition}, color ${transitionTime.transition},
 		border ${transitionTime.transition};
+
+	@media screen and (min-width: 1200px) {
+		font-family: 'RubikMedium', sans-serif;
+
+		margin-left: 15px;
+
+		font-size: 15px;
+
+		width: 80px;
+
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			color: ${({ theme }) => theme.backgroundColor};
+			background-color: ${({ theme }) => theme.border};
+		}
+	}
 `

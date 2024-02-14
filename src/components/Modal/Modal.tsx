@@ -115,72 +115,74 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 			onRequestClose={closeModal}
 			contentLabel='Example Modal'
 		>
-			<CloseButton onClick={closeModal}>
-				<StyledCloseIcon />
-			</CloseButton>
+			<div className='container'>
+				<CloseButton onClick={closeModal}>
+					<StyledCloseIcon />
+				</CloseButton>
 
-			<TextArea
-				placeholder='Edit text'
-				onChange={e => setTextAreaValue(e.target.value)}
-				defaultValue={textAreaValue}
-			></TextArea>
+				<TextArea
+					placeholder='Edit text'
+					onChange={e => setTextAreaValue(e.target.value)}
+					defaultValue={textAreaValue}
+				></TextArea>
 
-			<RadioWrapper>
-				<li>
-					<Label htmlFor='easy-update' type='easy' checked={selectedValue === 'easy'}>
-						{t('easy')}
-					</Label>
-					<RadioButton onChange={handleChecked} type='radio' name='complexity-update' value='easy' id='easy-update' />
-				</li>
+				<RadioWrapper>
+					<li>
+						<Label htmlFor='easy-update' type='easy' checked={selectedValue === 'easy'}>
+							{t('easy')}
+						</Label>
+						<RadioButton onChange={handleChecked} type='radio' name='complexity-update' value='easy' id='easy-update' />
+					</li>
 
-				<li>
-					<Label htmlFor='medium-update' type='medium' checked={selectedValue === 'medium'}>
-						{t('medium')}
-					</Label>
-					<RadioButton
-						onChange={handleChecked}
-						type='radio'
-						name='complexity-update'
-						value='medium'
-						checked={selectedValue === 'medium'}
-						id='medium-update'
-					/>
-				</li>
+					<li>
+						<Label htmlFor='medium-update' type='medium' checked={selectedValue === 'medium'}>
+							{t('medium')}
+						</Label>
+						<RadioButton
+							onChange={handleChecked}
+							type='radio'
+							name='complexity-update'
+							value='medium'
+							checked={selectedValue === 'medium'}
+							id='medium-update'
+						/>
+					</li>
 
-				<li>
-					<Label htmlFor='hard-update' type='hard' checked={selectedValue === 'hard'}>
-						{t('hard')}
-					</Label>
-					<RadioButton
-						onChange={handleChecked}
-						type='radio'
-						name='complexity-update'
-						value='hard'
-						checked={selectedValue === 'hard'}
-						id='hard-update'
-					/>
-				</li>
-			</RadioWrapper>
+					<li>
+						<Label htmlFor='hard-update' type='hard' checked={selectedValue === 'hard'}>
+							{t('hard')}
+						</Label>
+						<RadioButton
+							onChange={handleChecked}
+							type='radio'
+							name='complexity-update'
+							value='hard'
+							checked={selectedValue === 'hard'}
+							id='hard-update'
+						/>
+					</li>
+				</RadioWrapper>
 
-			<EditButton
-				onClick={() => {
-					if (userAuth) {
-						handleUpdate(userAuth.uid, id)
-					}
-				}}
-			>
-				{t('editTodo')}
-			</EditButton>
+				<EditButton
+					onClick={() => {
+						if (userAuth) {
+							handleUpdate(userAuth.uid, id)
+						}
+					}}
+				>
+					{t('editTodo')}
+				</EditButton>
 
-			<DeleteButton
-				onClick={() => {
-					if (userAuth) {
-						handleDelete(userAuth.uid, id)
-					}
-				}}
-			>
-				{t('deleteTodo')}
-			</DeleteButton>
+				<DeleteButton
+					onClick={() => {
+						if (userAuth) {
+							handleDelete(userAuth.uid, id)
+						}
+					}}
+				>
+					{t('deleteTodo')}
+				</DeleteButton>
+			</div>
 		</Modal>
 	)
 }

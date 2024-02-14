@@ -31,4 +31,8 @@ export const ThemeInput = styled.input<TypeThemeProps>`
 	@media screen and (min-width: 786px) {
 		width: 100%;
 	}
+	@media screen and (min-width: 1200px) {
+		margin-bottom: 20px;
+		padding: 10px 0 10px 15px;
+	}
 `
