@@ -6,7 +6,7 @@ import { FaRegWindowRestore } from 'react-icons/fa'
 import { ThemeContainer } from '../../UI/GlobalTheme.styled'
 import {
 	HeaderWrapper,
-	LeftSide,
+	StyledLink,
 	LogoText,
 	RightSide,
 	StyledIconSun,
@@ -60,10 +60,11 @@ const Header: FC = () => {
 				<ThemeContainer>
 					<div className='container'>
 						<HeaderWrapper>
-							<LeftSide>
+							<StyledLink to='/'>
 								<LogoText>OwnToDo</LogoText>
 								<FaRegWindowRestore />
-							</LeftSide>
+							</StyledLink>
+
 							<RightSide>
 								{checkLang === 'uk' ? (
 									<LangButton onClick={handleChangeEn} type='button'>

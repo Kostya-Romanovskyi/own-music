@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Link } from 'react-router-dom'
 import { CgSun } from 'react-icons/cg'
 import { FaRegMoon } from 'react-icons/fa'
 import { TypeThemeProps } from '../../types/Theme.types'
@@ -24,8 +25,6 @@ export const StyledIconMoon = styled(FaRegMoon)<TypeThemeProps>`
 	&:focus {
 		color: ${({ theme }) => theme.hoverEasy};
 	}
-
-	@medi;
 `
 
 export const HeaderWrapper = styled.div`
@@ -38,11 +37,19 @@ export const HeaderWrapper = styled.div`
 
 	margin-bottom: 10px;
 `
-export const LeftSide = styled.div`
+
+export const StyledLink = styled(Link)<TypeThemeProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	text-decoration: none;
+
+	color: ${({ theme }) => theme.color};
+
+	transition: color ${transitionTime.transition};
 `
+
 export const LogoText = styled.p`
 	font-weight: 500;
 	margin-right: 10px;
