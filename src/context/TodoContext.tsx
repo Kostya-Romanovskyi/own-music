@@ -22,6 +22,7 @@ const notifyStyled: ToastOptions = {
 	theme: 'colored',
 	closeOnClick: true,
 	draggable: true,
+	autoClose: 2000,
 }
 
 // Начальное состояние
@@ -159,7 +160,9 @@ export const TodoProvider: FC<TypeContextProps> = ({ children }) => {
 			await writeUserData(userId, newTodo)
 			dispatch({ type: ADD_TODO, payload: newTodo })
 
-			toast.success(t('notifyAddTodo'), notifyStyled)
+			if (!document.querySelector('.toastify')) {
+				toast.success(t('notifyAddTodo'), notifyStyled)
+			}
 		} catch (error) {
 			console.error(error)
 
@@ -173,7 +176,9 @@ export const TodoProvider: FC<TypeContextProps> = ({ children }) => {
 			updateDataTodo(userId, todoId, updatedTodo)
 			dispatch({ type: UPDATE_TODO, payload: updatedTodo })
 
-			toast.success(t('notifyUpdateTodo'), notifyStyled)
+			if (!document.querySelector('.toastify')) {
+				toast.success(t('notifyUpdateTodo'), notifyStyled)
+			}
 		} catch (error: any) {
 			console.error(error)
 
@@ -186,11 +191,16 @@ export const TodoProvider: FC<TypeContextProps> = ({ children }) => {
 		try {
 			removeTodo(userId, todoId)
 			dispatch({ type: DELETE_TODO, payload: { userId, todoId } })
-			toast.success(t('notifyDeleteTodo'), notifyStyled)
+
+			if (!document.querySelector('.toastify')) {
+				toast.success(t('notifyDeleteTodo'), notifyStyled)
+			}
 		} catch (error) {
 			console.error(error)
 
-			toast.error(t('notifyErrorTodo'), notifyStyled)
+			if (!document.querySelector('.toastify')) {
+				toast.error(t('notifyErrorTodo'), notifyStyled)
+			}
 		}
 	}
 

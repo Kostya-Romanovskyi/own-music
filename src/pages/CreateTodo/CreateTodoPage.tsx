@@ -75,7 +75,7 @@ const CreateTodoPage: FC = () => {
 
 	return (
 		<div className='container'>
-			<ToastContainer />
+			<ToastContainer className={'toastify'} />
 
 			<LinkWrapper>
 				<StyledLink to={'/'}>

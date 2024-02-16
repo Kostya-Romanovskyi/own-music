@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTodoContext } from '../../context/TodoContext'
-import { ThemeInput } from '../../UI/GlobalTheme.styled'
 import { useTranslation } from 'react-i18next'
+import { ThemeInput } from './TodoSearch.styled'
 
 const TodoSearch: FC = () => {
 	const { searchTodo } = useTodoContext()

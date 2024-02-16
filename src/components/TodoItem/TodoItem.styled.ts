@@ -93,7 +93,9 @@ export const AdditionalComplexity = styled.p<TypeConditionProp>`
 	font-size: 10px;
 	font-weight: 600;
 	letter-spacing: 0.7px;
+	text-align: center;
 
+	width: 55px;
 	padding: 3px 7px;
 
 	border: none;
@@ -114,7 +116,7 @@ export const AdditionalComplexity = styled.p<TypeConditionProp>`
 	}};
 
 	@media screen and (min-width: 340px) {
-		padding: 5px 10px;
+		padding: 5px 7px;
 	}
 
 	@media screen and (min-width: 1200px) {
@@ -132,6 +134,9 @@ export const AdditionalStatus = styled.p<TypeStatusProps>`
 	font-weight: 600;
 	letter-spacing: 0.7px;
 
+	text-align: center;
+
+	width: 73px;
 	padding: 3px 7px;
 
 	border: none;
@@ -151,6 +156,7 @@ export const AdditionalStatus = styled.p<TypeStatusProps>`
 	}};
 
 	@media screen and (min-width: 340px) {
+		width: 80px;
 		padding: 5px 10px;
 	}
 

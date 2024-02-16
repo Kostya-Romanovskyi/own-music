@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext.tsx'
 import { TodoProvider } from './context/TodoContext.tsx'
 import { ThemeContextProvider } from './context/ThemeContext.tsx'
+
 import { IconContext } from 'react-icons'
 import GlobalStyles from './UI/GlobalStyles.tsx'
 

@@ -1,13 +1,11 @@
 import { useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
 import CreateTodoPage from './pages/CreateTodo/CreateTodoPage'
 
 import { ThemeProvider } from '@emotion/react'
-
 import { darkTheme } from './UI/GlobalTheme'
-
-import { Routes, Route } from 'react-router-dom'
 import { useThemeContext } from './context/ThemeContext'
 
 function App() {
