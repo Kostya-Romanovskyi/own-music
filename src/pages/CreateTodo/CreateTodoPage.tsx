@@ -52,7 +52,10 @@ const CreateTodoPage: FC = () => {
 
 	const handleAddTodo = async () => {
 		if (newValue === '') {
-			toast.warning(t('notifyEmptyField'), notifyStyled)
+			if (!document.querySelector('.toastify')) {
+				toast.warning(t('notifyEmptyField'), notifyStyled)
+			}
+
 			return
 		}
 
