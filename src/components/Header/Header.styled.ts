@@ -94,6 +94,7 @@ export const LangButton = styled.button<TypeThemeProps>`
 		border ${transitionTime.transition};
 
 	cursor: pointer;
+	outline: none;
 
 	@media screen and (min-width: 1200px) {
 		font-family: 'RubikMedium', sans-serif;

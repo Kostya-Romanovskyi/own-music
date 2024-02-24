@@ -52,7 +52,7 @@ const Home: FC = () => {
 			<InitialPageWrap>
 				<Title>{t('mainTitle')}</Title>
 
-				<Image src={HomePageGif} width={200} height='auto' alt='Worksheet writes tasks to itself' />
+				<Image src={HomePageGif} width={200} height='auto' alt='Shrimp writes in a notepad' />
 			</InitialPageWrap>
 		</div>
 	)

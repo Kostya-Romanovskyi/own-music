@@ -5,12 +5,6 @@ export type TypeTodoItem = {
 	status: boolean
 	addingDate: string
 }
-export type TypeNewTodoItem = {
-	text: string
-	complexity: 'easy' | 'medium' | 'hard'
-	status: boolean
-	addingDate: string
-}
 
 export type TypeItemsList = TypeTodoItem[]
 

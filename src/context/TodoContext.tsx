@@ -107,7 +107,6 @@ const reducer = (state: TypeInitTodoContext, action: TypeAction) => {
 
 		case FILTER_TODO:
 			let filteredTodo: TypeTodoItem[] = []
-			console.log(payload)
 
 			if (payload === 'All' || payload === 'Усі') {
 				filteredTodo = state.dataTodo

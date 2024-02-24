@@ -33,14 +33,15 @@ const Header: FC = () => {
 		uk: { nativeName: 'Ukrainian' },
 	}
 
-	const handleChangeEn = () => {
+	const handleChangeEn = (): void => {
 		i18n.changeLanguage(Object.keys(languages)[0])
 
 		const localLang = localStorage.getItem('i18nextLng')
 
 		if (localLang) setCheckLang(localLang)
 	}
-	const handleChangeUk = () => {
+
+	const handleChangeUk = (): void => {
 		i18n.changeLanguage(Object.keys(languages)[1])
 
 		const localLang = localStorage.getItem('i18nextLng')

@@ -64,7 +64,7 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 		setTextAreaValue(text)
 	}, [text])
 
-	function closeModal() {
+	function closeModal(): void {
 		setIsOpen(false)
 	}
 
@@ -77,6 +77,7 @@ const ModalWindow: FC<TypeModalWindow> = ({ modalIsOpen, setIsOpen, text, id }) 
 			toast.warning(t('notifyEmptyField'), notifyStyled)
 			return
 		}
+
 		try {
 			const updatedTodo: TypeTodoItem = {
 				id: todoId,
